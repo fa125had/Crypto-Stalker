@@ -20,7 +20,10 @@ body {
 
 #user-interface {
   overflow: hidden;
+  overflow-x: clip;
   overflow-y: auto;
+  width: 375px;
+  max-width: 100%;
 }
 #user-interface .welcome-container {
   min-width: 100vw;
@@ -46,4 +49,12 @@ body {
   text-align: center;
   animation: pulse;
   animation-duration: 5s;
+}
+#user-interface ul {
+  max-width: 100%;
+  padding-inline: 1rem;
+  text-align: left;
+}
+#user-interface ul li {
+  overflow-x: clip;
 }/*# sourceMappingURL=style.css.map */
