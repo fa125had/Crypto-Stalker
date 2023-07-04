@@ -1,0 +1,26 @@
+{
+  "name": "api-practice",
+  "version": "1.0.0",
+  "description": "Practicing API",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fa125had/api-practice.git"
+  },
+  "keywords": [
+    "API",
+    "XMLHttpRequest",
+    "fetch",
+    "promises",
+    "Axios"
+  ],
+  "author": "Far5had",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fa125had/api-practice/issues"
+  },
+  "homepage": "https://github.com/fa125had/api-practice#readme"
+}
