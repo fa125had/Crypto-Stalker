@@ -22,7 +22,6 @@ body {
   overflow: hidden;
   overflow-x: clip;
   overflow-y: auto;
-  width: 375px;
   max-width: 100%;
 }
 #user-interface .welcome-container {
@@ -50,11 +49,39 @@ body {
   animation: pulse;
   animation-duration: 5s;
 }
-#user-interface ul {
+#user-interface .header-container {
+  width: 100%;
   max-width: 100%;
-  padding-inline: 1rem;
-  text-align: left;
+  height: calc(6.6666666667vh + 1rem);
+  background-color: rgb(240, 117, 10);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+  font-family: "Lilita One", "Poppins", sans-serif;
 }
-#user-interface ul li {
-  overflow-x: clip;
+#user-interface .header-container .navbar {
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#user-interface .header-container .navbar .logo-container .logo {
+  max-width: 5rem;
+  min-width: 3.5rem;
+  padding: 1rem;
+}
+#user-interface .header-container .navbar .nav-links {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+#user-interface .header-container .navbar .nav-links .nav-link {
+  list-style: none;
+}
+#user-interface .header-container .navbar .nav-links .nav-link:hover {
+  cursor: pointer;
 }/*# sourceMappingURL=style.css.map */

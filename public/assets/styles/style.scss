@@ -37,9 +37,9 @@ body {
   overflow: hidden;
   overflow-x: clip;
   overflow-y: auto;
-  width: 375px;
   max-width: 100%;
 
+  // Welcome Page
   .welcome-container {
     min-width: 100vw;
     min-height: 100vh;
@@ -68,13 +68,48 @@ body {
     }
   }
 
-  ul {
+  // Header
+  .header-container {
+    width: 100%;
     max-width: 100%;
-    padding-inline: 1rem;
-    text-align: left;
+    height: calc(100vh / 15 + 1rem);
+    background-color: $color-orange;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+    @include font-lilita();
 
-    li {
-      overflow-x: clip;
+    .navbar {
+      width: 100%;
+      max-width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .logo-container {
+        .logo {
+          max-width: 5rem;
+          min-width: 3.5rem;
+          padding: 1rem;
+        }
+      }
+
+      .nav-links {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+
+        .nav-link {
+          list-style: none;
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
     }
   }
 }
