@@ -18,7 +18,6 @@ export const fetchDataAndUpdateView = (coinId, resource) => {
       coingeckoAPI
         .getCoinData(coinId)
         .then((coinData) => {
-          console.log(coinData);
           resolve(marketDataUpdateView(coinData));
         })
         .catch((err) => {

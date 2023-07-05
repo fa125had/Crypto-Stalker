@@ -1,10 +1,23 @@
 import { errorHandler } from "../utils/errorHandler.js";
+// Keep track of the last fetch time
+let lastFetch;
 
 const coingeckoAPI = {
   baseUrl: "https://api.coingecko.com/api/v3",
 
   // Check API Server Status
   async ping() {
+    // Retrieve the last fetch time from local storage
+    lastFetch = localStorage.getItem("lastFetch");
+    // If the last fetch time is null or less than 60 seconds ago, throw an error
+    if (lastFetch && Date.now() - lastFetch < 60000) {
+      throw new Error(
+        `Please wait ${
+          60 - Math.floor((Date.now() - lastFetch) / 1000)
+        } seconds before trying again!`
+      );
+    }
+    // Request URL for checking API server status
     const endpoint = `${this.baseUrl}/ping`;
 
     try {
@@ -15,9 +28,33 @@ const coingeckoAPI = {
         ? serverStatus
         : new Error(`Check server's status!`);
 
+      // Update the last fetch time to local storage
+      localStorage.setItem("lastFetch", Date.now());
+
       return serverResponse;
     } catch (err) {
       throw new Error(`Check server's status!`);
+    }
+  },
+
+  // Get All Coins
+  async getAllCoins() {
+    const vsCurrency = "usd";
+    // Quantity of coins to retrieve
+    const numberOfCoins = 15;
+
+    try {
+      const serverStatus = await coingeckoAPI.ping();
+      coingeckoAPI.serverStatus = await serverStatus;
+      const endpoint = `${this.baseUrl}/coins/markets?vs_currency=${vsCurrency}&order=market_cap_desc&per_page=${numberOfCoins}&page=1&sparkline=false&locale=en`;
+      const response = await fetch(endpoint);
+      const data = await response.json();
+      //
+      console.log(data);
+
+      return data;
+    } catch (err) {
+      errorHandler(err);
     }
   },
 
@@ -114,3 +151,5 @@ const coingeckoAPI = {
 };
 
 export default coingeckoAPI;
+
+document.addEventListener("DOMContentLoaded", () => coingeckoAPI.getAllCoins());

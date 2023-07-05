@@ -17,40 +17,35 @@ export const renderHeader = () => {
   navLinks.classList.add("nav-links");
   navLinks.setAttribute("id", "nav-links");
   navLinks.setAttribute("role", "navigation");
-  // Render Home Link in Navbar
-  const homeLink = document.createElement("li");
-  homeLink.classList.add("nav-link");
-  homeLink.innerHTML = "Home";
-  navLinks.appendChild(homeLink);
   // Render BTC Link in Navbar
   const btcLink = document.createElement("li");
   btcLink.classList.add("nav-link");
-  btcLink.innerHTML = "BTC";
+  btcLink.textContent = "BTC";
   navLinks.appendChild(btcLink);
   // Render ETH Link in Navbar
   const ethLink = document.createElement("li");
   ethLink.classList.add("nav-link");
-  ethLink.innerHTML = "ETH";
+  ethLink.textContent = "ETH";
   navLinks.appendChild(ethLink);
   // Render LTC Link in Navbar
   const ltcLink = document.createElement("li");
   ltcLink.classList.add("nav-link");
-  ltcLink.innerHTML = "LTC";
+  ltcLink.textContent = "LTC";
   navLinks.appendChild(ltcLink);
   // Render XRP Link in Navbar
   const xrpLink = document.createElement("li");
   xrpLink.classList.add("nav-link");
-  xrpLink.innerHTML = "XRP";
+  xrpLink.textContent = "XRP";
   navLinks.appendChild(xrpLink);
   // Render BCH Link in Navbar
   const bchLink = document.createElement("li");
   bchLink.classList.add("nav-link");
-  bchLink.innerHTML = "BCH";
+  bchLink.textContent = "BCH";
   navLinks.appendChild(bchLink);
   // Render BNB Link in Navbar
   const bnbLink = document.createElement("li");
   bnbLink.classList.add("nav-link");
-  bnbLink.innerHTML = "BNB";
+  bnbLink.textContent = "BNB";
   navLinks.appendChild(bnbLink);
   // Add Navbar Links to Header
   navbar.appendChild(logoContainer);
