@@ -77,9 +77,9 @@ body {
   align-items: center;
 }
 #user-interface .header-container .navbar .logo-container .logo {
-  max-width: 5rem;
-  min-width: 3.5rem;
-  padding: 1rem 1rem 1rem 0;
+  max-width: 4rem;
+  min-width: 2.5rem;
+  padding: 1rem 0;
 }
 #user-interface .header-container .navbar .nav-links {
   width: 100%;
@@ -87,15 +87,43 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
+  overflow-x: auto;
+  gap: 1rem;
+}
+#user-interface .header-container .navbar .nav-links::-webkit-scrollbar {
+  width: 3rem;
+}
+#user-interface .header-container .navbar .nav-links::-webkit-scrollbar-track {
+  background: rgb(42, 47, 60);
+}
+#user-interface .header-container .navbar .nav-links::-webkit-scrollbar-thumb {
+  background: #fff;
+}
+#user-interface .header-container .navbar .nav-links::-webkit-scrollbar-thumb:hover {
+  background: rgb(52, 199, 89);
+  cursor: grab;
 }
 #user-interface .header-container .navbar .nav-links .nav-link {
   list-style: none;
+  min-width: -moz-fit-content;
+  min-width: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.25rem;
+}
+#user-interface .header-container .navbar .nav-links .nav-link .coin-image {
+  max-width: 1.425rem;
 }
 #user-interface .header-container .navbar .nav-links .nav-link:hover {
   cursor: pointer;
+  text-decoration: underline;
+  text-transform: capitalize;
 }
 #user-interface .main-container {
-  min-height: 45rem;
+  width: 100%;
+  max-width: 100%;
+  padding: 1rem;
 }
 #user-interface .footer-container {
   width: 100%;
@@ -115,4 +143,20 @@ body {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+}
+#user-interface .error-container {
+  background-color: rgb(240, 117, 10);
+  color: #fff;
+  font-family: "Josefin Sans", "Poppins", sans-serif;
+  padding: 1rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}
+#user-interface .error-container .error-button {
+  font-family: "Tsukimi Rounded", "Poppins", sans-serif;
+  padding: 0.5rem 1rem;
+  border: none;
 }/*# sourceMappingURL=style.css.map */

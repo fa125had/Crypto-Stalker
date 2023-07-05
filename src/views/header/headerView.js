@@ -1,4 +1,4 @@
-export const renderHeader = () => {
+export const renderHeader = (coins) => {
   // Render Header
   const header = document.createElement("header");
   header.classList.add("header-container");
@@ -17,36 +17,26 @@ export const renderHeader = () => {
   navLinks.classList.add("nav-links");
   navLinks.setAttribute("id", "nav-links");
   navLinks.setAttribute("role", "navigation");
-  // Render BTC Link in Navbar
-  const btcLink = document.createElement("li");
-  btcLink.classList.add("nav-link");
-  btcLink.textContent = "BTC";
-  navLinks.appendChild(btcLink);
-  // Render ETH Link in Navbar
-  const ethLink = document.createElement("li");
-  ethLink.classList.add("nav-link");
-  ethLink.textContent = "ETH";
-  navLinks.appendChild(ethLink);
-  // Render LTC Link in Navbar
-  const ltcLink = document.createElement("li");
-  ltcLink.classList.add("nav-link");
-  ltcLink.textContent = "LTC";
-  navLinks.appendChild(ltcLink);
-  // Render XRP Link in Navbar
-  const xrpLink = document.createElement("li");
-  xrpLink.classList.add("nav-link");
-  xrpLink.textContent = "XRP";
-  navLinks.appendChild(xrpLink);
-  // Render BCH Link in Navbar
-  const bchLink = document.createElement("li");
-  bchLink.classList.add("nav-link");
-  bchLink.textContent = "BCH";
-  navLinks.appendChild(bchLink);
-  // Render BNB Link in Navbar
-  const bnbLink = document.createElement("li");
-  bnbLink.classList.add("nav-link");
-  bnbLink.textContent = "BNB";
-  navLinks.appendChild(bnbLink);
+
+  // Render coins links
+  coins.forEach((coin) => {
+    const coinLink = document.createElement("li");
+    coinLink.classList.add("nav-link");
+
+    const coinName = document.createElement("p");
+    coinName.classList.add("coin-name");
+    coinName.textContent = coin.name;
+
+    const coinImage = document.createElement("img");
+    coinImage.setAttribute("src", coin.image);
+    coinImage.classList.add("coin-image");
+
+    coinLink.appendChild(coinName);
+    coinLink.appendChild(coinImage);
+
+    navLinks.appendChild(coinLink);
+  });
+
   // Add Navbar Links to Header
   navbar.appendChild(logoContainer);
   navbar.appendChild(navLinks);

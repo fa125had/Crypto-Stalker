@@ -103,9 +103,9 @@ body {
 
       .logo-container {
         .logo {
-          max-width: 5rem;
-          min-width: 3.5rem;
-          padding: 1rem 1rem 1rem 0;
+          max-width: 4rem;
+          min-width: 2.5rem;
+          padding: 1rem 0;
         }
       }
 
@@ -115,12 +115,41 @@ body {
         justify-content: space-between;
         align-items: center;
         padding: 1rem;
+        overflow-x: auto;
+        gap: 1rem;
+        &::-webkit-scrollbar {
+          width: 3rem;
+
+          &-track {
+            background: $color-background-darkBlue;
+          }
+
+          &-thumb {
+            background: #fff;
+
+            &:hover {
+              background: $color-footer-background;
+              cursor: grab;
+            }
+          }
+        }
 
         .nav-link {
           list-style: none;
+          min-width: fit-content;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 0.25rem;
+
+          .coin-image {
+            max-width: 1.425rem;
+          }
 
           &:hover {
             cursor: pointer;
+            text-decoration: underline;
+            text-transform: capitalize;
           }
         }
       }
@@ -129,7 +158,9 @@ body {
 
   // Main content
   .main-container {
-    min-height: 45rem;
+    width: 100%;
+    max-width: 100%;
+    padding: 1rem;
   }
 
   // Footer
@@ -154,5 +185,28 @@ body {
         align-items: center;
       }
     }
+  }
+
+  // Error message
+  .error-container {
+    background-color: $color-orange;
+    color: #fff;
+    @include font-josefin();
+    padding: 1rem 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+
+    .error-button {
+      @include font-tsukimi();
+      padding: 0.5rem 1rem;
+      border: none;
+
+    }
+
+
+
   }
 }

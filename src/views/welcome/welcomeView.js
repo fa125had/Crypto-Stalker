@@ -1,5 +1,5 @@
 export const renderWelcome = async () => {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     const ui = document.getElementById("user-interface");
     // Render welcome page
     const welcomeContainer = document.createElement("div");
@@ -29,7 +29,7 @@ export const renderWelcome = async () => {
     setTimeout(() => {
       welcomeContainer.style.display = "none";
       resolve(welcomeContainer);
-    }, 6000);
+    }, 1000);
   }).catch((error) => {
     console.log(new Error("Can not load welcome page!"));
   });

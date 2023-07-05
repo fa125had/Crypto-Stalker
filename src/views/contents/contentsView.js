@@ -4,6 +4,7 @@ export const renderContents = (apiData) => {
 
   const homePageHero = document.createElement("div");
   homePageHero.classList.add("home-page-hero");
+  homePageHero.textContent = 'Content for the home page';
 
 
   contents.appendChild(homePageHero);

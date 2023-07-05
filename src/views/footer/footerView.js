@@ -15,7 +15,7 @@ export const renderFooter = () => {
   // Add Copy right - First division
   const copyRight = document.createElement("p");
   copyRight.classList.add("copy-right");
-  copyRight.innerText = "© 2020 - 2021";
+  copyRight.innerText = "2023 - Farshad";
   footerFistDivision.appendChild(copyRight);
 
   // Add footer links - Second division

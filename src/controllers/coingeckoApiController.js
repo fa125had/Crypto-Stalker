@@ -1,9 +1,9 @@
-import coingeckoAPI from "../models/coingeckoApiModel.js";
+import coingeckoAPI from "../models/api/coingeckoApiModel.js";
 import { marketDataUpdateView } from "../views/contents/apiContentsView.js";
 import { errorHandler } from "../utils/errorHandler.js";
 
 export const fetchDataAndUpdateView = (coinId, resource) => {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     if (resource === "simplePrice") {
       coingeckoAPI
         .getCurrentPrice(coinId)

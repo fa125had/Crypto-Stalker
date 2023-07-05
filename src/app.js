@@ -2,10 +2,9 @@
 
 import { errorHandler } from "./utils/errorHandler.js";
 import { renderWelcome } from "./views/welcome/welcomeView.js";
-import { renderHeader } from "./views/header/headerView.js";
+import { initHeader } from "./controllers/headerController.js";
 import { renderContents } from "./views/contents/contentsView.js";
 import { renderFooter } from "./views/footer/footerView.js";
-import { fetchDataAndUpdateView } from "./controllers/apiController.js";
 
 const ui = document.getElementById("user-interface");
 
@@ -19,12 +18,10 @@ const init = async () => {
     ui.removeChild(ui.firstChild);
 
     // Render the header
-    ui.appendChild(renderHeader());
+    const header = await initHeader();
+    ui.appendChild(header);
 
     ui.appendChild(renderContents());
-
-    const content = await fetchDataAndUpdateView("bitcoin", "marketData");
-    ui.appendChild(content);
 
     // Render the footer
     ui.appendChild(renderFooter());
@@ -33,4 +30,4 @@ const init = async () => {
   }
 };
 
-// document.addEventListener("DOMContentLoaded", () => init());
+document.addEventListener("DOMContentLoaded", () => init());
