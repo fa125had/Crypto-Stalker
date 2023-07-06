@@ -39,7 +39,10 @@ export const renderHeader = (coins) => {
     // Add coin 24 percent changes
     const coinChange = document.createElement("p");
     coinChange.classList.add("coin-change");
-    coinChange.textContent = `${coin.price_change_percentage_24h.toFixed(3)}% 24h`;
+    coinChange.setAttribute("id", `${coin.symbol}-24h`);
+    coinChange.textContent = `${coin.price_change_percentage_24h.toFixed(
+      3
+    )}% 24h`;
 
     // Style coin change
     coin.price_change_percentage_24h >= 0
@@ -59,4 +62,22 @@ export const renderHeader = (coins) => {
   header.appendChild(navbar);
 
   return header;
+};
+
+
+// I think a lot for this solution but it works!! im happy :)) 
+export const reloadHeader = (coins) => {
+  coins.forEach((coin) => {
+    // Select a coin by id and update the price
+    const coin24hChanges = document.getElementById(`${coin.symbol}-24h`);
+    coin24hChanges.textContent = `${coin.price_change_percentage_24h.toFixed(
+      3
+    )}% 24h`;
+
+    // Style coin change
+    coin.price_change_percentage_24h >= 0
+      ? (coin24hChanges.style.color = "green")
+      : (coin24hChanges.style.color = "red");
+  });
+
 };
