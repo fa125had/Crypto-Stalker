@@ -1,0 +1,170 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,400;0,600;1,700&family=Lilita+One&family=Poppins:wght@100;400;500;700;900&family=Tsukimi+Rounded&display=swap");
+:root {
+  font-size: 17px;
+  animation: fadeIn;
+  animation-duration: 700ms;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+body {
+  background-color: rgb(42, 47, 60);
+  color: white;
+}
+
+#user-interface {
+  overflow: hidden;
+  overflow-x: clip;
+  overflow-y: auto;
+  max-width: 100%;
+  position: relative;
+  min-height: 100vh;
+}
+#user-interface .welcome-container {
+  min-width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(42, 47, 60);
+}
+#user-interface .welcome-container .welcome-image {
+  max-width: 10rem;
+  border-radius: 1rem;
+  -o-object-fit: contain;
+     object-fit: contain;
+  animation: fadeIn;
+  animation-duration: 500ms;
+}
+#user-interface .welcome-container .welcome-text {
+  font-family: "Lilita One", "Poppins", sans-serif;
+  font-size: 3rem;
+  color: rgb(240, 117, 10);
+  text-align: center;
+  animation: pulse;
+  animation-duration: 5s;
+}
+#user-interface .welcome-container .welcome-slogan {
+  font-family: "Tsukimi Rounded", "Poppins", sans-serif;
+  color: rgb(240, 117, 10);
+  animation: fadeInDown;
+  animation-duration: 5s;
+}
+#user-interface .header-container {
+  width: 100%;
+  max-width: 100%;
+  height: calc(6.6666666667vh + 1rem);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+  border-bottom: 1px solid rgb(60, 53, 53);
+  font-family: "Lilita One", "Poppins", sans-serif;
+}
+#user-interface .header-container .navbar {
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#user-interface .header-container .navbar .logo-container .logo {
+  max-width: 4rem;
+  min-width: 2.5rem;
+  padding: 1rem 0;
+}
+#user-interface .header-container .navbar .nav-links {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  overflow-x: auto;
+  gap: 0.5rem;
+}
+#user-interface .header-container .navbar .nav-links::-webkit-scrollbar {
+  width: 2rem;
+  background-color: transparent;
+}
+#user-interface .header-container .navbar .nav-links::-webkit-scrollbar-track {
+  background: rgb(42, 47, 60);
+  border-radius: 0.5rem;
+}
+#user-interface .header-container .navbar .nav-links::-webkit-scrollbar-thumb {
+  background: #fff;
+  border-radius: 0.3rem;
+  width: 1.5rem;
+  border: 1px solid rgb(60, 53, 53);
+}
+#user-interface .header-container .navbar .nav-links::-webkit-scrollbar-thumb:hover {
+  background: rgb(52, 199, 89);
+  cursor: grabbing;
+}
+#user-interface .header-container .navbar .nav-links .nav-link {
+  list-style: none;
+  min-width: -moz-fit-content;
+  min-width: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-right: 1px dotted rgb(240, 117, 10);
+  padding-right: 0.5rem;
+  gap: 0.5rem;
+}
+#user-interface .header-container .navbar .nav-links .nav-link .coin-image {
+  max-width: 1.425rem;
+}
+#user-interface .header-container .navbar .nav-links .nav-link:hover {
+  cursor: pointer;
+  text-decoration: underline;
+  text-transform: capitalize;
+}
+#user-interface .main-container {
+  width: 100%;
+  max-width: 100%;
+  padding: 1rem;
+}
+#user-interface .footer-container {
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(52, 199, 89);
+  position: absolute;
+  bottom: 0;
+  color: rgb(42, 47, 60);
+  padding: 1rem;
+}
+#user-interface .footer-container .footer-division .footer-links {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+#user-interface .error-container {
+  background-color: rgb(240, 117, 10);
+  color: #fff;
+  font-family: "Josefin Sans", "Poppins", sans-serif;
+  padding: 1rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}
+#user-interface .error-container .error-button {
+  font-family: "Tsukimi Rounded", "Poppins", sans-serif;
+  padding: 0.5rem 1rem;
+  border: none;
+  cursor: pointer;
+}/*# sourceMappingURL=style.css.map */
