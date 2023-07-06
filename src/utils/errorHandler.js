@@ -1,15 +1,31 @@
 export const errorHandler = (err) => {
-  console.log(err);
+  // Clear existing error box on the page
+  if (document.getElementById("error-container")) {
+    handelClose();
+  }
+
+  // Log the error
+  console.error(err);
+
   // Grab the user interface element
   const ui = document.getElementById("user-interface");
 
-  // Check if the error box is already presenting
-  if (document.getElementById("error-container")) {
-    ui.removeChild(document.getElementById("error-container"));
-  }
   // Close the error container
   const handelClose = () => {
-    ui.removeChild(document.getElementById("error-container"));
+    const errorBox = document.getElementById("error-container");
+    errorBox.classList.add("animated-fade-out");
+
+    // Wait for the fade out animation to complete then close the error container
+    setTimeout(() => {
+      if (document.getElementById("error-container")) {
+        // Close the error container
+        ui.removeChild(errorBox);
+        // Clear the browser console
+        console.clear();
+        // Clear session storage
+        sessionStorage.clear();
+      }
+    }, 450);
   };
 
   // Create the error container
@@ -37,5 +53,9 @@ export const errorHandler = (err) => {
   errorContainer.appendChild(errorButton);
   ui.appendChild(errorContainer);
 
-  // throw err;
+  setTimeout(() => {
+    if (document.getElementById("error-container")) {
+      handelClose();
+    }
+  }, 5000);
 };

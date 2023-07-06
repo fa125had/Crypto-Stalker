@@ -31,7 +31,7 @@ export const renderWelcome = async () => {
     setTimeout(() => {
       welcomeContainer.style.display = "none";
       resolve(welcomeContainer);
-    }, 6000);
+    }, 1000);
   }).catch((error) => {
     errorHandler(error);
   });
