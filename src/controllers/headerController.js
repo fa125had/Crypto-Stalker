@@ -5,9 +5,10 @@ import { errorHandler } from "../utils/errorHandler.js";
 export const initHeader = async () => {
   try {
     // Fetch coins and render the header
-    const coins = await getAllCoins();
-    
-    return renderHeader(coins);
+        const coins = await getAllCoins();
+        console.log(coins);
+        return renderHeader(coins);     
+
   } catch (error) {
     errorHandler(error);
   }

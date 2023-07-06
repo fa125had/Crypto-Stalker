@@ -1,4 +1,6 @@
 import { errorHandler } from "../../utils/errorHandler.js";
+import { initHeader } from "../../controllers/headerController.js";
+
 // Keep track of the last fetch time
 let lastFetch;
 
@@ -8,34 +10,42 @@ const coingeckoAPI = {
   // Check API Server Status
   async ping() {
     // Retrieve the last fetch time from session storage
-    lastFetch = sessionStorage.getItem("lastFetch");
-    // If the last fetch time is null or less than 60 seconds ago,  an error
-    if (lastFetch && ((Date.now() - lastFetch) < 60000)) {
+    lastFetch = Number(sessionStorage.getItem("lastFetch"));
+
+    // Check if the first time fetching and if it's not, fetch allowed every 70 seconds.
+    if (lastFetch && Date.now() - lastFetch < 70000) {
+      const remainingTime = 70000 - (Date.now() - lastFetch);
       errorHandler(
         new Error(
-          `API data Automatically will load in ${
-            60 - Math.floor((Date.now() - lastFetch) / 1000)
-          } seconds. There is no need to refresh the page.`
+          `API data Automatically will load in ${Math.floor(
+            remainingTime / 1000
+          )} seconds. There is no need to refresh the page.`
         )
       );
-    }
-    // Request URL for checking API server status
-    const endpoint = `${this.baseUrl}/ping`;
 
-    try {
-      const response = await fetch(endpoint);
-      const data = await response.json();
-      const serverStatus = await data.gecko_says;
-      const serverResponse = serverStatus
-        ? serverStatus
-        : new Error(`Check server's status!`);
+      // Toggle server status
+      coingeckoAPI.serverResponse = false;
 
-      // Update the last fetch time to session storage
-      sessionStorage.setItem("lastFetch", Date.now());
+      // Return coins data stored in session storage
+      const storedData = JSON.parse(sessionStorage.getItem("coinsData"));
 
-      return serverResponse;
-    } catch (err) {
-      new Error(`Check server's status!`);
+      return storedData;
+    } else {
+      // Request URL for checking API server status
+      const endpoint = `${this.baseUrl}/ping`;
+
+      try {
+        const response = await fetch(endpoint);
+        const data = await response.json();
+        coingeckoAPI.serverResponse = await data.gecko_says;
+
+        // Update the last fetch time to session storage
+        sessionStorage.setItem("lastFetch", Date.now());
+
+        return coingeckoAPI.serverResponse;
+      } catch (err) {
+        new Error(`Check server's status!`);
+      }
     }
   },
 
@@ -46,13 +56,31 @@ const coingeckoAPI = {
     const numberOfCoins = 15;
 
     try {
-      const serverStatus = await coingeckoAPI.ping();
-      coingeckoAPI.serverStatus = await serverStatus;
-      const endpoint = `${this.baseUrl}/coins/markets?vs_currency=${vsCurrency}&order=market_cap_desc&per_page=${numberOfCoins}&page=1&sparkline=false&locale=en`;
-      const response = await fetch(endpoint);
-      const data = await response.json();
+      const apiResponse = await coingeckoAPI.ping();
 
-      return data;
+      // Fetch the Coin Data if Ping() has NOT returned an error
+      if (coingeckoAPI.serverResponse) {
+        // Toggle server status
+        coingeckoAPI.serverResponse = "up";
+
+        const baseUrl = "https://api.coingecko.com/api/v3";
+        const endpoint = `${baseUrl}/coins/markets?vs_currency=${vsCurrency}&order=market_cap_desc&per_page=${numberOfCoins}&page=1&sparkline=false&locale=en`;
+        const response = await fetch(endpoint);
+        const coinsData = await response.json();
+
+        // Save the Coin Data to session storage
+        sessionStorage.setItem("coinsData", JSON.stringify(coinsData));
+        console.log(
+          "Saved to session storage: ",
+          coinsData[0].id,
+          coinsData[0].current_price
+        );
+
+        return coinsData;
+      } else {
+        // Return stored Coin Data in session storage if Ping() has returned an error
+        return apiResponse;
+      }
     } catch (err) {
       errorHandler(err);
     }
@@ -149,5 +177,11 @@ const coingeckoAPI = {
     }
   },
 };
+
+// Fetch Coin Data every 75 seconds and update session storage
+setInterval(() => {
+  const coinData = coingeckoAPI.getAllCoins();
+  initHeader(coinData);
+}, 75000);
 
 export default coingeckoAPI;
