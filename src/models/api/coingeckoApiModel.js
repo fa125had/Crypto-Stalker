@@ -13,15 +13,15 @@ const coingeckoAPI = {
     lastFetch = Number(sessionStorage.getItem("lastFetch"));
 
     // Check if the first time fetching and if it's not, fetch allowed every 70 seconds.
-    if (lastFetch && Date.now() - lastFetch < 70000) {
-      const remainingTime = 70000 - (Date.now() - lastFetch);
-      // errorHandler(
-      //   new Error(
-      //     `API data Automatically will load in ${Math.floor(
-      //       remainingTime / 1000
-      //     )} seconds. There is no need to refresh the page.`
-      //   )
-      // );
+    if (lastFetch && Date.now() - lastFetch < 120000) {
+      const remainingTime = 120000 - (Date.now() - lastFetch);
+      errorHandler(
+        new Error(
+          `API data Automatically will load in ${Math.floor(
+            remainingTime / 1000
+          )} seconds. There is no need to refresh the page.`
+        )
+      );
 
       // Toggle server status
       coingeckoAPI.serverResponse = false;
@@ -178,10 +178,10 @@ const coingeckoAPI = {
   },
 };
 
-// Fetch Coin Data every 75 seconds and update session storage
+// Fetch Coin Data, update session storage
 setInterval(() => {
   const coinData = coingeckoAPI.getAllCoins();
   initHeader(coinData);
-}, 75000);
+}, 120000);
 
 export default coingeckoAPI;

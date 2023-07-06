@@ -79,5 +79,5 @@ export const reloadHeader = (coins) => {
       ? (coin24hChanges.style.color = "green")
       : (coin24hChanges.style.color = "red");
   });
-
+  console.log('Header reloaded');
 };

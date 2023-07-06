@@ -162,10 +162,16 @@ body {
   justify-content: space-between;
   align-items: center;
   gap: 0.5rem;
+  animation: flipInX;
+  animation-duration: 700ms;
 }
 #user-interface .error-container .error-button {
   font-family: "Tsukimi Rounded", "Poppins", sans-serif;
   padding: 0.5rem 1rem;
   border: none;
   cursor: pointer;
+}
+#user-interface .animated-fade-out {
+  animation: flipOutX;
+  animation-duration: 500ms;
 }/*# sourceMappingURL=style.css.map */

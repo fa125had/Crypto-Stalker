@@ -23,7 +23,7 @@ const renderHeader = async () => {
   ui.appendChild(header);
 
   // Set a timer to reload the header
-  setInterval(() => {initHeaderReload()}, 30000);
+  setInterval(() => {initHeaderReload()}, 60000);
 };
 
 // Load and Render the Contents
@@ -41,10 +41,10 @@ const initFooter = async () => {
 // Start the application
 const inits = async () => {
   try {
-    intWelcome();
-    renderHeader();
-    initContents();
-    initFooter();
+    await intWelcome();
+    await renderHeader();
+    await initContents();
+    await initFooter();
   } catch (error) {
     errorHandler(error);
   }
