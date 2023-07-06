@@ -21,7 +21,7 @@ export const errorHandler = (err) => {
         // Close the error container
         ui.removeChild(errorBox);
         // Clear the browser console
-        console.clear();
+        // console.clear();/////////////////////////////////////////////////////
         // Clear session storage
         sessionStorage.clear();
       }

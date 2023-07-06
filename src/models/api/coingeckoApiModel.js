@@ -1,5 +1,4 @@
 import { errorHandler } from "../../utils/errorHandler.js";
-import { initHeader } from "../../controllers/headerController.js";
 
 // Keep track of the last fetch time
 let lastFetch;
@@ -12,22 +11,18 @@ const coingeckoAPI = {
     // Retrieve the last fetch time from session storage
     lastFetch = Number(sessionStorage.getItem("lastFetch"));
 
-    // Check if the first time fetching and if it's not, fetch allowed every 70 seconds.
+    // Check if the it's the first time fetching and if it's not, fetch allowed every 2 minutes.
     if (lastFetch && Date.now() - lastFetch < 120000) {
       const remainingTime = 120000 - (Date.now() - lastFetch);
-      // errorHandler(
-      //   new Error(
-      //     `API data Automatically will load in ${Math.floor(
-      //       remainingTime / 1000
-      //     )} seconds. There is no need to refresh the page.`
-      //   )
-      // );
 
       // Toggle server status
       coingeckoAPI.serverResponse = false;
 
       // Return coins data stored in session storage
       const storedData = JSON.parse(sessionStorage.getItem("coinsData"));
+
+      // T-shooter logging
+      console.log("Data Loaded from Storage. Remaining time: " + remainingTime / 1000 + "seconds.");
 
       return storedData;
     } else {
@@ -42,6 +37,9 @@ const coingeckoAPI = {
 
           // Update the last fetch time to session storage
           sessionStorage.setItem("lastFetch", Date.now());
+
+          // T-shooter logging
+          console.log("Data Loaded from API Live.");
 
           return coingeckoAPI.serverResponse;
         } else {
@@ -70,8 +68,10 @@ const coingeckoAPI = {
         const baseUrl = "https://api.coingecko.com/api/v3";
         const endpoint = `${baseUrl}/coins/markets?vs_currency=${vsCurrency}&order=market_cap_desc&per_page=${numberOfCoins}&page=1&sparkline=false&locale=en`;
         const response = await fetch(endpoint);
-        if(response.status !== 200) {
-          errorHandler("Server is available but cannot fetch data. Please try again later.");
+        if (response.status !== 200) {
+          errorHandler(
+            "Server is available but cannot fetch data. Please try again later."
+          );
         }
         const coinsData = await response.json();
 
@@ -184,11 +184,5 @@ const coingeckoAPI = {
     }
   },
 };
-
-// Fetch Coin Data, update session storage
-setInterval(() => {
-  const coinData = coingeckoAPI.getAllCoins();
-  initHeader(coinData);
-}, 120000);
 
 export default coingeckoAPI;

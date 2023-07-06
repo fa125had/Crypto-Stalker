@@ -3,7 +3,7 @@
 import { errorHandler } from "./utils/errorHandler.js";
 import { renderWelcome } from "./views/welcome/welcomeView.js";
 import { initHeader, initHeaderReload} from "./controllers/headerController.js";
-import { renderContents } from "./views/contents/contentsView.js";
+import { initContents } from "./controllers/contentsController.js";
 import { renderFooter } from "./views/footer/footerView.js";
 
 const ui = document.getElementById("user-interface");
@@ -23,13 +23,13 @@ const renderHeader = async () => {
   ui.appendChild(header);
 
   // Set a timer to reload the header
-  setInterval(() => {initHeaderReload()}, 60000);
+  setInterval(() => {initHeaderReload()}, 10000);
 };
 
 // Load and Render the Contents
-const initContents = async () => {
-  // Render the contents
-  ui.appendChild(renderContents());
+const renderContents = async () => {
+  const contents = await initContents();
+  ui.appendChild(contents);
 };
 
 // Load and Render the Footer
@@ -43,7 +43,7 @@ const inits = async () => {
   try {
     await intWelcome();
     await renderHeader();
-    await initContents();
+    await renderContents();
     await initFooter();
   } catch (error) {
     errorHandler(error);
