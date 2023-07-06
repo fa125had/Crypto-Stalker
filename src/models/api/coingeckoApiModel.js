@@ -15,13 +15,13 @@ const coingeckoAPI = {
     // Check if the first time fetching and if it's not, fetch allowed every 70 seconds.
     if (lastFetch && Date.now() - lastFetch < 120000) {
       const remainingTime = 120000 - (Date.now() - lastFetch);
-      errorHandler(
-        new Error(
-          `API data Automatically will load in ${Math.floor(
-            remainingTime / 1000
-          )} seconds. There is no need to refresh the page.`
-        )
-      );
+      // errorHandler(
+      //   new Error(
+      //     `API data Automatically will load in ${Math.floor(
+      //       remainingTime / 1000
+      //     )} seconds. There is no need to refresh the page.`
+      //   )
+      // );
 
       // Toggle server status
       coingeckoAPI.serverResponse = false;
@@ -36,15 +36,19 @@ const coingeckoAPI = {
 
       try {
         const response = await fetch(endpoint);
-        const data = await response.json();
-        coingeckoAPI.serverResponse = await data.gecko_says;
+        if (response.status === 200) {
+          const data = await response.json();
+          coingeckoAPI.serverResponse = await data.gecko_says;
 
-        // Update the last fetch time to session storage
-        sessionStorage.setItem("lastFetch", Date.now());
+          // Update the last fetch time to session storage
+          sessionStorage.setItem("lastFetch", Date.now());
 
-        return coingeckoAPI.serverResponse;
+          return coingeckoAPI.serverResponse;
+        } else {
+          errorHandler("Server is not responding. Please try again later.");
+        }
       } catch (err) {
-        new Error(`Check server's status!`);
+        errorHandler(err);
       }
     }
   },
@@ -66,6 +70,9 @@ const coingeckoAPI = {
         const baseUrl = "https://api.coingecko.com/api/v3";
         const endpoint = `${baseUrl}/coins/markets?vs_currency=${vsCurrency}&order=market_cap_desc&per_page=${numberOfCoins}&page=1&sparkline=false&locale=en`;
         const response = await fetch(endpoint);
+        if(response.status !== 200) {
+          errorHandler("Server is available but cannot fetch data. Please try again later.");
+        }
         const coinsData = await response.json();
 
         // Save the Coin Data to session storage

@@ -1,5 +1,12 @@
 export const errorHandler = (err) => {
+  // Clear existing error box on the page
+  if (document.getElementById("error-container")) {
+    handelClose();
+  }
+
+  // Log the error
   console.error(err);
+
   // Grab the user interface element
   const ui = document.getElementById("user-interface");
 
@@ -14,7 +21,9 @@ export const errorHandler = (err) => {
         // Close the error container
         ui.removeChild(errorBox);
         // Clear the browser console
-        console.clear()
+        console.clear();
+        // Clear session storage
+        sessionStorage.clear();
       }
     }, 450);
   };

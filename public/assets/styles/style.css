@@ -97,11 +97,12 @@ body {
 }
 #user-interface .header-container .navbar .nav-links::-webkit-scrollbar-track {
   background: rgb(42, 47, 60);
-  border-radius: 0.5rem;
+}
+#user-interface .header-container .navbar .nav-links::-webkit-scrollbar-track:hover {
+  background-color: rgb(60, 53, 53);
 }
 #user-interface .header-container .navbar .nav-links::-webkit-scrollbar-thumb {
   background: #fff;
-  border-radius: 0.3rem;
   width: 1.5rem;
   border: 1px solid rgb(60, 53, 53);
 }
@@ -137,7 +138,6 @@ body {
   width: 100%;
   max-width: 100%;
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   background-color: rgb(52, 199, 89);
@@ -145,10 +145,14 @@ body {
   bottom: 0;
   color: rgb(42, 47, 60);
   padding: 1rem;
+  font-family: "Josefin Sans", "Poppins", sans-serif;
+}
+#user-interface .footer-container .footer-division {
+  max-width: 30%;
 }
 #user-interface .footer-container .footer-division .footer-links {
   display: flex;
-  flex-direction: column;
+  gap: 0.5rem;
   justify-content: space-between;
   align-items: center;
 }

@@ -125,12 +125,16 @@ body {
 
           &-track {
             background: $color-background-darkBlue;
-            border-radius: 0.5rem;
+            // border-radius: 0.5rem;
+
+            &:hover {
+              background-color: $color-border-darkBrown;
+            }
           }
 
           &-thumb {
             background: #fff;
-            border-radius: 0.3rem;
+            // border-radius: 0.3rem;
             width: 1.5rem;
             border: 1px solid $color-border-darkBrown;
 
@@ -177,7 +181,7 @@ body {
     width: 100%;
     max-width: 100%;
     display: flex;
-    flex-direction: column;
+    // flex-direction: column;
     justify-content: space-between;
     align-items: center;
     background-color: $color-footer-background;
@@ -185,11 +189,14 @@ body {
     bottom: 0;
     color: $color-background-darkBlue;
     padding: 1rem;
+    @include font-josefin();
 
     .footer-division {
+      max-width: 30%;
       .footer-links {
         display: flex;
-        flex-direction: column;
+        // flex-direction: column;
+        gap: 0.5rem;
         justify-content: space-between;
         align-items: center;
       }
