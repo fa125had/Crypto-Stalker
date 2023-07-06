@@ -1,3 +1,5 @@
+import { errorHandler } from "../../utils/errorHandler.js";
+
 export const renderWelcome = async () => {
   return new Promise((resolve) => {
     const ui = document.getElementById("user-interface");
@@ -17,7 +19,7 @@ export const renderWelcome = async () => {
     welcomeText.classList.add("welcome-text");
     welcomeText.setAttribute("id", "welcome-text");
     welcomeText.textContent = "Crypto Stalker";
-    welcomeSlogan.classList.add('welcome-slogan');
+    welcomeSlogan.classList.add("welcome-slogan");
     welcomeSlogan.setAttribute("id", "welcome-slogan");
     welcomeSlogan.textContent = "Track Your Favorite Cryptocurrencies";
     // Add welcome page to UI
@@ -29,8 +31,8 @@ export const renderWelcome = async () => {
     setTimeout(() => {
       welcomeContainer.style.display = "none";
       resolve(welcomeContainer);
-    }, 1000);
+    }, 6000);
   }).catch((error) => {
-    console.log(new Error("Can not load welcome page!"));
+    errorHandler(error);
   });
 };
