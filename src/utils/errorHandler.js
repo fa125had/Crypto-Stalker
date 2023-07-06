@@ -1,4 +1,5 @@
 export const errorHandler = (err) => {
+  console.log(err);
   // Grab the user interface element
   const ui = document.getElementById("user-interface");
 

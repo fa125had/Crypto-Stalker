@@ -10,7 +10,7 @@ const coingeckoAPI = {
     // Retrieve the last fetch time from session storage
     lastFetch = sessionStorage.getItem("lastFetch");
     // If the last fetch time is null or less than 60 seconds ago,  an error
-    if (lastFetch && Date.now() - lastFetch < 60000) {
+    if (lastFetch && ((Date.now() - lastFetch) < 60000)) {
       errorHandler(
         new Error(
           `API data Automatically will load in ${
