@@ -39,7 +39,7 @@ export const renderHeader = (coins) => {
     // Add coin 24 percent changes
     const coinChange = document.createElement("p");
     coinChange.classList.add("coin-change");
-    coinChange.textContent = `${coin.price_change_percentage_24h}% 24h`;
+    coinChange.textContent = `${coin.price_change_percentage_24h.toFixed(3)}% 24h`;
 
     // Style coin change
     coin.price_change_percentage_24h >= 0
