@@ -2,21 +2,14 @@ export const renderFooter = () => {
   // Render footer
   const footer = document.createElement("footer");
   footer.classList.add("footer-container");
-  // Create footer division
-  const footerFistDivision = document.createElement("div");
-  footerFistDivision.classList.add("footer-division");
+
   // Create footer division
   const footerSecondDivision = document.createElement("div");
   footerSecondDivision.classList.add("footer-division");
+
   // Create footer division
   const footerThirdDivision = document.createElement("div");
   footerThirdDivision.classList.add("footer-division");
-
-  // Add Copy right - First division
-  const copyRight = document.createElement("p");
-  copyRight.classList.add("copy-right");
-  copyRight.innerText = "2023 - Farshad";
-  footerFistDivision.appendChild(copyRight);
 
   // Add footer links - Second division
   const footerLinks = document.createElement("p");
@@ -42,11 +35,10 @@ export const renderFooter = () => {
   const footerDescription = document.createElement("p");
   footerDescription.classList.add("footer-description");
   footerDescription.textContent =
-    "I am a full-stack web developer with a passion for building websites and applications. I love to code, learn new things, and learn new things.";
+    "I am a full-stack web developer with a passion for building websites and applications. I love to code, learn new things, and learn new things. 2023 - Farshad";
   footerThirdDivision.appendChild(footerDescription);
 
   // Add footer divisions to footer
-  footer.appendChild(footerFistDivision);
   footer.appendChild(footerSecondDivision);
   footer.appendChild(footerThirdDivision);
 

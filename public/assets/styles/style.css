@@ -1,4 +1,17 @@
-@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,400;0,600;1,700&family=Lilita+One&family=Poppins:wght@100;400;500;700;900&family=Tsukimi+Rounded&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;600;700&family=Josefin+Sans:ital,wght@0,100;0,400;0,600;1,700&family=Lexend+Peta:wght@100;400;700;900&family=Lilita+One&family=Monomaniac+One&family=Pathway+Gothic+One&family=Poppins:wght@100;400;500;700;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Tsukimi+Rounded&display=swap");
+/*
+
+//font-family: 'Chakra Petch', sans-serif;
+//font-family: 'Josefin Sans', sans-serif;
+//font-family: 'Lexend Peta', sans-serif;
+//font-family: 'Lilita One', cursive;
+//font-family: 'Monomaniac One', sans-serif;
+//font-family: 'Pathway Gothic One', sans-serif;
+//font-family: 'Poppins', sans-serif;
+//font-family: 'Space Grotesk', sans-serif;
+//font-family: 'Tsukimi Rounded', sans-serif;
+
+*/
 :root {
   font-size: 17px;
   animation: fadeIn;
@@ -62,13 +75,12 @@ body {
 #user-interface .header-container {
   width: 100%;
   max-width: 100%;
-  height: calc(6.6666666667vh + 1rem);
+  height: calc(7.1428571429vh + 1rem);
   display: flex;
   justify-content: space-between;
   align-items: center;
   overflow: hidden;
   border-bottom: 1px solid rgb(60, 53, 53);
-  font-family: "Lilita One", "Poppins", sans-serif;
 }
 #user-interface .header-container .navbar {
   width: 100%;
@@ -76,6 +88,9 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+#user-interface .header-container .navbar .logo-container {
+  display: none;
 }
 #user-interface .header-container .navbar .logo-container .logo {
   max-width: 4rem;
@@ -120,6 +135,9 @@ body {
   border-right: 1px dotted rgb(240, 117, 10);
   padding-right: 0.5rem;
   gap: 0.5rem;
+  white-space: nowrap;
+  font-family: "Chakra Petch", sans-serif;
+  font-size: 1.5rem;
 }
 #user-interface .header-container .navbar .nav-links .nav-link .coin-image {
   max-width: 1.425rem;
@@ -134,6 +152,63 @@ body {
   max-width: 100%;
   padding: 1rem;
 }
+#user-interface .main-container .live-data-container {
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: "Tsukimi Rounded", "Poppins", sans-serif;
+}
+#user-interface .main-container .live-data-container .coin-data-container {
+  border: 1px solid rgb(240, 117, 10);
+  max-width: 100%;
+  height: 75px;
+  overflow: hidden;
+  font-family: "Monomaniac One", "Poppins", sans-serif;
+  text-align: center;
+  display: grid;
+  grid-template-columns: 4rem repeat(7, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  place-items: center;
+  row-gap: 1rem;
+  -moz-column-gap: 0.5rem;
+       column-gap: 0.5rem;
+  padding-inline: 0.5rem;
+}
+#user-interface .main-container .live-data-container .coin-data-container:focus {
+  height: 160px;
+}
+#user-interface .main-container .live-data-container .coin-data-container:hover {
+  cursor: pointer;
+}
+#user-interface .main-container .live-data-container .coin-data-container .coin-image-container .coin-image {
+  width: 3.5rem;
+  max-width: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+  animation: fadeIn;
+  animation-duration: 500ms;
+  padding: 0.5rem;
+}
+#user-interface .main-container .live-data-container .coin-data-container .coin-data {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+#user-interface .main-container .live-data-container .coin-data-container .coin-data .coin-data-header {
+  font-family: "Poppins", sans-serif;
+  white-space: nowrap;
+}
+#user-interface .main-container .live-data-container .coin-data-container .coin-data .coin-data-value {
+  font-family: "Pathway Gothic One", "Poppins", sans-serif;
+  font-size: 1.3rem;
+  white-space: nowrap;
+}
 #user-interface .footer-container {
   width: 100%;
   max-width: 100%;
@@ -141,17 +216,14 @@ body {
   justify-content: space-between;
   align-items: center;
   background-color: rgb(52, 199, 89);
-  position: absolute;
-  bottom: 0;
+  gap: 0.5rem;
   color: rgb(42, 47, 60);
   padding: 1rem;
   font-family: "Josefin Sans", "Poppins", sans-serif;
 }
-#user-interface .footer-container .footer-division {
-  max-width: 30%;
-}
 #user-interface .footer-container .footer-division .footer-links {
   display: flex;
+  flex-direction: column;
   gap: 0.5rem;
   justify-content: space-between;
   align-items: center;
