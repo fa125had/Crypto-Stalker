@@ -34,12 +34,15 @@ body {
 }
 
 #user-interface {
-  overflow: hidden;
   overflow-x: clip;
   overflow-y: auto;
   max-width: 100%;
   position: relative;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 }
 #user-interface .welcome-container {
   min-width: 100vw;
@@ -148,9 +151,11 @@ body {
   text-transform: capitalize;
 }
 #user-interface .main-container {
-  width: 100%;
+  width: 96%;
   max-width: 100%;
-  padding: 1rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
 }
 #user-interface .main-container .live-data-container {
   width: 100%;
@@ -158,20 +163,23 @@ body {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
+  justify-content: stretch;
   gap: 0.5rem;
   font-family: "Tsukimi Rounded", "Poppins", sans-serif;
+  height: 67vh;
+  overflow: auto;
 }
 #user-interface .main-container .live-data-container .coin-data-container {
-  border: 1px solid rgb(240, 117, 10);
+  border: 1px solid rgb(60, 53, 53);
+  width: 100%;
   max-width: 100%;
   height: 75px;
   overflow: hidden;
   font-family: "Monomaniac One", "Poppins", sans-serif;
   text-align: center;
   display: grid;
-  grid-template-columns: 4rem repeat(7, 1fr);
-  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: 4rem repeat(4, 1fr);
+  grid-template-rows: repeat(1, 1fr);
   place-items: center;
   row-gap: 1rem;
   -moz-column-gap: 0.5rem;
@@ -199,21 +207,112 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 0.5rem;
+  width: 100%;
 }
 #user-interface .main-container .live-data-container .coin-data-container .coin-data .coin-data-header {
   font-family: "Poppins", sans-serif;
   white-space: nowrap;
 }
 #user-interface .main-container .live-data-container .coin-data-container .coin-data .coin-data-value {
+  width: 100%;
   font-family: "Pathway Gothic One", "Poppins", sans-serif;
   font-size: 1.3rem;
   white-space: nowrap;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+}
+#user-interface .main-container .live-data-container .coin-data-container .coin-data .vs-currency {
+  color: rgb(240, 117, 10);
+  padding-inline: 0.5rem;
+  text-transform: uppercase;
+  font-family: "Lilita One", "Poppins", sans-serif;
+  font-size: 1rem;
+}
+#user-interface .main-container .live-data-container .coin-data-container .coin-price .coin-data-value {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-items: end;
+}
+#user-interface .main-container .live-data-container .coin-data-container .coin-price .coin-data-value .vs-currency {
+  justify-self: start;
+}
+#user-interface .main-container .hero-container {
+  width: 50%;
+  max-width: 50%;
+  height: 4.4rem;
+  background-color: rgb(240, 117, 10);
+  display: none;
+}
+#user-interface .main-container .hero-container .hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  height: 67vh;
+  overflow: hidden;
+  border-bottom: 1px solid rgb(240, 117, 10);
+  border-right: 1px solid rgb(240, 117, 10);
+}
+#user-interface .main-container .hero-container .hero #hero-title {
+  font-family: "Lilita One", "Poppins", sans-serif;
+  text-align: center;
+  font-size: calc(7.6923076923vw - 1rem);
+  text-transform: uppercase;
+}
+#user-interface .main-container .hero-container .hero .subscription-form-container {
+  width: 100%;
+}
+#user-interface .main-container .hero-container .hero .subscription-form-container .subscription-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  gap: 1rem;
+}
+#user-interface .main-container .hero-container .hero .subscription-form-container .subscription-form .subscription-form-title-container .subscription-form-title {
+  font-family: "Tsukimi Rounded", "Poppins", sans-serif;
+  font-size: calc(4.347826087vw - 1rem);
+  text-transform: uppercase;
+}
+#user-interface .main-container .hero-container .hero .subscription-form-container .subscription-form .subscription-form-input-container .subscription-form-input {
+  font-family: "Tsukimi Rounded", "Poppins", sans-serif;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  padding: 0.5rem;
+  border: 1px solid rgb(240, 117, 10);
+  border-radius: 0.5rem;
+  width: 28rem;
+  max-width: 100%;
+  height: 3rem;
+}
+#user-interface .main-container .hero-container .hero .subscription-form-container .subscription-form .subscription-form-button-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+#user-interface .main-container .hero-container .hero .subscription-form-container .subscription-form .subscription-form-button-container .subscription-form-button {
+  color: #fff;
+  background-color: rgb(240, 117, 10);
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border: none;
+  font-family: "Tsukimi Rounded", "Poppins", sans-serif;
+  font-size: 1.1rem;
+}
+#user-interface .main-container .hero-container .hero .subscription-form-container .subscription-form .subscription-form-button-container .subscription-form-button:hover {
+  cursor: pointer;
+  background-color: rgb(52, 199, 89);
 }
 #user-interface .footer-container {
   width: 100%;
   max-width: 100%;
   display: flex;
-  justify-content: space-between;
+  flex-direction: row-reverse;
+  justify-content: space-evenly;
   align-items: center;
   background-color: rgb(52, 199, 89);
   gap: 0.5rem;

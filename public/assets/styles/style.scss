@@ -71,12 +71,16 @@ body {
 }
 
 #user-interface {
-  overflow: hidden;
+  // overflow: hidden;
   overflow-x: clip;
   overflow-y: auto;
   max-width: 100%;
   position: relative;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 
   // Welcome Page
   .welcome-container {
@@ -207,9 +211,12 @@ body {
 
   // Main content
   .main-container {
-    width: 100%;
+    width: 96%;
     max-width: 100%;
-    padding: 1rem;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    // padding-block: 1rem;
 
     .live-data-container {
       width: 100%;
@@ -218,20 +225,23 @@ body {
       // flex-direction: column;
       flex-wrap: wrap;
       align-items: center;
-      justify-content: center;
+      justify-content: stretch;
       gap: 0.5rem;
       @include font-tsukimi();
+      height: 67vh;
+      overflow: auto;
 
       .coin-data-container {
-        border: 1px solid $color-orange;
+        border: 1px solid $color-border-darkBrown;
+        width: 100%;
         max-width: 100%;
         height: 75px;
         overflow: hidden;
         @include font-monomaniac();
         text-align: center;
         display: grid;
-        grid-template-columns: 4rem repeat(7, 1fr);
-        grid-template-rows: repeat(2, 1fr);
+        grid-template-columns: 4rem repeat(4, 1fr);
+        grid-template-rows: repeat(1, 1fr);
         place-items: center;
         row-gap: 1rem;
         column-gap: 0.5rem;
@@ -262,16 +272,124 @@ body {
           align-items: center;
           justify-content: space-between;
           gap: 0.5rem;
+          width: 100%;
+
           .coin-data-header {
             @include font-poppins();
             white-space: nowrap;
             // display: none;
           }
           .coin-data-value {
+            width: 100%;
             @include font-pathway();
             font-size: 1.3rem;
             white-space: nowrap;
+            display: flex;
+            align-items: baseline;
+            justify-content: center;
+          }
 
+          .vs-currency {
+            color: $color-orange;
+            padding-inline: 0.5rem;
+            text-transform: uppercase;
+            @include font-lilita();
+            font-size: 1rem;
+          }
+        }
+
+        .coin-price {
+          .coin-data-value {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            justify-items: end;
+
+            .vs-currency {
+              justify-self: start;
+            }
+          }
+        }
+      }
+    }
+
+    .hero-container {
+      width: 50%;
+      max-width: 50%;
+      height: 4.4rem;
+      background-color: $color-orange;
+      display: none;
+
+      .hero {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        height: 67vh;
+        overflow: hidden;
+        border-bottom: 1px solid $color-orange;
+        border-right: 1px solid $color-orange;
+
+        #hero-title {
+          @include font-lilita();
+          text-align: center;
+          font-size: calc(100vw / 13 - 1rem);
+          text-transform: uppercase;
+        }
+
+        .subscription-form-container {
+          width: 100%;
+          .subscription-form {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+            gap: 1rem;
+
+            .subscription-form-title-container {
+              .subscription-form-title {
+                @include font-tsukimi();
+                font-size: calc(100vw / 23 - 1rem);
+                text-transform: uppercase;
+              }
+            }
+
+            .subscription-form-input-container {
+              .subscription-form-input {
+                @include font-tsukimi();
+                font-size: 1.1rem;
+                text-transform: uppercase;
+                padding: 0.5rem;
+                border: 1px solid rgb(240, 117, 10);
+                border-radius: 0.5rem;
+                width: 28rem;
+                max-width: 100%;
+                height: 3rem;
+              }
+            }
+
+            .subscription-form-button-container {
+              width: 100%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              gap: 2rem;
+
+              .subscription-form-button {
+                color: #fff;
+                background-color: $color-orange;
+                font-weight: 600;
+                padding: 0.5rem 1rem;
+                border: none;
+                @include font-tsukimi();
+                font-size: 1.1rem;
+
+                &:hover {
+                  cursor: pointer;
+                  background-color: $color-footer-background;
+                }
+              }
+            }
           }
         }
       }
@@ -283,8 +401,8 @@ body {
     width: 100%;
     max-width: 100%;
     display: flex;
-    // flex-direction: column;
-    justify-content: space-between;
+    flex-direction: row-reverse;
+    justify-content: space-evenly;
     align-items: center;
     background-color: $color-footer-background;
     // position: absolute;
@@ -305,6 +423,7 @@ body {
     }
   }
 
+  // Global Styles
   // Error message
   .error-container {
     background-color: $color-orange;
