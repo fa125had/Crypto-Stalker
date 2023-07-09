@@ -42,7 +42,7 @@ const initFooter = async () => {
 const inits = async () => {
   try {
     await intWelcome();
-    await renderHeader();
+    // await renderHeader();
     await renderContents();
     await initFooter();
   } catch (error) {
