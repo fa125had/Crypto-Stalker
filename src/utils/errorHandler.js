@@ -23,7 +23,7 @@ export const errorHandler = (err) => {
         // Clear the browser console
         // console.clear();/////////////////////////////////////////////////////
         // Clear session storage
-        sessionStorage.clear();
+        // sessionStorage.clear();/////////////////////////////////////////////
       }
     }, 450);
   };
@@ -53,6 +53,7 @@ export const errorHandler = (err) => {
   errorContainer.appendChild(errorButton);
   ui.appendChild(errorContainer);
 
+  // Close the error container after 5 seconds
   setTimeout(() => {
     if (document.getElementById("error-container")) {
       handelClose();

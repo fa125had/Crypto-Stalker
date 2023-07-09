@@ -29,7 +29,7 @@
 }
 
 body {
-  background-color: rgb(42, 47, 60);
+  background-color: #000;
   color: white;
 }
 
@@ -75,87 +75,57 @@ body {
   animation: fadeInDown;
   animation-duration: 5s;
 }
-#user-interface .header-container {
-  width: 100%;
-  max-width: 100%;
-  height: calc(7.1428571429vh + 1rem);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  overflow: hidden;
-  border-bottom: 1px solid rgb(60, 53, 53);
-}
-#user-interface .header-container .navbar {
-  width: 100%;
-  max-width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-#user-interface .header-container .navbar .logo-container {
-  display: none;
-}
-#user-interface .header-container .navbar .logo-container .logo {
-  max-width: 4rem;
-  min-width: 2.5rem;
-  padding: 1rem 0;
-}
-#user-interface .header-container .navbar .nav-links {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.5rem;
-  overflow-x: auto;
-  gap: 0.5rem;
-}
-#user-interface .header-container .navbar .nav-links::-webkit-scrollbar {
-  width: 2rem;
-  background-color: transparent;
-}
-#user-interface .header-container .navbar .nav-links::-webkit-scrollbar-track {
-  background: rgb(42, 47, 60);
-}
-#user-interface .header-container .navbar .nav-links::-webkit-scrollbar-track:hover {
-  background-color: rgb(60, 53, 53);
-}
-#user-interface .header-container .navbar .nav-links::-webkit-scrollbar-thumb {
-  background: #fff;
-  width: 1.5rem;
-  border: 1px solid rgb(60, 53, 53);
-}
-#user-interface .header-container .navbar .nav-links::-webkit-scrollbar-thumb:hover {
-  background: rgb(52, 199, 89);
-  cursor: grabbing;
-}
-#user-interface .header-container .navbar .nav-links .nav-link {
-  list-style: none;
-  min-width: -moz-fit-content;
-  min-width: fit-content;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-right: 1px dotted rgb(240, 117, 10);
-  padding-right: 0.5rem;
-  gap: 0.5rem;
-  white-space: nowrap;
-  font-family: "Chakra Petch", sans-serif;
-  font-size: 1.5rem;
-}
-#user-interface .header-container .navbar .nav-links .nav-link .coin-image {
-  max-width: 1.425rem;
-}
-#user-interface .header-container .navbar .nav-links .nav-link:hover {
-  cursor: pointer;
-  text-decoration: underline;
-  text-transform: capitalize;
-}
 #user-interface .main-container {
   width: 96%;
-  max-width: 100%;
   display: flex;
+  flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
+}
+#user-interface .main-container .header-container {
+  width: 100%;
+  max-width: 100%;
+  padding-block: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgb(60, 53, 53);
+}
+#user-interface .main-container .header-container .header {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  align-items: center;
+  justify-items: start;
+}
+#user-interface .main-container .header-container .header .header-logo {
+  max-width: 4rem;
+  min-width: 2.5rem;
+  font-family: "Lexend Peta", "Poppins", sans-serif;
+}
+#user-interface .main-container .header-container .header .nav-list {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  align-items: center;
+  justify-items: center;
+  list-style: none;
+}
+#user-interface .main-container .header-container .header .nav-list .nav-item .header-title {
+  font-family: "Chakra Petch", sans-serif;
+  font-size: 1.3rem;
+  text-align: center;
+  text-transform: capitalize;
+  color: white;
+}
+#user-interface .main-container .header-container .header .nav-list .nav-item .header-notification {
+  background: rgb(240, 117, 10);
+  font-family: "Lilita One", "Poppins", sans-serif;
+  font-size: 0.8rem;
+  border-radius: 1rem;
+  padding: 0.125rem 0.25rem;
+  color: #000;
+  text-align: center;
 }
 #user-interface .main-container .live-data-container {
   width: 100%;
@@ -166,7 +136,7 @@ body {
   justify-content: stretch;
   gap: 0.5rem;
   font-family: "Tsukimi Rounded", "Poppins", sans-serif;
-  height: 67vh;
+  height: 75vh;
   overflow: auto;
 }
 #user-interface .main-container .live-data-container .coin-data-container {
@@ -178,134 +148,48 @@ body {
   font-family: "Monomaniac One", "Poppins", sans-serif;
   text-align: center;
   display: grid;
-  grid-template-columns: 4rem repeat(4, 1fr);
+  grid-template-columns: repeat(5, minmax(2rem, 1fr));
   grid-template-rows: repeat(1, 1fr);
   place-items: center;
-  row-gap: 1rem;
-  -moz-column-gap: 0.5rem;
-       column-gap: 0.5rem;
   padding-inline: 0.5rem;
-}
-#user-interface .main-container .live-data-container .coin-data-container:focus {
-  height: 160px;
+  transition: all 150ms;
 }
 #user-interface .main-container .live-data-container .coin-data-container:hover {
   cursor: pointer;
+  background-color: #2c2c2c;
+}
+#user-interface .main-container .live-data-container .coin-data-container:active {
+  background-color: rgb(60, 53, 53);
+}
+#user-interface .main-container .live-data-container .coin-data-container .coin-image-container {
+  grid-column: 1/3;
+  justify-self: start;
 }
 #user-interface .main-container .live-data-container .coin-data-container .coin-image-container .coin-image {
-  width: 3.5rem;
+  width: 2.5rem;
   max-width: 100%;
   -o-object-fit: contain;
      object-fit: contain;
   animation: fadeIn;
   animation-duration: 500ms;
-  padding: 0.5rem;
 }
-#user-interface .main-container .live-data-container .coin-data-container .coin-data {
+#user-interface .main-container .live-data-container .coin-data-container .coin-name-container {
+  grid-column: 3/6;
+  align-self: center;
+  justify-self: start;
+  text-align: left;
+}
+#user-interface .main-container .live-data-container .coin-data-container .coin-name-container .coin-name {
+  text-transform: uppercase;
+}
+#user-interface .main-container .live-data-container .coin-data-container .coin-price-container {
+  grid-column: 6/11;
+}
+#user-interface .main-container .live-data-container .coin-data-container .coin-price-container .coin-price-change {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  gap: 0.5rem;
-  width: 100%;
-}
-#user-interface .main-container .live-data-container .coin-data-container .coin-data .coin-data-header {
-  font-family: "Poppins", sans-serif;
-  white-space: nowrap;
-}
-#user-interface .main-container .live-data-container .coin-data-container .coin-data .coin-data-value {
-  width: 100%;
-  font-family: "Pathway Gothic One", "Poppins", sans-serif;
-  font-size: 1.3rem;
-  white-space: nowrap;
-  display: flex;
-  align-items: baseline;
-  justify-content: center;
-}
-#user-interface .main-container .live-data-container .coin-data-container .coin-data .vs-currency {
-  color: rgb(240, 117, 10);
-  padding-inline: 0.5rem;
-  text-transform: uppercase;
-  font-family: "Lilita One", "Poppins", sans-serif;
-  font-size: 1rem;
-}
-#user-interface .main-container .live-data-container .coin-data-container .coin-price .coin-data-value {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  justify-items: end;
-}
-#user-interface .main-container .live-data-container .coin-data-container .coin-price .coin-data-value .vs-currency {
-  justify-self: start;
-}
-#user-interface .main-container .hero-container {
-  width: 50%;
-  max-width: 50%;
-  height: 4.4rem;
-  background-color: rgb(240, 117, 10);
-  display: none;
-}
-#user-interface .main-container .hero-container .hero {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  height: 67vh;
-  overflow: hidden;
-  border-bottom: 1px solid rgb(240, 117, 10);
-  border-right: 1px solid rgb(240, 117, 10);
-}
-#user-interface .main-container .hero-container .hero #hero-title {
-  font-family: "Lilita One", "Poppins", sans-serif;
-  text-align: center;
-  font-size: calc(7.6923076923vw - 1rem);
-  text-transform: uppercase;
-}
-#user-interface .main-container .hero-container .hero .subscription-form-container {
-  width: 100%;
-}
-#user-interface .main-container .hero-container .hero .subscription-form-container .subscription-form {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-  gap: 1rem;
-}
-#user-interface .main-container .hero-container .hero .subscription-form-container .subscription-form .subscription-form-title-container .subscription-form-title {
-  font-family: "Tsukimi Rounded", "Poppins", sans-serif;
-  font-size: calc(4.347826087vw - 1rem);
-  text-transform: uppercase;
-}
-#user-interface .main-container .hero-container .hero .subscription-form-container .subscription-form .subscription-form-input-container .subscription-form-input {
-  font-family: "Tsukimi Rounded", "Poppins", sans-serif;
-  font-size: 1.1rem;
-  text-transform: uppercase;
-  padding: 0.5rem;
-  border: 1px solid rgb(240, 117, 10);
-  border-radius: 0.5rem;
-  width: 28rem;
-  max-width: 100%;
-  height: 3rem;
-}
-#user-interface .main-container .hero-container .hero .subscription-form-container .subscription-form .subscription-form-button-container {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   gap: 2rem;
-}
-#user-interface .main-container .hero-container .hero .subscription-form-container .subscription-form .subscription-form-button-container .subscription-form-button {
-  color: #fff;
-  background-color: rgb(240, 117, 10);
-  font-weight: 600;
-  padding: 0.5rem 1rem;
-  border: none;
-  font-family: "Tsukimi Rounded", "Poppins", sans-serif;
-  font-size: 1.1rem;
-}
-#user-interface .main-container .hero-container .hero .subscription-form-container .subscription-form .subscription-form-button-container .subscription-form-button:hover {
-  cursor: pointer;
-  background-color: rgb(52, 199, 89);
 }
 #user-interface .footer-container {
   width: 100%;
