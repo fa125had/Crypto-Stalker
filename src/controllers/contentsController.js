@@ -1,5 +1,5 @@
 import { getContents } from "../models/contents/contentsModel.js";
-import { renderContents } from "../views/contents/contentsView.js";
+import { renderContents, reloadContents } from "../views/contents/contentsView.js";
 import { errorHandler } from "../utils/errorHandler.js";
 
 export const initContents = async () => {
@@ -18,7 +18,7 @@ export const initContents = async () => {
   }
 };
 
-// export const initRenderContents = async () => {
-//     const coins = await getAllCoins();
-//     return reloadHeader(coins);
-// };
+export const initContentsReload = async () => {
+  const coins = await getContents();
+  return reloadContents(coins);
+};

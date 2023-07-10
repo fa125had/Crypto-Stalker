@@ -263,7 +263,32 @@
 //   return contents;
 // };
 
-//Third approach Mix
+// Divide the number by 1,000
+const formatNumberWithCommas = (number) => {
+  // Check if number is a float or integer
+  if (Math.floor(number) !== number) {
+    number = number.toFixed(3);
+  }
+
+  const formattedNumber = number
+    .toString()
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+  return formattedNumber;
+};
+
+// Refresh Header Notification
+const refreshNotification = () => {
+  const headerNotification = document.getElementById("header-notification");
+  headerNotification.style.display = "block";
+  headerNotification.classList.add("animated-fade-out");
+
+
+  setTimeout(() => {
+    headerNotification.style.display = "none";
+  }, 1500);
+};
+
 export const renderContents = async (
   coinsData,
   vsCurrency = "usd",
@@ -271,14 +296,14 @@ export const renderContents = async (
 ) => {
   // Validate if coinsData is defined
   if (!coinsData) {
-    throw new Error("Coins data is not provided!");
+    new Error("Coins data is not provided!");
   }
 
   // Main container
   const contents = document.createElement("main");
   contents.classList.add("main-container");
 
-  // Header
+  // Create Header
   const header = document.createElement("header");
   header.classList.add("header-container");
   header.innerHTML = `
@@ -286,50 +311,65 @@ export const renderContents = async (
   <p class='header-logo'>Crypto Stalker</p>
   <ul class='nav-list'>
   <li class='nav-item'><h1 class='header-title'>Watch your favorite Coin</h1></li>
-  <li class='nav-item'><p class='header-notification'>Refreshed!</p></li>
+  <li class='nav-item header-notification-container'><p class='header-notification' id='header-notification'>Refreshed!</p></li>
   </ul>
   </nav>
   `;
+  // Add Header to main
   contents.appendChild(header);
 
   // Coin data section
   const coinDataContainer = document.createElement("section");
   coinDataContainer.classList.add("live-data-container");
 
-  const formatNumberWithCommas = (number) => {
-    // Check if number is a float or integer
-    if (Math.floor(number) !== number) {
-      number = number.toFixed(3);
+  const profitLossStyle = (change) => {
+    if (change > 0) {
+      return "inProfit";
+    } else if (change < 0) {
+      return "inLoss";
     }
-    // Divide the number by 1,000
-    const formattedNumber = number
-      .toString()
-      .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    return formattedNumber;
   };
 
   let coinDataHTML = "";
   coinsData.forEach((coin) => {
+    // Extract needed keys
+    const coinLogo = coin.image;
+    const coinName = coin.name;
+    const coinSymbol = coin.symbol;
+    const coinPrice = coin.current_price;
+    const coin24hChange = coin.price_change_24h;
+    const coin24PercentChange = coin.price_change_percentage_24h;
+
     // Create Coin Data table
     coinDataHTML += `
     
     <div id='${coin.symbol}-data-container' class='coin-data-container' >
 
       <div class='coin-image-container'>
-        <img class='coin-image' src='${coin.image}' alt=${coin.name}/>
+        <img class='coin-image' src='${coinLogo}' alt=${coinName}/>
       </div>
 
       <div class='coin-name-container'>
-        <p class='coin-name'>${coin.symbol} ${vsCurrency}</p>
-        <p class='coin-name-sub'>${coin.name} / ${vsCurrency}</p>
+        <p class='coin-name'>${coinSymbol} ${vsCurrency}</p>
+        <p class='coin-name-sub'>${coinName} / ${vsCurrency}</p>
       </div>
 
       <div class='coin-price-container'>
-        <p class='coin-price'>${formatNumberWithCommas(coin.current_price)}</p>
+        <p class='coin-price' id=${coinSymbol}-current-price>${formatNumberWithCommas(
+      coinPrice
+    )}</p>
     
         <div class='coin-price-change'>
-          <p class='coin-price-change-price'>${formatNumberWithCommas(coin.price_change_24h)} $</p>
-          <p class='coin-price-change-percentage'>${formatNumberWithCommas(coin.price_change_percentage_24h)} %</p>
+          <p class='coin-price-change-price ${profitLossStyle(
+            coin24hChange
+          )}' id=${coinSymbol}-price-change24-price>${formatNumberWithCommas(
+      coin24hChange
+    )} $</p>
+          <p class='coin-price-change-percentage ${profitLossStyle(
+            coin24hChange
+          )}' id=${coinSymbol}-price-change24-percentage>${formatNumberWithCommas(
+      coin24PercentChange
+    )} %</p>
         </div>
       </div>
 
@@ -343,3 +383,56 @@ export const renderContents = async (
   return contents;
 };
 
+export const reloadContents = (coins) => {
+  coins.forEach((coin) => {
+    // Extract needed keys
+    const coinSymbol = coin.symbol;
+    const coinPrice = coin.current_price;
+    const coin24hChange = coin.price_change_24h;
+    const coin24PercentChange = coin.price_change_percentage_24h;
+
+    // Select outdated elements
+    const currentPriceElement = document.getElementById(
+      `${coinSymbol}-current-price`
+    );
+
+    const price24ChangePriceElement = document.getElementById(
+      `${coinSymbol}-price-change24-price`
+    );
+
+    const price24ChangePercentElement = document.getElementById(
+      `${coinSymbol}-price-change24-percentage`
+    );
+
+    // Update the current price
+    currentPriceElement.textContent = formatNumberWithCommas(coinPrice);
+
+    // Update the price change
+    price24ChangePriceElement.textContent = `${formatNumberWithCommas(
+      coin24hChange
+    )} $`;
+
+    price24ChangePercentElement.textContent = `${formatNumberWithCommas(
+      coin24PercentChange
+    )} %`;
+
+    // Refresh Updated Elements styles
+    currentPriceElement.classList.remove("inProfit");
+    currentPriceElement.classList.remove("inLoss");
+    price24ChangePriceElement.classList.remove("inProfit");
+    price24ChangePriceElement.classList.remove("inLoss");
+    price24ChangePercentElement.classList.remove("inProfit");
+    price24ChangePercentElement.classList.remove("inLoss");
+
+    if (coin24hChange > 0) {
+      price24ChangePriceElement.classList.add("inProfit");
+      price24ChangePercentElement.classList.add("inProfit");
+    } else if (coin24hChange < 0) {
+      price24ChangePriceElement.classList.add("inLoss");
+      price24ChangePercentElement.classList.add("inLoss");
+    }
+  });
+  console.log("Contents refreshed!");
+
+  refreshNotification();
+};
