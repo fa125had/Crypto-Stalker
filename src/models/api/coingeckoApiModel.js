@@ -22,7 +22,7 @@ const coingeckoAPI = {
       const storedData = JSON.parse(sessionStorage.getItem("coinsData"));
 
       // T-shooter logging
-      console.log("Data Loaded from Storage. Remaining time: " + remainingTime / 1000 + "seconds.", storedData);
+      console.log("Data Loaded from Storage. Remaining time: " + remainingTime / 1000 + "seconds.");
 
       return storedData;
     } else {
