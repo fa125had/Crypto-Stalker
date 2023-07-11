@@ -218,20 +218,21 @@ body {
         width: 100%;
         display: grid;
         grid-template-columns: 1fr 3fr;
-        align-items: center;
+        align-items: start;
         justify-items: start;
 
         .header-logo {
           max-width: 4rem;
           min-width: 2.5rem;
           @include font-lexend();
+          line-height: 1.65rem;
         }
 
         .nav-list {
           width: 100%;
           display: grid;
           grid-template-columns: 3fr 1fr;
-          align-items: center;
+          align-items: start;
           justify-items: center;
           list-style: none;
 
@@ -245,12 +246,41 @@ body {
             }
           }
 
-          .header-notification-container {
+          .header-menu-container {
             justify-self: end;
-            min-width: 1rem;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.25rem;
 
-            .header-notification {
-              display: none;
+            .currency-selector-container {
+              width: 100%;
+              display: flex;
+              flex-direction: column;
+              align-items: flex-end;
+              justify-content: space-around;
+              position: relative;
+
+              #currency-selector {
+                width: 100%;
+                @include font-lexend();
+                font-size: 1rem;
+                background-color: #000;
+                color: #fff;
+                border: none;
+                outline: none;
+
+                &:hover {
+                  cursor: pointer;
+                }
+               
+              }
+            }
+
+            .refresh-notification {
+              visibility: hidden;
               background: $color-orange;
               @include font-space();
               font-size: 0.8rem;
@@ -271,16 +301,16 @@ body {
       flex-wrap: wrap;
       align-items: center;
       justify-content: stretch;
-      gap: 0.5rem;
+      // gap: 0.5rem;
       @include font-tsukimi();
       height: 75vh;
       overflow: auto;
 
       .coin-data-container {
-        border: 1px solid rgb(60, 53, 53);
+        border-bottom: 1px solid rgb(60, 53, 53);
         width: 100%;
         max-width: 100%;
-        height: 75px;
+        // height: 75px;
         overflow: hidden;
         @include font-monomaniac();
         text-align: center;
@@ -288,8 +318,13 @@ body {
         grid-template-columns: repeat(5, minmax(2rem, 1fr));
         grid-template-rows: repeat(1, 1fr);
         place-items: center;
-        padding-inline: 0.5rem;
+        padding: 0.5rem;
         transition: all 150ms;
+
+        .vs-currency {
+          text-transform: uppercase;
+          padding-inline: 0.2rem;
+        }
 
         &:hover {
           cursor: pointer;
@@ -305,12 +340,16 @@ body {
           justify-self: start;
           align-self: center;
           max-width: 2rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
 
           .coin-image {
             max-width: 100%;
             object-fit: contain;
             animation: fadeIn;
             animation-duration: 500ms;
+            margin: auto;
           }
         }
 
@@ -348,6 +387,7 @@ body {
             justify-content: space-between;
             gap: 1rem;
             white-space: nowrap;
+            min-width: 8rem;
           }
         }
       }

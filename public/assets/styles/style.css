@@ -81,19 +81,20 @@ body {
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 3fr;
-  align-items: center;
+  align-items: start;
   justify-items: start;
 }
 #user-interface .main-container .header-container .header .header-logo {
   max-width: 4rem;
   min-width: 2.5rem;
   font-family: "Lexend Peta", "Poppins", sans-serif;
+  line-height: 1.65rem;
 }
 #user-interface .main-container .header-container .header .nav-list {
   width: 100%;
   display: grid;
   grid-template-columns: 3fr 1fr;
-  align-items: center;
+  align-items: start;
   justify-items: center;
   list-style: none;
 }
@@ -104,12 +105,37 @@ body {
   text-transform: capitalize;
   color: white;
 }
-#user-interface .main-container .header-container .header .nav-list .header-notification-container {
+#user-interface .main-container .header-container .header .nav-list .header-menu-container {
   justify-self: end;
-  min-width: 1rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
 }
-#user-interface .main-container .header-container .header .nav-list .header-notification-container .header-notification {
-  display: none;
+#user-interface .main-container .header-container .header .nav-list .header-menu-container .currency-selector-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-around;
+  position: relative;
+}
+#user-interface .main-container .header-container .header .nav-list .header-menu-container .currency-selector-container #currency-selector {
+  width: 100%;
+  font-family: "Lexend Peta", "Poppins", sans-serif;
+  font-size: 1rem;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  outline: none;
+}
+#user-interface .main-container .header-container .header .nav-list .header-menu-container .currency-selector-container #currency-selector:hover {
+  cursor: pointer;
+}
+#user-interface .main-container .header-container .header .nav-list .header-menu-container .refresh-notification {
+  visibility: hidden;
   background: rgb(240, 117, 10);
   font-family: "Space Grotesk", "Poppins", sans-serif;
   font-size: 0.8rem;
@@ -125,16 +151,14 @@ body {
   flex-wrap: wrap;
   align-items: center;
   justify-content: stretch;
-  gap: 0.5rem;
   font-family: "Tsukimi Rounded", "Poppins", sans-serif;
   height: 75vh;
   overflow: auto;
 }
 #user-interface .main-container .live-data-container .coin-data-container {
-  border: 1px solid rgb(60, 53, 53);
+  border-bottom: 1px solid rgb(60, 53, 53);
   width: 100%;
   max-width: 100%;
-  height: 75px;
   overflow: hidden;
   font-family: "Monomaniac One", "Poppins", sans-serif;
   text-align: center;
@@ -142,8 +166,12 @@ body {
   grid-template-columns: repeat(5, minmax(2rem, 1fr));
   grid-template-rows: repeat(1, 1fr);
   place-items: center;
-  padding-inline: 0.5rem;
+  padding: 0.5rem;
   transition: all 150ms;
+}
+#user-interface .main-container .live-data-container .coin-data-container .vs-currency {
+  text-transform: uppercase;
+  padding-inline: 0.2rem;
 }
 #user-interface .main-container .live-data-container .coin-data-container:hover {
   cursor: pointer;
@@ -157,6 +185,9 @@ body {
   justify-self: start;
   align-self: center;
   max-width: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 #user-interface .main-container .live-data-container .coin-data-container .coin-image-container .coin-image {
   max-width: 100%;
@@ -164,6 +195,7 @@ body {
      object-fit: contain;
   animation: fadeIn;
   animation-duration: 500ms;
+  margin: auto;
 }
 #user-interface .main-container .live-data-container .coin-data-container .coin-name-container {
   grid-column: 2/6;
@@ -195,6 +227,7 @@ body {
   justify-content: space-between;
   gap: 1rem;
   white-space: nowrap;
+  min-width: 8rem;
 }
 #user-interface .footer-container {
   width: 100%;
