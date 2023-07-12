@@ -18,28 +18,28 @@ const coingeckoAPI = {
     console.log(`Coins new data Saved to the Storage.`);
   },
 
-  checkServerRateLimit(currentTime, vsCurrencies) {
-    const lastFetchTime = Number(sessionStorage.getItem(`lastFetchTime-${vsCurrencies}`));
+  checkServerRateLimit(currentTime, vsCurrency) {
+    const lastFetchTime = Number(
+      sessionStorage.getItem(`lastFetchTime-${vsCurrency}`)
+    );
     const serverRateLimit = 60 * 1000;
-    const remainingTime = currentTime - lastFetchTime;
+    const isServerReady = currentTime - lastFetchTime > serverRateLimit;
 
-    if (remainingTime > serverRateLimit) {
-      sessionStorage.setItem(`lastFetchTime-${vsCurrencies}`, currentTime);
-      return 'ok';
+    console.log("isServerReady:", isServerReady);
+
+    if (isServerReady) {
+      sessionStorage.setItem(`lastFetchTime-${vsCurrency}`, currentTime);
+      return "ok";
     } else {
-      console.log(
-        `Server rate limit exceeded. Data loaded from storage, Please try again ${remainingTime} second later.`
-      );
-      return 'wait';
+      return "wait";
     }
   },
 
-  async getCoinsDataFromApi(vsCurrencies = ["usd", "eur", "btc"]) {
+  async getCoinsDataFromApi(vsCurrency) {
     const currentTime = Date.now();
 
-    if (this.checkServerRateLimit(currentTime, vsCurrencies) === "ok") {
-      console.log(vsCurrencies);
-      const vsCurrency = vsCurrencies;
+    if (this.checkServerRateLimit(currentTime, vsCurrency) === "ok") {
+      console.log(vsCurrency);
       const numberOfCoins = 20;
       const baseUrl = "https://api.coingecko.com/api/v3";
       const endpoint = `${baseUrl}/coins/markets?vs_currency=${vsCurrency}&order=market_cap_desc&per_page=${numberOfCoins}&page=1&sparkline=false&locale=en`;
@@ -48,14 +48,20 @@ const coingeckoAPI = {
         const response = await fetch(endpoint);
         const coinsData = await response.json();
         await this.setCoinsDataToStorage(coinsData, vsCurrency);
-        console.log("new Data from API received.");
+
+        console.log(
+          "new Data from API received.",
+          coinsData[0].name,
+          coinsData[0].current_price
+        );
       } catch (error) {
         errorHandler(
           `Unable to fetch data from CoinGecko API. Please try again later. ${error}`
         );
       }
-    } else if (this.checkServerRateLimit(currentTime, vsCurrencies) === "wait") {
-      return this.getCoinsDataFromStorage(vsCurrencies);
+    } else if (this.checkServerRateLimit(currentTime, vsCurrency) === "wait") {
+      errorHandler(`No manual refresh needed\ndata auto-updates every minute.`);
+      return;
     }
   },
 

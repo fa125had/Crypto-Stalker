@@ -198,12 +198,11 @@ body {
 
   // Main content
   .main-container {
-    width: 96%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: space-between;
-    // padding-block: 1rem;
 
     .header-container {
       width: 100%;
@@ -220,6 +219,7 @@ body {
         grid-template-columns: 1fr 3fr;
         align-items: start;
         justify-items: start;
+        padding-inline: 0.25rem;
 
         .header-logo {
           max-width: 4rem;
@@ -275,7 +275,6 @@ body {
                 &:hover {
                   cursor: pointer;
                 }
-               
               }
             }
 
@@ -301,24 +300,23 @@ body {
       flex-wrap: wrap;
       align-items: center;
       justify-content: stretch;
-      // gap: 0.5rem;
       @include font-tsukimi();
       height: 75vh;
       overflow: auto;
+      padding-inline: 0.5rem;
 
       .coin-data-container {
         border-bottom: 1px solid rgb(60, 53, 53);
         width: 100%;
         max-width: 100%;
-        // height: 75px;
         overflow: hidden;
         @include font-monomaniac();
         text-align: center;
         display: grid;
-        grid-template-columns: repeat(5, minmax(2rem, 1fr));
+        grid-template-columns: repeat(5, minmax(2rem, auto));
         grid-template-rows: repeat(1, 1fr);
         place-items: center;
-        padding: 0.5rem;
+        padding: 0.5rem 0;
         transition: all 150ms;
 
         .vs-currency {
@@ -354,7 +352,7 @@ body {
         }
 
         .coin-name-container {
-          grid-column: 2/6;
+          grid-column: 2/4;
           align-self: center;
           justify-self: start;
           text-align: left;
@@ -366,11 +364,17 @@ body {
         }
 
         .coin-price-container {
-          grid-column: 6 /11;
+          grid-column: 4 /11;
+          align-self: center;
+          justify-self: end;
+          text-align: right;
+          animation: fadeOut;
+          animation-duration: 2s;
 
           .coin-price {
             text-align: right;
             font-size: 1.25rem;
+            
           }
 
           .inLoss {
@@ -392,129 +396,7 @@ body {
         }
       }
     }
-
-    // .hero-container {
-    //   width: 50%;
-    //   max-width: 50%;
-    //   height: 4.4rem;
-    //   background-color: $color-orange;
-    //   display: none;
-
-    //   .hero {
-    //     display: flex;
-    //     flex-direction: column;
-    //     align-items: center;
-    //     text-align: center;
-    //     height: 67vh;
-    //     overflow: hidden;
-    //     border-bottom: 1px solid $color-orange;
-    //     border-right: 1px solid $color-orange;
-
-    //     #hero-title {
-    //       @include font-lilita();
-    //       text-align: center;
-    //       font-size: calc(100vw / 13 - 1rem);
-    //       text-transform: uppercase;
-    //     }
-
-    //     .subscription-form-container {
-    //       width: 100%;
-    //       .subscription-form {
-    //         width: 100%;
-    //         display: flex;
-    //         flex-direction: column;
-    //         align-items: center;
-    //         justify-content: space-around;
-    //         gap: 1rem;
-
-    //         .subscription-form-title-container {
-    //           .subscription-form-title {
-    //             @include font-tsukimi();
-    //             font-size: calc(100vw / 23 - 1rem);
-    //             text-transform: uppercase;
-    //           }
-    //         }
-
-    //         .subscription-form-input-container {
-    //           .subscription-form-input {
-    //             @include font-tsukimi();
-    //             font-size: 1.1rem;
-    //             text-transform: uppercase;
-    //             padding: 0.5rem;
-    //             border: 1px solid rgb(240, 117, 10);
-    //             border-radius: 0.5rem;
-    //             width: 28rem;
-    //             max-width: 100%;
-    //             height: 3rem;
-    //           }
-    //         }
-
-    //         .subscription-form-button-container {
-    //           width: 100%;
-    //           display: flex;
-    //           align-items: center;
-    //           justify-content: center;
-    //           gap: 2rem;
-
-    //           .subscription-form-button {
-    //             color: #fff;
-    //             background-color: $color-orange;
-    //             font-weight: 600;
-    //             padding: 0.5rem 1rem;
-    //             border: none;
-    //             @include font-tsukimi();
-    //             font-size: 1.1rem;
-
-    //             &:hover {
-    //               cursor: pointer;
-    //               background-color: $color-footer-background;
-    //             }
-    //           }
-    //         }
-    //       }
-    //     }
-    //   }
-    // }
   }
-
-  // .main-container {
-  //   .live-data-container {
-  //     .coin-data-table-container {
-  //       .coin-data-table {
-  //         width: 100%;
-  //         max-width: 100%;
-  //         border-collapse: collapse;
-  //         @include font-tsukimi();
-
-  //         th,
-  //         td {
-  //           white-space: nowrap;
-
-  //         }
-
-  //         .table-headers {
-  //           tr {
-  //             th {
-  //               padding-inline: 0.5rem;
-  //             }
-  //           }
-  //         }
-
-  //         .table-body {
-  //           tr {
-  //             td {
-  //               img {
-  //                 width: 2rem;
-  //               }
-  //               padding-inline: 0.5rem;
-  //             }
-  //           }
-  //         }
-  //       }
-
-  //     }
-  //   }
-  // }
 
   // Footer
   .footer-container {
@@ -529,8 +411,10 @@ body {
     // bottom: 0;
     gap: 0.5rem;
     color: $color-background-darkBlue;
-    padding: 1rem;
+    padding: 0.5rem;
     @include font-josefin();
+    font-size: 0.8rem;
+    line-height: 0.8rem;
 
     .footer-division {
       .footer-links {
@@ -547,20 +431,24 @@ body {
 
   // Error message
   .error-container {
-    background-color: $color-orange;
+    background-color: $color-background-darkBlue;
     color: #fff;
     @include font-josefin();
-    padding: 1rem 0.5rem;
+    padding: 0.25rem 0.5rem;
     display: flex;
-    flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    gap: 0.5rem;
     animation: flipInX;
     animation-duration: 700ms;
+    width: 100%;
+
+    .error-text {
+      white-space: break-spaces;
+    }
+
     .error-button {
       @include font-tsukimi();
-      padding: 0.5rem 1rem;
+      padding: 0.25rem 0.5rem;
       border: none;
       cursor: pointer;
     }

@@ -58,5 +58,5 @@ export const errorHandler = (err) => {
     if (document.getElementById("error-container")) {
       handelClose();
     }
-  }, 5000);
+  }, 6000);
 };

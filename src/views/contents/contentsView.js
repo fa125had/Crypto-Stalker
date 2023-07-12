@@ -1,15 +1,8 @@
 // Divide the number by 1,000
 const formatNumberWithCommas = (number) => {
   // Check if number is a float or integer
-  if (Math.floor(number) !== number) {
-    number = number.toFixed(3);
-  }
-
-  const formattedNumber = number
-    .toString()
-    .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-
-  return formattedNumber;
+  return number.toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 8});
+  // return formattedNumber;
 };
 
 // Refresh Header Notification
@@ -28,6 +21,16 @@ export const renderContents = (coinsData, vsCurrency) => {
   if (!coinsData) {
     new Error("Coins data is not provided!");
   }
+
+  // Set vsSymbol
+  const vsSymbol =
+    vsCurrency[0] === "usd"
+      ? "$"
+      : vsCurrency[0] === "btc"
+      ? "฿"
+      : vsCurrency[0] === "eur"
+      ? "€"
+      : vsCurrency[0];
 
   // Main container
   const contents = document.createElement("main");
@@ -107,7 +110,7 @@ export const renderContents = (coinsData, vsCurrency) => {
             coin24hChange
           )}' id=${coinSymbol}-price-change24-price>${formatNumberWithCommas(
       coin24hChange
-    )} $</p>
+    )} ${vsSymbol}</p>
           <p class='coin-price-change-percentage ${profitLossStyle(
             coin24hChange
           )}' id=${coinSymbol}-price-change24-percentage>${formatNumberWithCommas(
@@ -134,6 +137,16 @@ export const reRenderContents = (coinsData, vsCurrency) => {
     const coin24hChange = coin.price_change_24h;
     const coin24PercentChange = coin.price_change_percentage_24h;
 
+    // Set vsSymbol
+    const vsSymbol =
+      vsCurrency === "usd"
+        ? "$"
+        : vsCurrency === "btc"
+        ? "฿"
+        : vsCurrency === "eur"
+        ? "€"
+        : vsCurrency;
+
     // Select outdated elements
     const currentPriceElement = document.getElementById(
       `${coinSymbol}-current-price`
@@ -153,11 +166,11 @@ export const reRenderContents = (coinsData, vsCurrency) => {
     // Update the price change
     price24ChangePriceElement.textContent = `${formatNumberWithCommas(
       coin24hChange
-    )} $`;
+    )} ${vsSymbol}`;
 
     price24ChangePercentElement.textContent = `${formatNumberWithCommas(
       coin24PercentChange
-    )} %`;
+    )}`;
 
     // Update the vs currency
     const vsCurrencyElements = document.querySelectorAll(".vs-currency");

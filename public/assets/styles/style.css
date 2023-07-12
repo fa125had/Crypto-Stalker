@@ -62,7 +62,7 @@ body {
   animation-duration: 5s;
 }
 #user-interface .main-container {
-  width: 96%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -83,6 +83,7 @@ body {
   grid-template-columns: 1fr 3fr;
   align-items: start;
   justify-items: start;
+  padding-inline: 0.25rem;
 }
 #user-interface .main-container .header-container .header .header-logo {
   max-width: 4rem;
@@ -154,6 +155,7 @@ body {
   font-family: "Tsukimi Rounded", "Poppins", sans-serif;
   height: 75vh;
   overflow: auto;
+  padding-inline: 0.5rem;
 }
 #user-interface .main-container .live-data-container .coin-data-container {
   border-bottom: 1px solid rgb(60, 53, 53);
@@ -163,10 +165,10 @@ body {
   font-family: "Monomaniac One", "Poppins", sans-serif;
   text-align: center;
   display: grid;
-  grid-template-columns: repeat(5, minmax(2rem, 1fr));
+  grid-template-columns: repeat(5, minmax(2rem, auto));
   grid-template-rows: repeat(1, 1fr);
   place-items: center;
-  padding: 0.5rem;
+  padding: 0.5rem 0;
   transition: all 150ms;
 }
 #user-interface .main-container .live-data-container .coin-data-container .vs-currency {
@@ -198,7 +200,7 @@ body {
   margin: auto;
 }
 #user-interface .main-container .live-data-container .coin-data-container .coin-name-container {
-  grid-column: 2/6;
+  grid-column: 2/4;
   align-self: center;
   justify-self: start;
   text-align: left;
@@ -209,7 +211,12 @@ body {
   text-transform: uppercase;
 }
 #user-interface .main-container .live-data-container .coin-data-container .coin-price-container {
-  grid-column: 6/11;
+  grid-column: 4/11;
+  align-self: center;
+  justify-self: end;
+  text-align: right;
+  animation: fadeOut;
+  animation-duration: 2s;
 }
 #user-interface .main-container .live-data-container .coin-data-container .coin-price-container .coin-price {
   text-align: right;
@@ -239,8 +246,10 @@ body {
   background-color: rgb(52, 199, 89);
   gap: 0.5rem;
   color: rgb(42, 47, 60);
-  padding: 1rem;
+  padding: 0.5rem;
   font-family: "Josefin Sans", "Poppins", sans-serif;
+  font-size: 0.8rem;
+  line-height: 0.8rem;
 }
 #user-interface .footer-container .footer-division .footer-links {
   display: flex;
@@ -250,21 +259,23 @@ body {
   align-items: center;
 }
 #user-interface .error-container {
-  background-color: rgb(240, 117, 10);
+  background-color: rgb(42, 47, 60);
   color: #fff;
   font-family: "Josefin Sans", "Poppins", sans-serif;
-  padding: 1rem 0.5rem;
+  padding: 0.25rem 0.5rem;
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  gap: 0.5rem;
   animation: flipInX;
   animation-duration: 700ms;
+  width: 100%;
+}
+#user-interface .error-container .error-text {
+  white-space: break-spaces;
 }
 #user-interface .error-container .error-button {
   font-family: "Tsukimi Rounded", "Poppins", sans-serif;
-  padding: 0.5rem 1rem;
+  padding: 0.25rem 0.5rem;
   border: none;
   cursor: pointer;
 }
