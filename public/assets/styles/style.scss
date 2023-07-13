@@ -64,7 +64,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: flex-start;
 
   // Welcome Page
   .welcome-container {
@@ -198,6 +198,49 @@ body {
     }
   }
 
+  // Search Bar
+  .search-box-container {
+    z-index: 99;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    margin: 0 auto;
+    @include font-chakra();
+    top: 4.8rem;
+
+    .search-box-input {
+      font-size: 1.25rem;
+      border: none;
+      background-color: $color-background-darkBlue;
+      color: #fff;
+      text-transform: uppercase;
+      padding: 0.5rem 1rem;
+      border-radius: 1rem;
+
+      &:focus {
+        outline: none;
+      }
+
+      &::placeholder {
+        font-size: 1rem;
+        text-transform: capitalize;
+      }
+    }
+
+    .search-box-button {
+      position: absolute;
+      right: 0;
+      background-color: #fff;
+      color: #000;
+      border: 1px solid #000;
+      outline: none;
+      height: 100%;
+      padding-inline: 0.5rem;
+      border-radius: 0rem 1rem 1rem 0rem;
+    }
+  }
+
   // Main content
   .main-container {
     width: 100%;
@@ -210,46 +253,9 @@ body {
     // ); /* Adjust this value to match the height of your fixed header */
     overflow-y: auto;
 
-    .search-box-container {
-      z-index: 101;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      margin: 0 auto;
-      @include font-chakra();
-      top: 4rem;
-
-      .search-box-input {
-        font-size: 1.5rem;
-        border: none;
-        background-color: $color-background-darkBlue;
-        color: #fff;
-        text-transform: uppercase;
-        padding: 0.5rem 1rem;
-        border-radius: 1rem;
-
-        &:focus {
-          outline: none;
-        }
-      }
-
-      .search-box-button {
-        position: absolute;
-        right: 0;
-        background-color: #fff;
-        color: #000;
-        border: none;
-        outline: none;
-        height: 100%;
-        padding-inline: 0.5rem;
-        border-radius: 0rem 1rem 1rem 0rem;
-      }
-    }
-
     .live-data-container {
       width: 100%;
-      max-width: 100%;
+      max-width: 56.5rem;
       height: 100%;
       display: flex;
       flex-wrap: wrap;
@@ -258,7 +264,8 @@ body {
       @include font-tsukimi();
       overflow: auto;
       padding-inline: 0.5rem;
-      margin-block: 4.5rem 1rem;
+      margin: 0 auto;
+      margin-block: 7.25rem 1rem;
 
       .coin-data-container {
         border-bottom: 1px solid rgb(60, 53, 53);
