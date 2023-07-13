@@ -29,3 +29,15 @@ export const renderHeader = (coins) => {
 
   return header;
 };
+
+// Refresh Header Notification
+export const refreshNotification = () => {
+  const headerNotification = document.getElementById("header-notification");
+  headerNotification.style.visibility = "visible";
+  headerNotification.classList.add("animated-fade-out");
+
+  // Hide the notification after 1.5 seconds.
+  setTimeout(() => {
+    headerNotification.style.visibility = "hidden";
+  }, 1500);
+};

@@ -210,6 +210,43 @@ body {
     // ); /* Adjust this value to match the height of your fixed header */
     overflow-y: auto;
 
+    .search-box-container {
+      z-index: 101;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      margin: 0 auto;
+      @include font-chakra();
+      top: 4rem;
+
+      .search-box-input {
+        font-size: 1.5rem;
+        border: none;
+        background-color: $color-background-darkBlue;
+        color: #fff;
+        text-transform: uppercase;
+        padding: 0.5rem 1rem;
+        border-radius: 1rem;
+
+        &:focus {
+          outline: none;
+        }
+      }
+
+      .search-box-button {
+        position: absolute;
+        right: 0;
+        background-color: #fff;
+        color: #000;
+        border: none;
+        outline: none;
+        height: 100%;
+        padding-inline: 0.5rem;
+        border-radius: 0rem 1rem 1rem 0rem;
+      }
+    }
+
     .live-data-container {
       width: 100%;
       max-width: 100%;
