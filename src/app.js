@@ -2,7 +2,7 @@
 
 import { errorHandler } from "./utils/errorHandler.js";
 import { renderWelcome } from "./views/welcome/welcomeView.js";
-import { fetchFreshDataFromApi } from "./controllers/coingeckoApiController.js";
+import { renderHeader } from "./views/header/headerView.js";
 import {
   initContents,
   initContentsReload,
@@ -11,7 +11,8 @@ import { renderFooter } from "./views/footer/footerView.js";
 
 // Grab UI elements
 const ui = document.getElementById("user-interface");
-// Load and Render the welcome view
+
+// Load the welcome view
 const intWelcome = async () => {
   const welcome = await renderWelcome();
   ui.appendChild(welcome);
@@ -20,7 +21,11 @@ const intWelcome = async () => {
   ui.removeChild(ui.firstChild);
 };
 
-// Load and Render the Contents
+// Load the Header
+const initHeader = async () => {
+  ui.appendChild(renderHeader());
+};
+// Load the Contents
 const renderContents = async () => {
   const contents = await initContents(["usd"]);
   ui.appendChild(contents);
@@ -40,7 +45,7 @@ const renderContents = async () => {
   }, 61 * 1000);
 };
 
-// Load and Render the Footer
+// Load the Footer
 const initFooter = async () => {
   // Render the footer
   ui.appendChild(renderFooter());
@@ -49,8 +54,8 @@ const initFooter = async () => {
 // Start the application
 const inits = async () => {
   try {
-    // await fetchFreshDataFromApi();
     await intWelcome();
+    await initHeader();
     await renderContents();
     await initFooter();
   } catch (error) {

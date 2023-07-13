@@ -28,7 +28,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
 }
 #user-interface .welcome-container {
   min-width: 100vw;
@@ -61,23 +61,23 @@ body {
   animation: fadeInDown;
   animation-duration: 5s;
 }
-#user-interface .main-container {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-between;
-}
-#user-interface .main-container .header-container {
+#user-interface .header-container {
   width: 100%;
   max-width: 100%;
-  padding-block: 1rem;
+  padding: 0.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid rgb(60, 53, 53);
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #000;
+  z-index: 100;
+  flex-direction: column;
+  gap: 1rem;
 }
-#user-interface .main-container .header-container .header {
+#user-interface .header-container .header {
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 3fr;
@@ -85,13 +85,13 @@ body {
   justify-items: start;
   padding-inline: 0.25rem;
 }
-#user-interface .main-container .header-container .header .header-logo {
+#user-interface .header-container .header .header-logo {
   max-width: 4rem;
   min-width: 2.5rem;
   font-family: "Lexend Peta", "Poppins", sans-serif;
   line-height: 1.65rem;
 }
-#user-interface .main-container .header-container .header .nav-list {
+#user-interface .header-container .header .nav-list {
   width: 100%;
   display: grid;
   grid-template-columns: 3fr 1fr;
@@ -99,14 +99,14 @@ body {
   justify-items: center;
   list-style: none;
 }
-#user-interface .main-container .header-container .header .nav-list .nav-item .header-title {
+#user-interface .header-container .header .nav-list .nav-item .header-title {
   font-family: "Chakra Petch", sans-serif;
   font-size: 1.3rem;
   text-align: center;
   text-transform: capitalize;
   color: white;
 }
-#user-interface .main-container .header-container .header .nav-list .header-menu-container {
+#user-interface .header-container .header .nav-list .header-menu-container {
   justify-self: end;
   position: relative;
   display: flex;
@@ -115,7 +115,7 @@ body {
   justify-content: center;
   gap: 0.25rem;
 }
-#user-interface .main-container .header-container .header .nav-list .header-menu-container .currency-selector-container {
+#user-interface .header-container .header .nav-list .header-menu-container .currency-selector-container {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -123,7 +123,7 @@ body {
   justify-content: space-around;
   position: relative;
 }
-#user-interface .main-container .header-container .header .nav-list .header-menu-container .currency-selector-container #currency-selector {
+#user-interface .header-container .header .nav-list .header-menu-container .currency-selector-container #currency-selector {
   width: 100%;
   font-family: "Lexend Peta", "Poppins", sans-serif;
   font-size: 1rem;
@@ -132,10 +132,10 @@ body {
   border: none;
   outline: none;
 }
-#user-interface .main-container .header-container .header .nav-list .header-menu-container .currency-selector-container #currency-selector:hover {
+#user-interface .header-container .header .nav-list .header-menu-container .currency-selector-container #currency-selector:hover {
   cursor: pointer;
 }
-#user-interface .main-container .header-container .header .nav-list .header-menu-container .refresh-notification {
+#user-interface .header-container .header .nav-list .header-menu-container .refresh-notification {
   visibility: hidden;
   background: rgb(240, 117, 10);
   font-family: "Space Grotesk", "Poppins", sans-serif;
@@ -145,17 +145,26 @@ body {
   color: #000;
   text-align: center;
 }
+#user-interface .main-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  overflow-y: auto;
+}
 #user-interface .main-container .live-data-container {
   width: 100%;
   max-width: 100%;
+  height: 100%;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: stretch;
   font-family: "Tsukimi Rounded", "Poppins", sans-serif;
-  height: 75vh;
   overflow: auto;
   padding-inline: 0.5rem;
+  margin-block: 4.5rem 1rem;
 }
 #user-interface .main-container .live-data-container .coin-data-container {
   border-bottom: 1px solid rgb(60, 53, 53);
@@ -188,6 +197,7 @@ body {
   align-self: center;
   max-width: 2rem;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -198,6 +208,9 @@ body {
   animation: fadeIn;
   animation-duration: 500ms;
   margin: auto;
+}
+#user-interface .main-container .live-data-container .coin-data-container .coin-image-container .coin-rank {
+  font-size: 0.75rem;
 }
 #user-interface .main-container .live-data-container .coin-data-container .coin-name-container {
   grid-column: 2/4;
@@ -228,6 +241,12 @@ body {
 #user-interface .main-container .live-data-container .coin-data-container .coin-price-container .inProfit {
   color: green;
 }
+#user-interface .main-container .live-data-container .coin-data-container .coin-price-container .inProfit:first-child::before {
+  content: "+";
+  color: green;
+  font-size: 1rem;
+  margin-right: 0.1rem;
+}
 #user-interface .main-container .live-data-container .coin-data-container .coin-price-container .coin-price-change {
   display: flex;
   align-items: center;
@@ -239,17 +258,24 @@ body {
 #user-interface .footer-container {
   width: 100%;
   max-width: 100%;
+  height: 12rem;
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-evenly;
   align-items: center;
-  background-color: rgb(52, 199, 89);
-  gap: 0.5rem;
-  color: rgb(42, 47, 60);
-  padding: 0.5rem;
-  font-family: "Josefin Sans", "Poppins", sans-serif;
-  font-size: 0.8rem;
-  line-height: 0.8rem;
+  background-color: rgb(42, 47, 60);
+  color: #fff;
+  font-family: "Chakra Petch", sans-serif;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  position: fixed;
+  overflow: hidden;
+  bottom: 0;
+  padding-inline: 0.5rem;
+}
+#user-interface .footer-container .footer-division .footer-description {
+  text-align: justify;
+  max-width: 90%;
 }
 #user-interface .footer-container .footer-division .footer-links {
   display: flex;
@@ -257,6 +283,39 @@ body {
   gap: 0.5rem;
   justify-content: space-between;
   align-items: center;
+}
+#user-interface .footer-container .footer-division .footer-links .footer-link {
+  color: #fff;
+}
+#user-interface .footer-container .footer-division .footer-links .footer-link:hover {
+  cursor: pointer;
+}
+#user-interface .footer-container .footer-division .footer-links .footer-link:visited {
+  color: #fff;
+}
+#user-interface .footer-container .footer-collapse-button {
+  width: 100%;
+  height: 1.5rem;
+  color: #fff;
+  background-color: rgb(52, 199, 89);
+  border: none;
+  align-self: flex-start;
+  position: absolute;
+}
+#user-interface .footer-container .footer-collapse-button:hover {
+  cursor: pointer;
+}
+#user-interface .footer-collapsed {
+  background-color: transparent;
+}
+#user-interface .footer-collapsed .footer-division {
+  display: none;
+}
+#user-interface .footer-collapsed .footer-collapse-button {
+  align-self: end;
+  background-color: rgb(52, 199, 89);
+  color: #000;
+  width: 100%;
 }
 #user-interface .error-container {
   background-color: rgb(42, 47, 60);

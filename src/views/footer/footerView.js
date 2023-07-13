@@ -1,17 +1,17 @@
 export const renderFooter = () => {
-  // Render footer
   const footer = document.createElement("footer");
   footer.classList.add("footer-container");
+  footer.classList.add("footer-collapsed");
+
+  // Create footer division
+  const footerFirstDivision = document.createElement("div");
+  footerFirstDivision.classList.add("footer-division");
 
   // Create footer division
   const footerSecondDivision = document.createElement("div");
   footerSecondDivision.classList.add("footer-division");
 
-  // Create footer division
-  const footerThirdDivision = document.createElement("div");
-  footerThirdDivision.classList.add("footer-division");
-
-  // Add footer links - Second division
+  // Add footer links - First division
   const footerLinks = document.createElement("p");
   footerLinks.classList.add("footer-links");
   const footerLink = document.createElement("a");
@@ -29,18 +29,35 @@ export const renderFooter = () => {
   footerGithub.innerText = "Github";
   footerLinks.appendChild(footerGithub);
   // Add links
-  footerSecondDivision.appendChild(footerLinks);
+  footerFirstDivision.appendChild(footerLinks);
 
-  // Add footer description - Third division
+  // Add footer description - Second division
   const footerDescription = document.createElement("p");
   footerDescription.classList.add("footer-description");
   footerDescription.textContent =
     "I am a full-stack web developer with a passion for building websites and applications. I love to code, learn new things, and learn new things. 2023 - Farshad";
-  footerThirdDivision.appendChild(footerDescription);
+  footerSecondDivision.appendChild(footerDescription);
 
+  // Footer collapse button
+  const footerCollapseButton = document.createElement("button");
+  footerCollapseButton.classList.add("footer-collapse-button");
+  // Down arrow icon
+  footerCollapseButton.innerHTML = "&#9650;";
+  footerCollapseButton.addEventListener("click", () => {
+    footer.classList.toggle("footer-collapsed");
+
+    if (footer.classList.contains("footer-collapsed")) {
+      footerCollapseButton.innerHTML = "&#9650;";
+    } else {
+      footerCollapseButton.innerHTML = "&#9660;";
+    }
+  });
+
+  // Add footer button to footer
+  footer.appendChild(footerCollapseButton);
   // Add footer divisions to footer
+  footer.appendChild(footerFirstDivision);
   footer.appendChild(footerSecondDivision);
-  footer.appendChild(footerThirdDivision);
 
   return footer;
 };

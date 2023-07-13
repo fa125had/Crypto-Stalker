@@ -1,33 +1,42 @@
 import { errorHandler } from "../../utils/errorHandler.js";
 
 const coingeckoAPI = {
+  // Get all the coins data from the session storage.
   getCoinsDataFromStorage(vsCurrency) {
     const storedCoinsData = JSON.parse(
       sessionStorage.getItem(`coinsData-${vsCurrency}`)
     );
+    // T-shoot logging.
+    console.info(`Coins loaded from the Storage.`);
 
     return storedCoinsData;
   },
 
+  // Save the coins data to the session storage.
   async setCoinsDataToStorage(coinsData, vsCurrency) {
     sessionStorage.setItem(
       `coinsData-${vsCurrency}`,
       JSON.stringify(coinsData)
     );
 
-    console.log(`Coins new data Saved to the Storage.`);
+    // T-shoot logging.
+    console.info(`Coins new data Saved to the Storage.`);
   },
 
+  // Check API Server rate limit.
   checkServerRateLimit(currentTime, vsCurrency) {
     const lastFetchTime = Number(
       sessionStorage.getItem(`lastFetchTime-${vsCurrency}`)
     );
+    // Server rate limit in milliseconds.
     const serverRateLimit = 60 * 1000;
     const isServerReady = currentTime - lastFetchTime > serverRateLimit;
 
-    console.log("isServerReady:", isServerReady);
+    // T-shoot logging.
+    console.info("Is Server Ready? ", isServerReady);
 
     if (isServerReady) {
+      // Save the last fetch time for each pair coin.
       sessionStorage.setItem(`lastFetchTime-${vsCurrency}`, currentTime);
       return "ok";
     } else {
@@ -35,25 +44,31 @@ const coingeckoAPI = {
     }
   },
 
+  // Get all the coins data from CoinGecko API.
   async getCoinsDataFromApi(vsCurrency) {
     const currentTime = Date.now();
 
     if (this.checkServerRateLimit(currentTime, vsCurrency) === "ok") {
-      console.log(vsCurrency);
-      const numberOfCoins = 20;
+      // T-shoot logging.
+      console.info("Data will loaded for " + vsCurrency + "pair.");
+
+      const numberOfCoins = 100;
       const baseUrl = "https://api.coingecko.com/api/v3";
+      // CoinGecko API, Coins Market data resource
       const endpoint = `${baseUrl}/coins/markets?vs_currency=${vsCurrency}&order=market_cap_desc&per_page=${numberOfCoins}&page=1&sparkline=false&locale=en`;
 
       try {
         const response = await fetch(endpoint);
         const coinsData = await response.json();
+        // Save fresh data to session storage.
         await this.setCoinsDataToStorage(coinsData, vsCurrency);
 
-        console.log(
-          "new Data from API received.",
-          coinsData[0].name,
-          coinsData[0].current_price
-        );
+        // T-shoot logging.
+        console.table({
+          title: "new Data from API received.",
+          coin: coinsData[0].name,
+          price: coinsData[0].current_price,
+        });
       } catch (error) {
         errorHandler(
           `Unable to fetch data from CoinGecko API. Please try again later. ${error}`
@@ -64,7 +79,7 @@ const coingeckoAPI = {
       return;
     }
   },
-
+  // Initializer
   async getCoinsMarketData(vsCurrency) {
     await this.getCoinsDataFromApi(vsCurrency);
     const storedCoinsData = await this.getCoinsDataFromStorage(vsCurrency);

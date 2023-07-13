@@ -1,8 +1,17 @@
 // Divide the number by 1,000
 const formatNumberWithCommas = (number) => {
-  // Check if number is a float or integer
-  return number.toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 8});
-  // return formattedNumber;
+  // Distinguish low price coins from high price ones
+  if (Math.abs(number) > 1) {
+    return number.toLocaleString("en-US", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
+  } else {
+    return number.toLocaleString("en-US", {
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 8,
+    });
+  }
 };
 
 // Refresh Header Notification
@@ -36,34 +45,6 @@ export const renderContents = (coinsData, vsCurrency) => {
   const contents = document.createElement("main");
   contents.classList.add("main-container");
 
-  // Create Header
-  const header = document.createElement("header");
-  header.classList.add("header-container");
-  header.innerHTML = `
-  <nav class='header'>
-    <p class='header-logo'>Crypto Stalker</p>
-    <ul class='nav-list'>
-      <li class='nav-item'>
-        <h1 class='header-title'>Watch your favorite Coin</h1>
-      </li>
-      <li class='nav-item header-menu-container'>
-        <span class='currency-selector-container'>
-          <select id='currency-selector' name='vsCurrency'>
-            <option value='usd' selected>USD</option>
-            <option value='btc'>BTC</option>
-            <option value='eur'>Euro</option>
-          </select>
-        </span>
-        <span class='header-notification-container'>
-          <p class='refresh-notification' id='header-notification'>Refreshed!</p>
-        </span>
-      </li>
-    </ul>
-  </nav>
-  `;
-  // Add Header to main
-  contents.appendChild(header);
-
   // Coin data section
   const coinDataContainer = document.createElement("section");
   coinDataContainer.classList.add("live-data-container");
@@ -92,7 +73,10 @@ export const renderContents = (coinsData, vsCurrency) => {
     <div id='${coin.symbol}-data-container' class='coin-data-container' >
 
       <div class='coin-image-container'>
-        <img class='coin-image' src='${coinLogo}' alt=${coinName}/>
+        <img class='coin-image' src='${coinLogo}' alt=${coinName} title=${coinName}>
+        <p class='coin-rank' title='Market cap Rank '>${
+          coin.market_cap_rank
+        }</p>
       </div>
 
       <div class='coin-name-container'>
@@ -108,12 +92,12 @@ export const renderContents = (coinsData, vsCurrency) => {
         <div class='coin-price-change'>
           <p class='coin-price-change-price ${profitLossStyle(
             coin24hChange
-          )}' id=${coinSymbol}-price-change24-price>${formatNumberWithCommas(
+          )}' id=${coinSymbol}-price-change24-price title='Past 24h'>${formatNumberWithCommas(
       coin24hChange
     )} ${vsSymbol}</p>
           <p class='coin-price-change-percentage ${profitLossStyle(
             coin24hChange
-          )}' id=${coinSymbol}-price-change24-percentage>${formatNumberWithCommas(
+          )} %' id=${coinSymbol}-price-change24-percentage title='Past 24h'>${formatNumberWithCommas(
       coin24PercentChange
     )} %</p>
         </div>
@@ -170,7 +154,7 @@ export const reRenderContents = (coinsData, vsCurrency) => {
 
     price24ChangePercentElement.textContent = `${formatNumberWithCommas(
       coin24PercentChange
-    )}`;
+    )} %`;
 
     // Update the vs currency
     const vsCurrencyElements = document.querySelectorAll(".vs-currency");
