@@ -3,6 +3,7 @@
 import { errorHandler } from "./utils/errorHandler.js";
 import { renderWelcome } from "./views/welcome/welcomeView.js";
 import { renderHeader } from "./views/header/headerView.js";
+import { renderSearch } from "./views/search/searchView.js";
 import {
   initContents,
   initContentsReload,
@@ -24,6 +25,10 @@ const intWelcome = async () => {
 // Load the Header
 const initHeader = async () => {
   ui.appendChild(renderHeader());
+};
+// Load the Search Bar
+const initSearchBar = async () => {
+  ui.appendChild(renderSearch());
 };
 // Load the Contents
 const renderContents = async () => {
@@ -56,6 +61,7 @@ const inits = async () => {
   try {
     await intWelcome();
     await initHeader();
+    await initSearchBar();
     await renderContents();
     await initFooter();
   } catch (error) {
