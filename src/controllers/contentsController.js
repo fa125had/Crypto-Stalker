@@ -1,24 +1,20 @@
-import { getContents } from "../models/contents/contentsModel.js";
-import { renderContents, reloadContents } from "../views/contents/contentsView.js";
-import { errorHandler } from "../utils/errorHandler.js";
+import {
+  loadContents,
+  reloadContents,
+} from "../models/contents/contentsModel.js";
+import {
+  renderContents,
+  reRenderContents,
+} from "../views/contents/contentsView.js";
 
-export const initContents = async () => {
-  try {
-    // Fetch coins and render the header
-    const coins = await getContents();
+export const initContents = async (vsCurrency) => {
+  const contents = await loadContents(vsCurrency);
 
-    console.log(`Contents Controller Initialized.`);
-
-    //* Grab all the keys from the coins data
-    const coinDataKeys = Object.keys(coins[0]);
-
-    return renderContents(coins, 'usd' ,coinDataKeys);
-  } catch (error) {
-    errorHandler(error);
-  }
+  return renderContents(contents, vsCurrency);
 };
 
-export const initContentsReload = async () => {
-  const coins = await getContents();
-  return reloadContents(coins);
+export const initContentsReload = async (vsCurrency) => {
+  const contents = await reloadContents(vsCurrency);
+
+  return reRenderContents(contents, vsCurrency);
 };

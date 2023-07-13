@@ -8,7 +8,7 @@ export const errorHandler = (err) => {
   console.error(err);
 
   // Grab the user interface element
-  const ui = document.getElementById("user-interface");
+  const header = document.getElementById("header-container");
 
   // Close the error container
   const handelClose = () => {
@@ -19,7 +19,7 @@ export const errorHandler = (err) => {
     setTimeout(() => {
       if (document.getElementById("error-container")) {
         // Close the error container
-        ui.removeChild(errorBox);
+        header.removeChild(errorBox);
         // Clear the browser console
         // console.clear();/////////////////////////////////////////////////////
         // Clear session storage
@@ -51,12 +51,12 @@ export const errorHandler = (err) => {
   // Add the error container to the user interface
   errorContainer.appendChild(errorText);
   errorContainer.appendChild(errorButton);
-  ui.appendChild(errorContainer);
+  header.appendChild(errorContainer);
 
   // Close the error container after 5 seconds
   setTimeout(() => {
     if (document.getElementById("error-container")) {
       handelClose();
     }
-  }, 5000);
+  }, 6000);
 };

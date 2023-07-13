@@ -28,7 +28,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
 }
 #user-interface .welcome-container {
   min-width: 100vw;
@@ -61,55 +61,82 @@ body {
   animation: fadeInDown;
   animation-duration: 5s;
 }
-#user-interface .main-container {
-  width: 96%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-between;
-}
-#user-interface .main-container .header-container {
+#user-interface .header-container {
   width: 100%;
   max-width: 100%;
-  padding-block: 1rem;
+  padding: 0.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid rgb(60, 53, 53);
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #000;
+  z-index: 100;
+  flex-direction: column;
+  gap: 1rem;
 }
-#user-interface .main-container .header-container .header {
+#user-interface .header-container .header {
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 3fr;
-  align-items: center;
+  align-items: start;
   justify-items: start;
+  padding-inline: 0.25rem;
 }
-#user-interface .main-container .header-container .header .header-logo {
+#user-interface .header-container .header .header-logo {
   max-width: 4rem;
   min-width: 2.5rem;
   font-family: "Lexend Peta", "Poppins", sans-serif;
+  line-height: 1.65rem;
 }
-#user-interface .main-container .header-container .header .nav-list {
+#user-interface .header-container .header .nav-list {
   width: 100%;
   display: grid;
   grid-template-columns: 3fr 1fr;
-  align-items: center;
+  align-items: start;
   justify-items: center;
   list-style: none;
 }
-#user-interface .main-container .header-container .header .nav-list .nav-item .header-title {
+#user-interface .header-container .header .nav-list .nav-item .header-title {
   font-family: "Chakra Petch", sans-serif;
   font-size: 1.3rem;
   text-align: center;
   text-transform: capitalize;
   color: white;
 }
-#user-interface .main-container .header-container .header .nav-list .header-notification-container {
+#user-interface .header-container .header .nav-list .header-menu-container {
   justify-self: end;
-  min-width: 1rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
 }
-#user-interface .main-container .header-container .header .nav-list .header-notification-container .header-notification {
-  display: none;
+#user-interface .header-container .header .nav-list .header-menu-container .currency-selector-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-around;
+  position: relative;
+}
+#user-interface .header-container .header .nav-list .header-menu-container .currency-selector-container #currency-selector {
+  width: 100%;
+  font-family: "Lexend Peta", "Poppins", sans-serif;
+  font-size: 1rem;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  outline: none;
+}
+#user-interface .header-container .header .nav-list .header-menu-container .currency-selector-container #currency-selector:hover {
+  cursor: pointer;
+}
+#user-interface .header-container .header .nav-list .header-menu-container .refresh-notification {
+  visibility: hidden;
   background: rgb(240, 117, 10);
   font-family: "Space Grotesk", "Poppins", sans-serif;
   font-size: 0.8rem;
@@ -118,32 +145,77 @@ body {
   color: #000;
   text-align: center;
 }
+#user-interface .main-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  overflow-y: auto;
+}
+#user-interface .main-container .search-box-container {
+  z-index: 101;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin: 0 auto;
+  font-family: "Chakra Petch", sans-serif;
+  top: 4rem;
+}
+#user-interface .main-container .search-box-container .search-box-input {
+  font-size: 1.5rem;
+  border: none;
+  background-color: rgb(42, 47, 60);
+  color: #fff;
+  text-transform: uppercase;
+  padding: 0.5rem 1rem;
+  border-radius: 1rem;
+}
+#user-interface .main-container .search-box-container .search-box-input:focus {
+  outline: none;
+}
+#user-interface .main-container .search-box-container .search-box-button {
+  position: absolute;
+  right: 0;
+  background-color: #fff;
+  color: #000;
+  border: none;
+  outline: none;
+  height: 100%;
+  padding-inline: 0.5rem;
+  border-radius: 0rem 1rem 1rem 0rem;
+}
 #user-interface .main-container .live-data-container {
   width: 100%;
   max-width: 100%;
+  height: 100%;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: stretch;
-  gap: 0.5rem;
   font-family: "Tsukimi Rounded", "Poppins", sans-serif;
-  height: 75vh;
   overflow: auto;
+  padding-inline: 0.5rem;
+  margin-block: 4.5rem 1rem;
 }
 #user-interface .main-container .live-data-container .coin-data-container {
-  border: 1px solid rgb(60, 53, 53);
+  border-bottom: 1px solid rgb(60, 53, 53);
   width: 100%;
   max-width: 100%;
-  height: 75px;
   overflow: hidden;
   font-family: "Monomaniac One", "Poppins", sans-serif;
   text-align: center;
   display: grid;
-  grid-template-columns: repeat(5, minmax(2rem, 1fr));
+  grid-template-columns: repeat(5, minmax(2rem, auto));
   grid-template-rows: repeat(1, 1fr);
   place-items: center;
-  padding-inline: 0.5rem;
+  padding: 0.5rem 0;
   transition: all 150ms;
+}
+#user-interface .main-container .live-data-container .coin-data-container .vs-currency {
+  text-transform: uppercase;
+  padding-inline: 0.2rem;
 }
 #user-interface .main-container .live-data-container .coin-data-container:hover {
   cursor: pointer;
@@ -157,6 +229,10 @@ body {
   justify-self: start;
   align-self: center;
   max-width: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 #user-interface .main-container .live-data-container .coin-data-container .coin-image-container .coin-image {
   max-width: 100%;
@@ -164,9 +240,13 @@ body {
      object-fit: contain;
   animation: fadeIn;
   animation-duration: 500ms;
+  margin: auto;
+}
+#user-interface .main-container .live-data-container .coin-data-container .coin-image-container .coin-rank {
+  font-size: 0.75rem;
 }
 #user-interface .main-container .live-data-container .coin-data-container .coin-name-container {
-  grid-column: 2/6;
+  grid-column: 2/4;
   align-self: center;
   justify-self: start;
   text-align: left;
@@ -177,7 +257,12 @@ body {
   text-transform: uppercase;
 }
 #user-interface .main-container .live-data-container .coin-data-container .coin-price-container {
-  grid-column: 6/11;
+  grid-column: 4/11;
+  align-self: center;
+  justify-self: end;
+  text-align: right;
+  animation: fadeOut;
+  animation-duration: 2s;
 }
 #user-interface .main-container .live-data-container .coin-data-container .coin-price-container .coin-price {
   text-align: right;
@@ -189,25 +274,41 @@ body {
 #user-interface .main-container .live-data-container .coin-data-container .coin-price-container .inProfit {
   color: green;
 }
+#user-interface .main-container .live-data-container .coin-data-container .coin-price-container .inProfit:first-child::before {
+  content: "+";
+  color: green;
+  font-size: 1rem;
+  margin-right: 0.1rem;
+}
 #user-interface .main-container .live-data-container .coin-data-container .coin-price-container .coin-price-change {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
   white-space: nowrap;
+  min-width: 8rem;
 }
 #user-interface .footer-container {
   width: 100%;
   max-width: 100%;
+  height: 12rem;
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-evenly;
   align-items: center;
-  background-color: rgb(52, 199, 89);
-  gap: 0.5rem;
-  color: rgb(42, 47, 60);
-  padding: 1rem;
-  font-family: "Josefin Sans", "Poppins", sans-serif;
+  background-color: rgb(42, 47, 60);
+  color: #fff;
+  font-family: "Chakra Petch", sans-serif;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  position: fixed;
+  overflow: hidden;
+  bottom: 0;
+  padding-inline: 0.5rem;
+}
+#user-interface .footer-container .footer-division .footer-description {
+  text-align: justify;
+  max-width: 90%;
 }
 #user-interface .footer-container .footer-division .footer-links {
   display: flex;
@@ -216,22 +317,57 @@ body {
   justify-content: space-between;
   align-items: center;
 }
+#user-interface .footer-container .footer-division .footer-links .footer-link {
+  color: #fff;
+}
+#user-interface .footer-container .footer-division .footer-links .footer-link:hover {
+  cursor: pointer;
+}
+#user-interface .footer-container .footer-division .footer-links .footer-link:visited {
+  color: #fff;
+}
+#user-interface .footer-container .footer-collapse-button {
+  width: 100%;
+  height: 1.5rem;
+  color: #fff;
+  background-color: rgb(52, 199, 89);
+  border: none;
+  align-self: flex-start;
+  position: absolute;
+}
+#user-interface .footer-container .footer-collapse-button:hover {
+  cursor: pointer;
+}
+#user-interface .footer-collapsed {
+  background-color: transparent;
+}
+#user-interface .footer-collapsed .footer-division {
+  display: none;
+}
+#user-interface .footer-collapsed .footer-collapse-button {
+  align-self: end;
+  background-color: rgb(52, 199, 89);
+  color: #000;
+  width: 100%;
+}
 #user-interface .error-container {
-  background-color: rgb(240, 117, 10);
+  background-color: rgb(42, 47, 60);
   color: #fff;
   font-family: "Josefin Sans", "Poppins", sans-serif;
-  padding: 1rem 0.5rem;
+  padding: 0.25rem 0.5rem;
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  gap: 0.5rem;
   animation: flipInX;
   animation-duration: 700ms;
+  width: 100%;
+}
+#user-interface .error-container .error-text {
+  white-space: break-spaces;
 }
 #user-interface .error-container .error-button {
   font-family: "Tsukimi Rounded", "Poppins", sans-serif;
-  padding: 0.5rem 1rem;
+  padding: 0.25rem 0.5rem;
   border: none;
   cursor: pointer;
 }

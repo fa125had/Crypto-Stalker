@@ -1,11 +1,14 @@
 import coingeckoAPI from "../api/coingeckoApiModel.js";
-import { errorHandler } from "../../utils/errorHandler.js";
 
-export const getContents = async () => {
-  return coingeckoAPI
-    .getAllCoins()
-    .then((coinsData) => {
-      return coinsData;
-    })
-    .catch(errorHandler);
+export const loadContents = (vsCurrency) => {
+  // Fetch coins and render the header
+  const coins = coingeckoAPI.getCoinsMarketData(vsCurrency);
+
+  return coins;
+};
+
+export const reloadContents = (vsCurrency) => {
+  const coins = coingeckoAPI.getCoinsMarketData(vsCurrency);
+
+  return coins;
 };

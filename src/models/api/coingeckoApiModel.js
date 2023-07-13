@@ -1,187 +1,90 @@
 import { errorHandler } from "../../utils/errorHandler.js";
 
-// Keep track of the last fetch time
-let lastFetch;
-
 const coingeckoAPI = {
-  baseUrl: "https://api.coingecko.com/api/v3",
+  // Get all the coins data from the session storage.
+  getCoinsDataFromStorage(vsCurrency) {
+    const storedCoinsData = JSON.parse(
+      sessionStorage.getItem(`coinsData-${vsCurrency}`)
+    );
+    // T-shoot logging.
+    console.info(`Coins loaded from the Storage.`);
 
-  // Check API Server Status
-  async ping() {
-    // Retrieve the last fetch time from session storage
-    lastFetch = Number(sessionStorage.getItem("lastFetch"));
+    return storedCoinsData;
+  },
 
-    // Check if the it's the first time fetching and if it's not, fetch allowed every 2 minutes.
-    if (lastFetch && Date.now() - lastFetch < 120000) {
-      const remainingTime = 120000 - (Date.now() - lastFetch);
+  // Save the coins data to the session storage.
+  async setCoinsDataToStorage(coinsData, vsCurrency) {
+    sessionStorage.setItem(
+      `coinsData-${vsCurrency}`,
+      JSON.stringify(coinsData)
+    );
 
-      // Toggle server status
-      coingeckoAPI.serverResponse = false;
+    // T-shoot logging.
+    console.info(`Coins new data Saved to the Storage.`);
+  },
 
-      // Return coins data stored in session storage
-      const storedData = JSON.parse(sessionStorage.getItem("coinsData"));
+  // Check API Server rate limit.
+  checkServerRateLimit(currentTime, vsCurrency) {
+    const lastFetchTime = Number(
+      sessionStorage.getItem(`lastFetchTime-${vsCurrency}`)
+    );
+    // Server rate limit in milliseconds.
+    const serverRateLimit = 60 * 1000;
+    const isServerReady = currentTime - lastFetchTime > serverRateLimit;
 
-      // T-shooter logging
-      console.log("Data Loaded from Storage. Remaining time: " + remainingTime / 1000 + "seconds.");
+    // T-shoot logging.
+    console.info("Is Server Ready? ", isServerReady);
 
-      return storedData;
+    if (isServerReady) {
+      // Save the last fetch time for each pair coin.
+      sessionStorage.setItem(`lastFetchTime-${vsCurrency}`, currentTime);
+      return "ok";
     } else {
-      // Request URL for checking API server status
-      const endpoint = `${this.baseUrl}/ping`;
+      return "wait";
+    }
+  },
+
+  // Get all the coins data from CoinGecko API.
+  async getCoinsDataFromApi(vsCurrency) {
+    const currentTime = Date.now();
+
+    if (this.checkServerRateLimit(currentTime, vsCurrency) === "ok") {
+      // T-shoot logging.
+      console.info("Data will loaded for " + vsCurrency + "pair.");
+
+      const numberOfCoins = 100;
+      const baseUrl = "https://api.coingecko.com/api/v3";
+      // CoinGecko API, Coins Market data resource
+      const endpoint = `${baseUrl}/coins/markets?vs_currency=${vsCurrency}&order=market_cap_desc&per_page=${numberOfCoins}&page=1&sparkline=false&locale=en`;
 
       try {
         const response = await fetch(endpoint);
-        if (response.status === 200) {
-          const data = await response.json();
-          coingeckoAPI.serverResponse = await data.gecko_says;
-
-          // Update the last fetch time to session storage
-          sessionStorage.setItem("lastFetch", Date.now());
-
-          // T-shooter logging
-          console.log("Data Loaded from API Live.");
-
-          return coingeckoAPI.serverResponse;
-        } else {
-          errorHandler("Server is not responding. Please try again later.");
-        }
-      } catch (err) {
-        errorHandler(err);
-      }
-    }
-  },
-
-  // Get All Coins
-  async getAllCoins() {
-    const vsCurrency = "usd";
-    // Quantity of coins to retrieve
-    const numberOfCoins = 15;
-
-    try {
-      const apiResponse = await coingeckoAPI.ping();
-
-      // Fetch the Coin Data if Ping() has NOT returned an error
-      if (coingeckoAPI.serverResponse) {
-        // Toggle server status
-        coingeckoAPI.serverResponse = "up";
-
-        const baseUrl = "https://api.coingecko.com/api/v3";
-        const endpoint = `${baseUrl}/coins/markets?vs_currency=${vsCurrency}&order=market_cap_desc&per_page=${numberOfCoins}&page=1&sparkline=false&locale=en`;
-        const response = await fetch(endpoint);
-        if (response.status !== 200) {
-          errorHandler(
-            "Server is available but cannot fetch data. Please try again later."
-          );
-        }
         const coinsData = await response.json();
+        // Save fresh data to session storage.
+        await this.setCoinsDataToStorage(coinsData, vsCurrency);
 
-        // Save the Coin Data to session storage
-        sessionStorage.setItem("coinsData", JSON.stringify(coinsData));
-        console.log(
-          "Saved to session storage: ",
-          coinsData[0].id,
-          coinsData[0].current_price
+        // T-shoot logging.
+        console.table({
+          title: "new Data from API received.",
+          coin: coinsData[0].name,
+          price: coinsData[0].current_price,
+        });
+      } catch (error) {
+        errorHandler(
+          `Unable to fetch data from CoinGecko API. Please try again later. ${error}`
         );
-
-        return coinsData;
-      } else {
-        // Return stored Coin Data in session storage if Ping() has returned an error
-        return apiResponse;
       }
-    } catch (err) {
-      errorHandler(err);
+    } else if (this.checkServerRateLimit(currentTime, vsCurrency) === "wait") {
+      errorHandler(`No manual refresh needed\ndata auto-updates every minute.`);
+      return;
     }
   },
+  // Initializer
+  async getCoinsMarketData(vsCurrency) {
+    await this.getCoinsDataFromApi(vsCurrency);
+    const storedCoinsData = await this.getCoinsDataFromStorage(vsCurrency);
 
-  // Get Current Price of the Coin
-  async getCurrentPrice(coinId) {
-    const vsCurrency = "usd";
-
-    try {
-      const serverStatus = await coingeckoAPI.ping();
-      coingeckoAPI.serverStatus = await serverStatus;
-      const endpoint = `${this.baseUrl}/simple/price?ids=${coinId}&vs_currencies=${vsCurrency}`;
-      const response = await fetch(endpoint);
-      const data = await response.json();
-      const coinPrice = await data[coinId][vsCurrency];
-      return coinPrice;
-    } catch (err) {
-      return errorHandler(err);
-    }
-  },
-
-  // Get Coin Market Data
-  async getCoinData(coinId) {
-    try {
-      // Fetch the Coin Data if Ping() has NOT returned an error
-      const serverStatus = await coingeckoAPI.ping();
-      coingeckoAPI.serverStatus = await serverStatus;
-      const endpoint = `${this.baseUrl}/coins/${coinId}`;
-      const response = await fetch(endpoint);
-      const data = await response.json();
-
-      // Extract the required properties from API response
-      const {
-        name,
-        symbol,
-        image,
-        genesis_date,
-        hashing_algorithm,
-        categories,
-        description,
-        links,
-        market_cap_rank,
-        market_data,
-      } = data;
-
-      // Create an object with the required data
-      const coinData = {
-        coinName: name,
-        coinSymbol: symbol,
-        coinGenesisDate: genesis_date,
-        coinAlgorithmName: hashing_algorithm,
-        coinImageThumbSource: image.thumb,
-        coinImageSmallSource: image.small,
-        coinImageLargeSource: image.large,
-        coinCategories: categories.join(", "),
-        coinEnglishDescription: description.en,
-        coinWebsitesLinks: links.blockchain_site.map((link) => link || null),
-        coinHomepageLinks: links.homepage.map((link) => link || null),
-        coinGithubLinks: links.repos_url.github.map((link) => link || null),
-        coinRedditLinks: links.subreddit_url,
-        marketCapRank: market_cap_rank,
-        coinAthEur: market_data.ath.eur,
-        coinAthUsd: market_data.ath.usd,
-        coinAthChangePercentEur: market_data.ath_change_percentage.eur,
-        coinAthChangePercentUsd: market_data.ath_change_percentage.usd,
-        coinAthDateEur: market_data.ath_date.eur,
-        coinAthDateUsd: market_data.ath_date.usd,
-        coinAtlPriceEur: market_data.atl.eur,
-        coinAtlPriceUsd: market_data.atl.usd,
-        coinAtlDateEur: market_data.atl_date.eur,
-        coinAtlDateUsd: market_data.atl_date.usd,
-        coinCirculatingSupply: market_data.circulating_supply,
-        coinTotalSupply: market_data.max_supply,
-        coinCurrentPriceEur: market_data.current_price.eur,
-        coinCurrentPriceUsd: market_data.current_price.usd,
-        coinHigh24hEur: market_data.high_24h.eur,
-        coinHigh24hUsd: market_data.high_24h.usd,
-        coinLow24hEur: market_data.low_24h.eur,
-        coinLow24hUsd: market_data.low_24h.usd,
-        coinMarketcapChangePercent24h:
-          market_data.market_cap_change_percentage_24h,
-        coinPriceChangePercent24h: market_data.price_change_percentage_24h,
-        coinPriceChangePercent7d: market_data.price_change_percentage_7d,
-        coinPriceChangePercent30d: market_data.price_change_percentage_30d,
-        coinPriceChangePercent60d: market_data.price_change_percentage_60d,
-        coinPriceChangePercent200d: market_data.price_change_percentage_200d,
-        coinPriceChangePercent1y: market_data.price_change_percentage_1y,
-      };
-
-      return coinData;
-    } catch (err) {
-      return errorHandler(err);
-    }
+    return storedCoinsData;
   },
 };
 

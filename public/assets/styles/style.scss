@@ -57,8 +57,6 @@ body {
 }
 
 #user-interface {
-  // overflow: hidden;
-  // overflow-x: clip;
   overflow-y: auto;
   max-width: 100%;
   position: relative;
@@ -66,7 +64,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
 
   // Welcome Page
   .welcome-container {
@@ -76,12 +74,10 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    // background-color: $color-aqua;
     background-color: $color-background-darkBlue;
 
     .welcome-image {
       max-width: 10rem;
-      // aspect-ratio: 4 / 3;
       border-radius: 1rem;
       object-fit: contain;
       animation: fadeIn;
@@ -105,191 +101,183 @@ body {
     }
   }
 
-  // Header, disabled////////////////////////
+  // Header
+  .header-container {
+    width: 100%;
+    max-width: 100%;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid $color-border-darkBrown;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #000;
+    z-index: 100;
+    flex-direction: column;
+    gap: 1rem;
 
-  // .header-container {
-  //   width: 100%;
-  //   max-width: 100%;
-  //   height: calc(100vh / 14 + 1rem);
-  //   display: flex;
-  //   justify-content: space-between;
-  //   align-items: center;
-  //   overflow: hidden;
-  //   border-bottom: 1px solid $color-border-darkBrown;
+    .header {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 3fr;
+      align-items: start;
+      justify-items: start;
+      padding-inline: 0.25rem;
 
-  //   .navbar {
-  //     width: 100%;
-  //     max-width: 100%;
-  //     display: flex;
-  //     justify-content: space-between;
-  //     align-items: center;
+      .header-logo {
+        max-width: 4rem;
+        min-width: 2.5rem;
+        @include font-lexend();
+        line-height: 1.65rem;
+      }
 
-  //     .logo-container {
-  //       // temp
-  //       display: none;
-  //       .logo {
-  //         max-width: 4rem;
-  //         min-width: 2.5rem;
-  //         padding: 1rem 0;
-  //       }
-  //     }
+      .nav-list {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 3fr 1fr;
+        align-items: start;
+        justify-items: center;
+        list-style: none;
 
-  //     .nav-links {
-  //       width: 100%;
-  //       display: flex;
-  //       justify-content: space-between;
-  //       align-items: center;
-  //       padding: 0.5rem;
-  //       overflow-x: auto;
-  //       gap: 0.5rem;
+        .nav-item {
+          .header-title {
+            @include font-chakra();
+            font-size: 1.3rem;
+            text-align: center;
+            text-transform: capitalize;
+            color: white;
+          }
+        }
 
-  //       &::-webkit-scrollbar {
-  //         width: 2rem;
-  //         background-color: transparent;
+        .header-menu-container {
+          justify-self: end;
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 0.25rem;
 
-  //         &-track {
-  //           background: $color-background-darkBlue;
-  //           // border-radius: 0.5rem;
+          .currency-selector-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: space-around;
+            position: relative;
 
-  //           &:hover {
-  //             background-color: $color-border-darkBrown;
-  //           }
-  //         }
+            #currency-selector {
+              width: 100%;
+              @include font-lexend();
+              font-size: 1rem;
+              background-color: #000;
+              color: #fff;
+              border: none;
+              outline: none;
 
-  //         &-thumb {
-  //           background: #fff;
-  //           // border-radius: 0.3rem;
-  //           width: 1.5rem;
-  //           border: 1px solid $color-border-darkBrown;
+              &:hover {
+                cursor: pointer;
+              }
+            }
+          }
 
-  //           &:hover {
-  //             background: $color-footer-background;
-  //             cursor: grabbing;
-  //           }
-  //         }
-  //       }
-
-  //       .nav-link {
-  //         list-style: none;
-  //         min-width: fit-content;
-  //         display: flex;
-  //         align-items: center;
-  //         justify-content: space-between;
-  //         border-right: 1px dotted $color-orange;
-  //         padding-right: 0.5rem;
-  //         gap: 0.5rem;
-  //         white-space: nowrap;
-  //         @include font-chakra();
-  //         font-size: 1.5rem;
-
-  //         .coin-image {
-  //           max-width: 1.425rem;
-  //         }
-
-  //         &:hover {
-  //           cursor: pointer;
-  //           text-decoration: underline;
-  //           text-transform: capitalize;
-  //         }
-  //       }
-  //     }
-  //   }
-  // }
+          .refresh-notification {
+            visibility: hidden;
+            background: $color-orange;
+            @include font-space();
+            font-size: 0.8rem;
+            border-radius: 1rem;
+            padding: 0.125rem 0.25rem;
+            color: #000;
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
 
   // Main content
   .main-container {
-    width: 96%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: space-between;
-    // padding-block: 1rem;
+    // height: calc(
+    //   100vh - 70px
+    // ); /* Adjust this value to match the height of your fixed header */
+    overflow-y: auto;
 
-    .header-container {
-      width: 100%;
-      max-width: 100%;
-      padding-block: 1rem;
+    .search-box-container {
+      z-index: 101;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid $color-border-darkBrown;
+      justify-content: center;
+      position: relative;
+      margin: 0 auto;
+      @include font-chakra();
+      top: 4rem;
 
-      .header {
-        width: 100%;
-        display: grid;
-        grid-template-columns: 1fr 3fr;
-        align-items: center;
-        justify-items: start;
+      .search-box-input {
+        font-size: 1.5rem;
+        border: none;
+        background-color: $color-background-darkBlue;
+        color: #fff;
+        text-transform: uppercase;
+        padding: 0.5rem 1rem;
+        border-radius: 1rem;
 
-        .header-logo {
-          max-width: 4rem;
-          min-width: 2.5rem;
-          @include font-lexend();
+        &:focus {
+          outline: none;
         }
+      }
 
-        .nav-list {
-          width: 100%;
-          display: grid;
-          grid-template-columns: 3fr 1fr;
-          align-items: center;
-          justify-items: center;
-          list-style: none;
-
-          .nav-item {
-            .header-title {
-              @include font-chakra();
-              font-size: 1.3rem;
-              text-align: center;
-              text-transform: capitalize;
-              color: white;
-            }
-          }
-
-          .header-notification-container {
-            justify-self: end;
-            min-width: 1rem;
-
-            .header-notification {
-              display: none;
-              background: $color-orange;
-              @include font-space();
-              font-size: 0.8rem;
-              border-radius: 1rem;
-              padding: 0.125rem 0.25rem;
-              color: #000;
-              text-align: center;
-            }
-          }
-        }
+      .search-box-button {
+        position: absolute;
+        right: 0;
+        background-color: #fff;
+        color: #000;
+        border: none;
+        outline: none;
+        height: 100%;
+        padding-inline: 0.5rem;
+        border-radius: 0rem 1rem 1rem 0rem;
       }
     }
 
     .live-data-container {
       width: 100%;
       max-width: 100%;
+      height: 100%;
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       justify-content: stretch;
-      gap: 0.5rem;
       @include font-tsukimi();
-      height: 75vh;
       overflow: auto;
+      padding-inline: 0.5rem;
+      margin-block: 4.5rem 1rem;
 
       .coin-data-container {
-        border: 1px solid rgb(60, 53, 53);
+        border-bottom: 1px solid rgb(60, 53, 53);
         width: 100%;
         max-width: 100%;
-        height: 75px;
         overflow: hidden;
         @include font-monomaniac();
         text-align: center;
         display: grid;
-        grid-template-columns: repeat(5, minmax(2rem, 1fr));
+        grid-template-columns: repeat(5, minmax(2rem, auto));
         grid-template-rows: repeat(1, 1fr);
         place-items: center;
-        padding-inline: 0.5rem;
+        padding: 0.5rem 0;
         transition: all 150ms;
+
+        .vs-currency {
+          text-transform: uppercase;
+          padding-inline: 0.2rem;
+        }
 
         &:hover {
           cursor: pointer;
@@ -305,17 +293,26 @@ body {
           justify-self: start;
           align-self: center;
           max-width: 2rem;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
 
           .coin-image {
             max-width: 100%;
             object-fit: contain;
             animation: fadeIn;
             animation-duration: 500ms;
+            margin: auto;
+          }
+
+          .coin-rank {
+            font-size: 0.75rem;
           }
         }
 
         .coin-name-container {
-          grid-column: 2/6;
+          grid-column: 2/4;
           align-self: center;
           justify-self: start;
           text-align: left;
@@ -327,7 +324,12 @@ body {
         }
 
         .coin-price-container {
-          grid-column: 6 /11;
+          grid-column: 4 /11;
+          align-self: center;
+          justify-self: end;
+          text-align: right;
+          animation: fadeOut;
+          animation-duration: 2s;
 
           .coin-price {
             text-align: right;
@@ -340,6 +342,15 @@ body {
 
           .inProfit {
             color: green;
+
+            &:first-child {
+              &::before {
+                content: "+";
+                color: green;
+                font-size: 1rem;
+                margin-right: 0.1rem;
+              }
+            }
           }
 
           .coin-price-change {
@@ -348,179 +359,109 @@ body {
             justify-content: space-between;
             gap: 1rem;
             white-space: nowrap;
+            min-width: 8rem;
           }
         }
       }
     }
-
-    // .hero-container {
-    //   width: 50%;
-    //   max-width: 50%;
-    //   height: 4.4rem;
-    //   background-color: $color-orange;
-    //   display: none;
-
-    //   .hero {
-    //     display: flex;
-    //     flex-direction: column;
-    //     align-items: center;
-    //     text-align: center;
-    //     height: 67vh;
-    //     overflow: hidden;
-    //     border-bottom: 1px solid $color-orange;
-    //     border-right: 1px solid $color-orange;
-
-    //     #hero-title {
-    //       @include font-lilita();
-    //       text-align: center;
-    //       font-size: calc(100vw / 13 - 1rem);
-    //       text-transform: uppercase;
-    //     }
-
-    //     .subscription-form-container {
-    //       width: 100%;
-    //       .subscription-form {
-    //         width: 100%;
-    //         display: flex;
-    //         flex-direction: column;
-    //         align-items: center;
-    //         justify-content: space-around;
-    //         gap: 1rem;
-
-    //         .subscription-form-title-container {
-    //           .subscription-form-title {
-    //             @include font-tsukimi();
-    //             font-size: calc(100vw / 23 - 1rem);
-    //             text-transform: uppercase;
-    //           }
-    //         }
-
-    //         .subscription-form-input-container {
-    //           .subscription-form-input {
-    //             @include font-tsukimi();
-    //             font-size: 1.1rem;
-    //             text-transform: uppercase;
-    //             padding: 0.5rem;
-    //             border: 1px solid rgb(240, 117, 10);
-    //             border-radius: 0.5rem;
-    //             width: 28rem;
-    //             max-width: 100%;
-    //             height: 3rem;
-    //           }
-    //         }
-
-    //         .subscription-form-button-container {
-    //           width: 100%;
-    //           display: flex;
-    //           align-items: center;
-    //           justify-content: center;
-    //           gap: 2rem;
-
-    //           .subscription-form-button {
-    //             color: #fff;
-    //             background-color: $color-orange;
-    //             font-weight: 600;
-    //             padding: 0.5rem 1rem;
-    //             border: none;
-    //             @include font-tsukimi();
-    //             font-size: 1.1rem;
-
-    //             &:hover {
-    //               cursor: pointer;
-    //               background-color: $color-footer-background;
-    //             }
-    //           }
-    //         }
-    //       }
-    //     }
-    //   }
-    // }
   }
-
-  // .main-container {
-  //   .live-data-container {
-  //     .coin-data-table-container {
-  //       .coin-data-table {
-  //         width: 100%;
-  //         max-width: 100%;
-  //         border-collapse: collapse;
-  //         @include font-tsukimi();
-
-  //         th,
-  //         td {
-  //           white-space: nowrap;
-
-  //         }
-
-  //         .table-headers {
-  //           tr {
-  //             th {
-  //               padding-inline: 0.5rem;
-  //             }
-  //           }
-  //         }
-
-  //         .table-body {
-  //           tr {
-  //             td {
-  //               img {
-  //                 width: 2rem;
-  //               }
-  //               padding-inline: 0.5rem;
-  //             }
-  //           }
-  //         }
-  //       }
-
-  //     }
-  //   }
-  // }
 
   // Footer
   .footer-container {
     width: 100%;
     max-width: 100%;
+    height: 12rem;
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-evenly;
     align-items: center;
-    background-color: $color-footer-background;
-    // position: absolute;
-    // bottom: 0;
-    gap: 0.5rem;
-    color: $color-background-darkBlue;
-    padding: 1rem;
-    @include font-josefin();
+    background-color: rgb(42, 47, 60);
+    color: #fff;
+    font-family: "Chakra Petch", sans-serif;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    position: fixed;
+    overflow: hidden;
+    bottom: 0;
+    padding-inline: 0.5rem;
 
     .footer-division {
+      .footer-description {
+        text-align: justify;
+        max-width: 90%;
+      }
+
       .footer-links {
         display: flex;
         flex-direction: column;
         gap: 0.5rem;
         justify-content: space-between;
         align-items: center;
+
+        .footer-link {
+          color: #fff;
+
+          &:hover {
+            cursor: pointer;
+          }
+          &:visited {
+            color: #fff;
+          }
+        }
+      }
+    }
+
+    .footer-collapse-button {
+      width: 100%;
+      height: 1.5rem;
+      color: #fff;
+      background-color: rgb(52, 199, 89);
+      border: none;
+      align-self: flex-start;
+      position: absolute;
+
+      &:hover {
+        cursor: pointer;
       }
     }
   }
 
-  // Global Styles
+  .footer-collapsed {
+    background-color: transparent;
 
+    .footer-division {
+      display: none;
+    }
+
+    .footer-collapse-button {
+      align-self: end;
+      background-color: $color-footer-background;
+      color: #000;
+      width: 100%;
+    }
+  }
+
+  // Global Styles
   // Error message
   .error-container {
-    background-color: $color-orange;
+    background-color: $color-background-darkBlue;
     color: #fff;
     @include font-josefin();
-    padding: 1rem 0.5rem;
+    padding: 0.25rem 0.5rem;
     display: flex;
-    flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    gap: 0.5rem;
     animation: flipInX;
     animation-duration: 700ms;
+    width: 100%;
+
+    .error-text {
+      white-space: break-spaces;
+    }
+
     .error-button {
       @include font-tsukimi();
-      padding: 0.5rem 1rem;
+      padding: 0.25rem 0.5rem;
       border: none;
       cursor: pointer;
     }
