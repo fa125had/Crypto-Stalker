@@ -40,7 +40,7 @@ export const errorHandler = (err) => {
 
   // Create the error button
   const errorButton = document.createElement("button");
-  errorButton.classList.add("error-button");
+  errorButton.classList.add("close-button");
   errorButton.textContent = "Close";
 
   // Add event listener to close the error container

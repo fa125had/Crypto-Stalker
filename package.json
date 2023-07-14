@@ -1,26 +1,24 @@
 {
-  "name": "api-practice",
+  "name": "crypto-stalker",
   "version": "1.0.0",
-  "description": "Practicing API",
+  "description": "Monitor Your Favorite Crypto",
   "main": "index.js",
   "scripts": {
     "test": "test"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fa125had/api-practice.git"
+    "url": "git+https://github.com/fa125had/crypto-stalker.git"
   },
   "keywords": [
     "API",
-    "XMLHttpRequest",
-    "fetch",
-    "promises",
-    "Axios"
+    "Crypto",
+    "Async JS"
   ],
   "author": "Far5had",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/fa125had/api-practice/issues"
+    "url": "https://github.com/fa125had/crypto-stalker/issues"
   },
-  "homepage": "https://github.com/fa125had/api-practice#readme"
+  "homepage": "https://github.com/fa125had/crypto-stalker#readme"
 }

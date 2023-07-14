@@ -238,6 +238,14 @@ body {
       height: 100%;
       padding-inline: 0.5rem;
       border-radius: 0rem 1rem 1rem 0rem;
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      &:active {
+        background-color: $color-border-darkBrown;
+      }
     }
   }
 
@@ -248,9 +256,6 @@ body {
     flex-direction: column;
     align-items: flex-start;
     justify-content: space-between;
-    // height: calc(
-    //   100vh - 70px
-    // ); /* Adjust this value to match the height of your fixed header */
     overflow-y: auto;
 
     .live-data-container {
@@ -336,7 +341,7 @@ body {
           justify-self: end;
           text-align: right;
           animation: fadeOut;
-          animation-duration: 2s;
+          animation-duration: 1s;
 
           .coin-price {
             text-align: right;
@@ -370,6 +375,37 @@ body {
           }
         }
       }
+    }
+  }
+
+  .more-info-container {
+    position: fixed;
+    z-index: 102;
+    background: $color-background-darkBlue;
+    width: 100%;
+    height: 0;
+    overflow: hidden;
+    text-align: center;
+    color: #fff;
+    bottom: 0;
+    display: grid;
+    grid-template-columns: repeat(12, minmax(2rem, auto));
+    grid-template-rows: repeat(12, minmax(2rem, auto));
+
+    &.visible {
+      height: 100%;
+    }
+
+    .close-button {
+      @include font-tsukimi();
+      padding: 0.25rem 0.5rem;
+      border: none;
+      cursor: pointer;
+      grid-column: 10 / 12;
+      max-width: 3rem;
+      max-height: 2rem;
+      align-self: center;
+      justify-self: center;
     }
   }
 
@@ -435,6 +471,7 @@ body {
 
   .footer-collapsed {
     background-color: transparent;
+    height: 1.5rem;
 
     .footer-division {
       display: none;
@@ -466,7 +503,7 @@ body {
       white-space: break-spaces;
     }
 
-    .error-button {
+    .close-button {
       @include font-tsukimi();
       padding: 0.25rem 0.5rem;
       border: none;

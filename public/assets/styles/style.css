@@ -186,6 +186,12 @@ body {
   padding-inline: 0.5rem;
   border-radius: 0rem 1rem 1rem 0rem;
 }
+#user-interface .search-box-container .search-box-button:hover {
+  cursor: pointer;
+}
+#user-interface .search-box-container .search-box-button:active {
+  background-color: rgb(60, 53, 53);
+}
 #user-interface .main-container {
   width: 100%;
   display: flex;
@@ -271,7 +277,7 @@ body {
   justify-self: end;
   text-align: right;
   animation: fadeOut;
-  animation-duration: 2s;
+  animation-duration: 1s;
 }
 #user-interface .main-container .live-data-container .coin-data-container .coin-price-container .coin-price {
   text-align: right;
@@ -296,6 +302,34 @@ body {
   gap: 1rem;
   white-space: nowrap;
   min-width: 8rem;
+}
+#user-interface .more-info-container {
+  position: fixed;
+  z-index: 102;
+  background: rgb(42, 47, 60);
+  width: 100%;
+  height: 0;
+  overflow: hidden;
+  text-align: center;
+  color: #fff;
+  bottom: 0;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(2rem, auto));
+  grid-template-rows: repeat(12, minmax(2rem, auto));
+}
+#user-interface .more-info-container.visible {
+  height: 100%;
+}
+#user-interface .more-info-container .close-button {
+  font-family: "Tsukimi Rounded", "Poppins", sans-serif;
+  padding: 0.25rem 0.5rem;
+  border: none;
+  cursor: pointer;
+  grid-column: 10/12;
+  max-width: 3rem;
+  max-height: 2rem;
+  align-self: center;
+  justify-self: center;
 }
 #user-interface .footer-container {
   width: 100%;
@@ -349,6 +383,7 @@ body {
 }
 #user-interface .footer-collapsed {
   background-color: transparent;
+  height: 1.5rem;
 }
 #user-interface .footer-collapsed .footer-division {
   display: none;
@@ -374,7 +409,7 @@ body {
 #user-interface .error-container .error-text {
   white-space: break-spaces;
 }
-#user-interface .error-container .error-button {
+#user-interface .error-container .close-button {
   font-family: "Tsukimi Rounded", "Poppins", sans-serif;
   padding: 0.25rem 0.5rem;
   border: none;

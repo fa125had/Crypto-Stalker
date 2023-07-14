@@ -8,13 +8,13 @@ const searchCoins = (search) => {
   for (let i = 0; i < coinRows.length; i++) {
     // Get dataset value from each row
     const category = coinRows[i].dataset.category;
+    const symbol = coinRows[i].dataset.symbol;
 
     // Split the search term into separate words with spaces
     const searchWords = search.toLowerCase().split(" ");
-
     // Check if all search words are present in the category
     const match = searchWords.every((word) => {
-      return category.toLowerCase().includes(word);
+      return category.toLowerCase().includes(word) || symbol.toLowerCase().includes(word);
     });
 
     // Show or hide the div based on the match
@@ -26,7 +26,7 @@ const searchCoins = (search) => {
   }
 };
 
-export const renderSearch = () => {
+export const renderSearchBar = () => {
   // Search Box Element
   const searchBox = document.createElement("div");
   searchBox.classList.add("search-box-container");
@@ -34,7 +34,9 @@ export const renderSearch = () => {
   // Search Input Element
   const searchBoxInput = document.createElement("input");
   searchBoxInput.classList.add("search-box-input");
+  searchBoxInput.setAttribute("id", "search-input");
   searchBoxInput.setAttribute("type", "text");
+  searchBoxInput.setAttribute("maxlength", "10");
   searchBoxInput.setAttribute("placeholder", "search your coin!");
 
   // Search Input Event Listener
