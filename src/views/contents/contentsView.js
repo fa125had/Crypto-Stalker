@@ -65,9 +65,7 @@ export const renderContents = (coinsData, vsCurrency) => {
     
     <div id='${
       coin.symbol
-    }-data-container' class='coin-data-container' data-category='${coin.name}-${
-      coin.symbol
-    }'>
+    }-data-container' class='coin-data-container' data-category='${coin.name.toLowerCase()}' data-symbol='${coin.symbol}'>
 
       <div class='coin-image-container'>
         <img class='coin-image' src='${coinLogo}' alt=${coinName} title=${coinName}>

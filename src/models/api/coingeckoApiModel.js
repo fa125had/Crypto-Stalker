@@ -50,12 +50,14 @@ const coingeckoAPI = {
 
     if (this.checkServerRateLimit(currentTime, vsCurrency) === "ok") {
       // T-shoot logging.
-      console.info("Data will loaded for " + vsCurrency + "pair.");
+      console.info("Data will loaded for " + vsCurrency + " pair.");
 
       const numberOfCoins = 100;
+      const pageNumber = 1;
       const baseUrl = "https://api.coingecko.com/api/v3";
+
       // CoinGecko API, Coins Market data resource
-      const endpoint = `${baseUrl}/coins/markets?vs_currency=${vsCurrency}&order=market_cap_desc&per_page=${numberOfCoins}&page=1&sparkline=false&locale=en`;
+      const endpoint = `${baseUrl}/coins/markets?vs_currency=${vsCurrency}&order=market_cap_desc&per_page=${numberOfCoins}&page=${pageNumber}&sparkline=false&locale=en`;
 
       try {
         const response = await fetch(endpoint);
@@ -65,7 +67,6 @@ const coingeckoAPI = {
 
         // T-shoot logging.
         console.table({
-          title: "new Data from API received.",
           coin: coinsData[0].name,
           price: coinsData[0].current_price,
         });

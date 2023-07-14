@@ -3,11 +3,12 @@
 import { errorHandler } from "./utils/errorHandler.js";
 import { renderWelcome } from "./views/welcome/welcomeView.js";
 import { renderHeader } from "./views/header/headerView.js";
-import { renderSearch } from "./views/search/searchView.js";
+import { renderSearchBar } from "./views/search/searchView.js";
 import {
   initContents,
   initContentsReload,
 } from "./controllers/contentsController.js";
+import { renderMoreInfoPage } from "./views/moreInfo/moreInfoView.js";
 import { renderFooter } from "./views/footer/footerView.js";
 
 // Grab UI elements
@@ -28,7 +29,7 @@ const initHeader = async () => {
 };
 // Load the Search Bar
 const initSearchBar = async () => {
-  ui.appendChild(renderSearch());
+  ui.appendChild(renderSearchBar());
 };
 // Load the Contents
 const renderContents = async () => {
@@ -50,6 +51,11 @@ const renderContents = async () => {
   }, 61 * 1000);
 };
 
+// Init the More Info View
+const initMoreInfo = async () => {
+  ui.appendChild(renderMoreInfoPage());
+};
+
 // Load the Footer
 const initFooter = async () => {
   // Render the footer
@@ -63,6 +69,7 @@ const inits = async () => {
     await initHeader();
     await initSearchBar();
     await renderContents();
+    await initMoreInfo();
     await initFooter();
   } catch (error) {
     errorHandler(error);
