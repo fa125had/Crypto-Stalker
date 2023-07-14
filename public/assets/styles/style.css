@@ -63,59 +63,60 @@ body {
 }
 #user-interface .header-container {
   width: 100%;
-  max-width: 100%;
+  max-width: 58rem;
   padding: 0.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid rgb(60, 53, 53);
   position: fixed;
   top: 0;
   left: 0;
+  right: 0;
   background: #000;
-  z-index: 100;
+  z-index: 90;
   flex-direction: column;
-  gap: 1rem;
+  margin: 0 auto;
 }
 #user-interface .header-container .header {
   width: 100%;
-  display: grid;
-  grid-template-columns: 1fr 3fr;
-  align-items: start;
-  justify-items: start;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   padding-inline: 0.25rem;
-}
-#user-interface .header-container .header .header-logo {
-  max-width: 4rem;
-  min-width: 2.5rem;
-  font-family: "Lexend Peta", "Poppins", sans-serif;
-  line-height: 1.65rem;
 }
 #user-interface .header-container .header .nav-list {
   width: 100%;
-  display: grid;
-  grid-template-columns: 3fr 1fr;
-  align-items: start;
-  justify-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   list-style: none;
 }
-#user-interface .header-container .header .nav-list .nav-item .header-title {
+#user-interface .header-container .header .nav-list .nav-item .logo {
+  max-width: 4rem;
+  font-family: "Lexend Peta", "Poppins", sans-serif;
+  line-height: 1.65rem;
+}
+#user-interface .header-container .header .nav-list .nav-item .title {
   font-family: "Chakra Petch", sans-serif;
   font-size: 1.3rem;
   text-align: center;
   text-transform: capitalize;
   color: white;
 }
-#user-interface .header-container .header .nav-list .header-menu-container {
-  justify-self: end;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.25rem;
+#user-interface .header-container .header .nav-list .nav-item .refresh-notification {
+  visibility: hidden;
+  background: rgb(240, 117, 10);
+  font-family: "Space Grotesk", "Poppins", sans-serif;
+  font-size: 0.9rem;
+  border-radius: 1rem;
+  padding: 0.125rem 0.25rem;
+  color: #000;
+  text-align: center;
+  position: absolute;
+  bottom: 0.1rem;
+  width: 6rem;
 }
-#user-interface .header-container .header .nav-list .header-menu-container .currency-selector-container {
+#user-interface .header-container .header .nav-list .nav-item .currency-selector-container {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -123,7 +124,7 @@ body {
   justify-content: space-around;
   position: relative;
 }
-#user-interface .header-container .header .nav-list .header-menu-container .currency-selector-container #currency-selector {
+#user-interface .header-container .header .nav-list .nav-item .currency-selector-container #currency-selector {
   width: 100%;
   font-family: "Lexend Peta", "Poppins", sans-serif;
   font-size: 1rem;
@@ -132,28 +133,22 @@ body {
   border: none;
   outline: none;
 }
-#user-interface .header-container .header .nav-list .header-menu-container .currency-selector-container #currency-selector:hover {
+#user-interface .header-container .header .nav-list .nav-item .currency-selector-container #currency-selector:hover {
   cursor: pointer;
 }
-#user-interface .header-container .header .nav-list .header-menu-container .refresh-notification {
-  visibility: hidden;
-  background: rgb(240, 117, 10);
-  font-family: "Space Grotesk", "Poppins", sans-serif;
-  font-size: 0.8rem;
-  border-radius: 1rem;
-  padding: 0.125rem 0.25rem;
-  color: #000;
-  text-align: center;
-}
 #user-interface .search-box-container {
-  z-index: 99;
+  background-color: #000;
+  z-index: 85;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   position: fixed;
   margin: 0 auto;
   font-family: "Chakra Petch", sans-serif;
-  top: 4.8rem;
+  top: 4rem;
+  width: 100%;
+  max-width: 55rem;
+  height: 3.35rem;
 }
 #user-interface .search-box-container .search-box-input {
   font-size: 1.25rem;
@@ -163,6 +158,9 @@ body {
   text-transform: uppercase;
   padding: 0.5rem 1rem;
   border-radius: 1rem;
+  width: 100%;
+  -webkit-padding-start: 1rem;
+          padding-inline-start: 1rem;
 }
 #user-interface .search-box-container .search-box-input:focus {
   outline: none;
@@ -182,9 +180,10 @@ body {
   color: #000;
   border: 1px solid #000;
   outline: none;
-  height: 100%;
-  padding-inline: 0.5rem;
+  height: 75%;
+  padding-inline: 1rem;
   border-radius: 0rem 1rem 1rem 0rem;
+  font-size: 0.95rem;
 }
 #user-interface .search-box-container .search-box-button:hover {
   cursor: pointer;
@@ -305,7 +304,7 @@ body {
 }
 #user-interface .more-info-container {
   position: fixed;
-  z-index: 102;
+  z-index: 100;
   background: rgb(42, 47, 60);
   width: 100%;
   height: 0;
@@ -405,6 +404,9 @@ body {
   animation: flipInX;
   animation-duration: 700ms;
   width: 100%;
+  height: 4rem;
+  z-index: 95;
+  border-radius: 0.5rem;
 }
 #user-interface .error-container .error-text {
   white-space: break-spaces;
