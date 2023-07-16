@@ -109,6 +109,7 @@ export const renderContents = (coinsData, vsCurrency) => {
 };
 
 export const reRenderContents = (coinsData, vsCurrency) => {
+
   coinsData.forEach((coin) => {
     // Extract needed keys
     const coinSymbol = coin.symbol;

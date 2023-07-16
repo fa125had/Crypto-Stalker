@@ -213,6 +213,7 @@ body {
       border-radius: 1rem;
       width: 100%;
       padding-inline-start: 1rem;
+      margin-inline: 0.5rem;
 
       &:focus {
         outline: none;
@@ -235,6 +236,7 @@ body {
       padding-inline: 1rem;
       border-radius: 0rem 1rem 1rem 0rem;
       font-size: 0.95rem;
+      margin-inline-end: 0.5rem;
 
       &:hover {
         cursor: pointer;
@@ -280,7 +282,7 @@ body {
         grid-template-columns: repeat(5, minmax(2rem, auto));
         grid-template-rows: repeat(1, 1fr);
         place-items: center;
-        padding: 0.5rem 0;
+        padding: 0.5rem;
         transition: all 150ms;
 
         .vs-currency {
@@ -378,16 +380,18 @@ body {
   .more-info-container {
     position: fixed;
     z-index: 100;
-    background: $color-background-darkBlue;
+    background: rgb(30, 34, 45);
     width: 100%;
+    max-width: 58rem;
     height: 0;
     overflow: hidden;
     text-align: center;
     color: #fff;
     bottom: 0;
-    display: grid;
-    grid-template-columns: repeat(12, minmax(2rem, auto));
-    grid-template-rows: repeat(12, minmax(2rem, auto));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
 
     &.visible {
       height: 100%;
@@ -398,11 +402,33 @@ body {
       padding: 0.25rem 0.5rem;
       border: none;
       cursor: pointer;
-      grid-column: 10 / 12;
       max-width: 3rem;
       max-height: 2rem;
-      align-self: center;
-      justify-self: center;
+    }
+
+    .coin-more-data {
+      width: 100%;
+      height: 100%;
+      img {
+        max-width: 5rem;
+      }
+
+      #tradingview-widget {
+        width: 100%;
+        height: 100%;
+
+        div {
+          height: 100%;
+          width: 100%;
+
+          iframe {
+            height: 100%;
+            width: 100%;
+
+
+          }
+        }
+      }
     }
   }
 

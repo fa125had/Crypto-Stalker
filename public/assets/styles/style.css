@@ -161,6 +161,7 @@ body {
   width: 100%;
   -webkit-padding-start: 1rem;
           padding-inline-start: 1rem;
+  margin-inline: 0.5rem;
 }
 #user-interface .search-box-container .search-box-input:focus {
   outline: none;
@@ -184,6 +185,8 @@ body {
   padding-inline: 1rem;
   border-radius: 0rem 1rem 1rem 0rem;
   font-size: 0.95rem;
+  -webkit-margin-end: 0.5rem;
+          margin-inline-end: 0.5rem;
 }
 #user-interface .search-box-container .search-box-button:hover {
   cursor: pointer;
@@ -224,7 +227,7 @@ body {
   grid-template-columns: repeat(5, minmax(2rem, auto));
   grid-template-rows: repeat(1, 1fr);
   place-items: center;
-  padding: 0.5rem 0;
+  padding: 0.5rem;
   transition: all 150ms;
 }
 #user-interface .main-container .live-data-container .coin-data-container .vs-currency {
@@ -305,16 +308,18 @@ body {
 #user-interface .more-info-container {
   position: fixed;
   z-index: 100;
-  background: rgb(42, 47, 60);
+  background: rgb(30, 34, 45);
   width: 100%;
+  max-width: 58rem;
   height: 0;
   overflow: hidden;
   text-align: center;
   color: #fff;
   bottom: 0;
-  display: grid;
-  grid-template-columns: repeat(12, minmax(2rem, auto));
-  grid-template-rows: repeat(12, minmax(2rem, auto));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
 }
 #user-interface .more-info-container.visible {
   height: 100%;
@@ -324,11 +329,27 @@ body {
   padding: 0.25rem 0.5rem;
   border: none;
   cursor: pointer;
-  grid-column: 10/12;
   max-width: 3rem;
   max-height: 2rem;
-  align-self: center;
-  justify-self: center;
+}
+#user-interface .more-info-container .coin-more-data {
+  width: 100%;
+  height: 100%;
+}
+#user-interface .more-info-container .coin-more-data img {
+  max-width: 5rem;
+}
+#user-interface .more-info-container .coin-more-data #tradingview-widget {
+  width: 100%;
+  height: 100%;
+}
+#user-interface .more-info-container .coin-more-data #tradingview-widget div {
+  height: 100%;
+  width: 100%;
+}
+#user-interface .more-info-container .coin-more-data #tradingview-widget div iframe {
+  height: 100%;
+  width: 100%;
 }
 #user-interface .footer-container {
   width: 100%;
