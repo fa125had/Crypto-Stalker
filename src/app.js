@@ -15,7 +15,7 @@ import { renderFooter } from "./views/footer/footerView.js";
 const ui = document.getElementById("user-interface");
 
 // Load the welcome view
-const intWelcome = async () => {
+const initWelcome = async () => {
   const welcome = await renderWelcome();
   ui.appendChild(welcome);
 
@@ -39,7 +39,7 @@ const renderContents = async () => {
   // Grab vs currency selector
   const currencySelector = document.getElementById("currency-selector");
   let vsCurrency = currencySelector.value;
-
+  // Currency selector change event handler
   currencySelector.addEventListener("change", ({ target }) => {
     vsCurrency = target.value;
     initContentsReload(vsCurrency);
@@ -65,7 +65,7 @@ const initFooter = async () => {
 // Start the application
 const inits = async () => {
   try {
-    await intWelcome();
+    await initWelcome();
     await initHeader();
     await initSearchBar();
     await renderContents();
