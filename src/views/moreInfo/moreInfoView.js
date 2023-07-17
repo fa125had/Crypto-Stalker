@@ -17,45 +17,51 @@ const loadMoreData = (coinSymbol, vsCurrency, infoContainer) => {
   coinDataContainer.innerHTML = `
   <section class="primary-data-container">
     <header class="primary-data-header">
-      <img class='coin-image' src="${coin.image}" alt="${coin.name}">
+      <img class='coin-image' src="${coin.image}" alt="${coin.name}" />
   
-      <p class='coin-name'>${coin.name} - ${coin.symbol} / ${vsCurrency}</p>
-      <p class='coin-price>${coin.current_price} ${vsCurrency}</p>
+      <p class='coin-name'>${
+        coin.name
+      } - ${coin.symbol.toUpperCase()}  ${vsCurrency.toUpperCase()}</p>
+      <p class='coin-price'>${coin.current_price}</p>
     </header>
+
     <main class="primary-data">
-
-      <section class="primary-data-ath">
-        <p class='ath-price'>All time high price: ${coin.ath}
-          <span class='ath-change'>
-            ${coin.ath_change_percentage} %
+      <section class="primary-data-ath coin-info-block">
+        <p class='ath-price' title='All Time High'>ATH ${coin.ath}
+          <span class='ath-change ${
+            coin.ath_change_percentage > 0 ? "profit" : "loss"
+          }'>
+            ${coin.ath_change_percentage}%
           </span>
-          <span class='ath-date'>
-            ${new Date(coin.ath_date).toLocaleString()}
-          </span>
+  
         </p>
       </section>
 
-      <section class="primary-data-atl">
-        <p class='atl-price'>All time low price: ${coin.atl}
-          <span class='ath-change'>
-            ${coin.atl_change_percentage} %
+      <section class="primary-data-atl coin-info-block">
+        <p class='atl-price' title='All Time Low'>ATL ${coin.atl}
+          <span class='atl-change ${
+            coin.atl_change_percentage > 0 ? "profit" : "loss"
+          }'>
+            ${coin.atl_change_percentage}%
           </span>
-          <span class='ath-date'>
-            ${new Date(coin.atl_date).toLocaleString()}
-          </span>
+  
         </p>
       </section>
 
-      <section class="primary-data-supply">
+      <section class="primary-data-supply coin-info-block">
         <p class='total-supply'>
-          Total Supply: ${coin.total_supply} ${coinSymbol}
+          Total Supply: ${coin.total_supply.toLocaleString(
+            "en-US"
+          )} ${coinSymbol.toUpperCase()}
         </p>
         <p class='circulating-supply'>
-          Circulating Supply: ${coin.circulating_supply} ${coinSymbol}
+          Circulating Supply: ${coin.circulating_supply.toLocaleString(
+            "en-US"
+          )} ${coinSymbol.toUpperCase()}
         </p>
       </section>
 
-      <section class="primary-data-changes">
+      <section class="primary-data-changes coin-info-block">
         <p>
           Highest Price Last 24h: ${coin.high_24h}
         </p>
@@ -64,12 +70,12 @@ const loadMoreData = (coinSymbol, vsCurrency, infoContainer) => {
         </p>
       </section>
 
-      <section class="primary-data-market-cap">
+      <section class="primary-data-market-cap coin-info-block">
         <p>
           Market Cap Rank: ${coin.market_cap_rank}
         </p>
         <p>
-          Market Cap: ${coin.market_cap}
+          Market Cap: ${coin.market_cap.toLocaleString("en-US")}
         </p>
       </section>
     </main>
@@ -86,11 +92,12 @@ const loadMoreData = (coinSymbol, vsCurrency, infoContainer) => {
   tradingViewScript.src =
     "https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js";
   tradingViewScript.async = true;
-  tradingViewScript.innerHTML = `
+  tradingViewScript.innerHTML =
+    `
   {
     "interval": "4h",
     "isTransparent": true,
-    "symbol": "BITSTAMP:${coinSymbol.toUpperCase()}${vsCurrency.toUpperCase()}",
+    "symbol": "BINANCE:${coinSymbol.toUpperCase()}${vsCurrency.toUpperCase()}",
     "showIntervalTabs": true,
     "locale": "en",
     "colorTheme": "dark"

@@ -31,7 +31,7 @@
 $color-aqua: rgb(145 237 237);
 $color-orange: rgb(240 117 10);
 $color-background-beigeWhite: rgb(255 246 228);
-$color-background-darkBlue: rgb(42, 47, 60);
+$color-background-darkBlue: rgb(30, 34, 45);
 $color-border-darkBrown: rgb(60, 53, 53);
 $color-footer-background: rgb(52, 199, 89);
 
@@ -380,7 +380,7 @@ body {
   .more-info-container {
     position: fixed;
     z-index: 100;
-    background: rgb(30, 34, 45);
+    background: $color-background-darkBlue;
     width: 100%;
     max-width: 58rem;
     height: 0;
@@ -404,18 +404,80 @@ body {
       cursor: pointer;
       max-width: 3rem;
       max-height: 2rem;
+      align-self: flex-end;
+      // margin: 0.5rem;
+      position: absolute;
+      top: 0.5rem;
+      z-index: 110;
     }
 
     .coin-more-data {
       width: 100%;
       height: 100%;
-      img {
-        max-width: 5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+      // padding: 0.5rem;
+      position: absolute;
+      top: 0.5rem;
+
+      .primary-data-container {
+        // height: 50%;
+
+        .primary-data-header {
+          @include font-lexend();
+
+          .coin-image {
+            max-width: 2rem;
+          }
+
+          .coin-price {
+            font-size: 1.3rem;
+            padding-block: 0.35rem;
+          }
+        }
+
+        .primary-data {
+          @include font-space();
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 0.25rem;
+
+          .profit {
+            color: green;
+          }
+
+          .loss {
+            color: red;
+          }
+
+          .coin-info-block {
+            width: 100%;
+            .ath-price,
+            .atl-price {
+              // font-size: 1.2rem;
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              width: 100%;
+            }
+          }
+
+          .primary-data-supply {
+            border-top: 1px solid #000;
+            margin-block-start: 0.5rem;
+            padding-block-start: 0.5rem;
+          }
+        }
       }
 
       #tradingview-widget {
         width: 100%;
-        height: 100%;
+        max-width: 25rem;
+        height: 50%;
 
         div {
           height: 100%;
@@ -424,8 +486,6 @@ body {
           iframe {
             height: 100%;
             width: 100%;
-
-
           }
         }
       }
