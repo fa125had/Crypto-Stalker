@@ -2,6 +2,12 @@
 
 Crypto Stalker is a web application that provides real-time data on various cryptocurrencies. It fetches data from the CoinGecko API and displays it in a user-friendly format. Users can view details such as the current price, market cap, and volume of different cryptocurrencies.
 
+## Screenshots
+
+<img src="./screenshots/homepage.png" alt="Screenshot Home Page" width="200"/>
+<img src="./screenshots/search-results.png" alt="Screenshot Search Results" width="200"/>
+<img src="./screenshots/more-info-page.png" alt="Screenshot More info page" width="200"/>
+
 ## Features
 
 - Real-time data: The application fetches data from the CoinGecko API every minute to ensure the data displayed is up-to-date.
