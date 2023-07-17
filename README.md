@@ -4,9 +4,7 @@ Crypto Stalker is a web application that provides real-time data on various cryp
 
 ## Screenshots
 
-<img src="./screenshots/homepage.png" alt="Screenshot Home Page" width="200"/>
-<img src="./screenshots/search-results.png" alt="Screenshot Search Results" width="200"/>
-<img src="./screenshots/more-info-page.png" alt="Screenshot More info page" width="200"/>
+<img src="./screenshots/homepage.png" alt="Screenshot Home Page" width="200"/><img src="./screenshots/search-results.png" alt="Screenshot Search Results" width="200"/><img src="./screenshots/more-info-page.png" alt="Screenshot More info page" width="200"/>
 
 ## Features
 
