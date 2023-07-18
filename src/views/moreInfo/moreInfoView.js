@@ -92,8 +92,7 @@ const loadMoreData = (coinSymbol, vsCurrency, infoContainer) => {
   tradingViewScript.src =
     "https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js";
   tradingViewScript.async = true;
-  tradingViewScript.innerHTML =
-    `
+  tradingViewScript.innerHTML = `
   {
     "interval": "4h",
     "isTransparent": true,
@@ -107,8 +106,6 @@ const loadMoreData = (coinSymbol, vsCurrency, infoContainer) => {
   // Append TradingView widget to the coin data container
   tradingViewWidget.appendChild(tradingViewScript);
   coinDataContainer.appendChild(tradingViewWidget);
-
-  console.log(coin);
 };
 
 export const renderMoreInfoPage = () => {
