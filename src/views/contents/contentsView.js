@@ -65,7 +65,9 @@ export const renderContents = (coinsData, vsCurrency) => {
     
     <div id='${
       coin.symbol
-    }-data-container' class='coin-data-container' data-category='${coin.name.toLowerCase()}' data-symbol='${coin.symbol}'>
+    }-data-container' class='coin-data-container' data-category='${coin.name.toLowerCase()}' data-symbol='${
+      coin.symbol
+    }'>
 
       <div class='coin-image-container'>
         <img class='coin-image' src='${coinLogo}' alt=${coinName} title=${coinName}>
@@ -109,7 +111,6 @@ export const renderContents = (coinsData, vsCurrency) => {
 };
 
 export const reRenderContents = (coinsData, vsCurrency) => {
-
   coinsData.forEach((coin) => {
     // Extract needed keys
     const coinSymbol = coin.symbol;
@@ -174,8 +175,6 @@ export const reRenderContents = (coinsData, vsCurrency) => {
       price24ChangePercentElement.classList.add("inLoss");
     }
   });
-
-  console.log("Contents refreshed!");
 
   refreshNotification();
 };

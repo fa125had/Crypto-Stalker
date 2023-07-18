@@ -1,6 +1,6 @@
 export const errorHandler = (err) => {
-   // Close the error container
-   const handelClose = () => {
+  // Close the error container
+  const handelClose = () => {
     const errorBox = document.getElementById("error-container");
     errorBox.classList.add("animated-fade-out");
 
@@ -9,10 +9,6 @@ export const errorHandler = (err) => {
       if (document.getElementById("error-container")) {
         // Close the error container
         header.removeChild(errorBox);
-        // Clear the browser console
-        // console.clear();/////////////////////////////////////////////////////
-        // Clear session storage
-        // sessionStorage.clear();/////////////////////////////////////////////
       }
     }, 450);
   };
@@ -21,9 +17,6 @@ export const errorHandler = (err) => {
   if (document.getElementById("error-container")) {
     handelClose();
   }
-
-  // Log the error
-  console.error(err);
 
   // Grab the user interface element
   const header = document.getElementById("header-container");
@@ -58,5 +51,5 @@ export const errorHandler = (err) => {
     if (document.getElementById("error-container")) {
       handelClose();
     }
-  }, 6000);
+  }, 5000);
 };
