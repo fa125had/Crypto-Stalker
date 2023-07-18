@@ -250,6 +250,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 0.25rem;
 }
 #user-interface .main-container .live-data-container .coin-data-container .coin-image-container .coin-image {
   max-width: 100%;
