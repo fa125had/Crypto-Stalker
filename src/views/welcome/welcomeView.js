@@ -14,7 +14,7 @@ export const renderWelcome = async () => {
     // Set up welcome image
     welcomeImage.classList.add("welcome-image");
     welcomeImage.setAttribute("id", "welcome-image");
-    welcomeImage.src = "./assets/images/welcome.jpg";
+    welcomeImage.src = "./public/assets/images/welcome.jpg";
     // Set up welcome text
     welcomeText.classList.add("welcome-text");
     welcomeText.setAttribute("id", "welcome-text");
