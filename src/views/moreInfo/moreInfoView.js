@@ -113,6 +113,7 @@ export const renderMoreInfoPage = () => {
   const infoContainer = document.createElement("div");
   infoContainer.classList.add("more-info-container");
 
+  // Clear innerHTML and append close button
   const refreshInfoContainer = () => {
     infoContainer.innerHTML = "";
 
