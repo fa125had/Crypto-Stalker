@@ -14,6 +14,7 @@ export const renderWelcome = async () => {
     // Set up welcome image
     welcomeImage.classList.add("welcome-image");
     welcomeImage.setAttribute("id", "welcome-image");
+    welcomeImage.setAttribute("alt", "Welcome to Crypto Stalker");
     welcomeImage.src = "./public/assets/images/welcome.jpg";
     // Set up welcome text
     welcomeText.classList.add("welcome-text");
@@ -27,11 +28,11 @@ export const renderWelcome = async () => {
     welcomeContainer.appendChild(welcomeText);
     welcomeContainer.appendChild(welcomeSlogan);
     ui.appendChild(welcomeContainer);
-    // Remove welcome page after 6 seconds
+    // Remove welcome page after 5 seconds
     setTimeout(() => {
       welcomeContainer.style.display = "none";
       resolve(welcomeContainer);
-    }, 6000);
+    }, 5000);
   }).catch((error) => {
     errorHandler(error);
   });

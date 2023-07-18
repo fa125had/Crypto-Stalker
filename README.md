@@ -65,9 +65,10 @@ This application makes use of the following third-party libraries and widgets:
 ## How to Run the Application
 
 1. Clone the repository to your local machine.
-2. Make sure you have a modern browser installed (Chrome, Firefox, Safari, Edge).
-3. Open the index.html file in your browser.
-4. The application should start, and you should see the list of cryptocurrencies.
+2. Run `npm install` inside the root directory.
+3. Make sure you have a modern browser installed (Chrome, Firefox, Safari, Edge).
+4. Open the index.html file in your browser.
+5. The application should start, and you should see the list of cryptocurrencies.
 
 ## Future Improvements
 
