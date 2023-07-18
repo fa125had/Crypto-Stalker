@@ -35,7 +35,7 @@ export const renderFooter = () => {
   const footerDescription = document.createElement("p");
   footerDescription.classList.add("footer-description");
   footerDescription.textContent =
-    "I am junior developer with a passion for building websites and applications. I love to code, learn new things, and learn new things. 2023 - Farshad";
+    "I am a junior developer with a passion for building websites and applications. I love to code, learn new things, and learn new things. 2023 - Farshad";
   footerSecondDivision.appendChild(footerDescription);
 
   // Footer collapse button
