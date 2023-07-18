@@ -7,7 +7,7 @@ const coingeckoAPI = {
       sessionStorage.getItem(`coinsData-${vsCurrency}`)
     );
     // T-shoot logging.
-    console.info(`Coins loaded from the Storage.`);
+    console.info(`Coins Data Loaded from the Storage.`);
 
     return storedCoinsData;
   },
@@ -20,7 +20,7 @@ const coingeckoAPI = {
     );
 
     // T-shoot logging.
-    console.info(`Coins new data Saved to the Storage.`);
+    console.info(`Coins Data Saved to the Storage.`);
   },
 
   // Check API Server rate limit.
@@ -33,7 +33,7 @@ const coingeckoAPI = {
     const isServerReady = currentTime - lastFetchTime > serverRateLimit;
 
     // T-shoot logging.
-    console.info("Is Server Ready? ", isServerReady);
+    console.info("Rate Limit is passed ? ", isServerReady);
 
     if (isServerReady) {
       // Save the last fetch time for each pair coin.
@@ -50,7 +50,7 @@ const coingeckoAPI = {
 
     if (this.checkServerRateLimit(currentTime, vsCurrency) === "ok") {
       // T-shoot logging.
-      console.info("Data will loaded for " + vsCurrency + " pair.");
+      console.info("Fetching New Data From API Live For " + vsCurrency + " Pairs.");
 
       const numberOfCoins = 100;
       const pageNumber = 1;

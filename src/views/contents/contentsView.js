@@ -1,3 +1,4 @@
+import { errorHandler } from "../../utils/errorHandler.js";
 import { refreshNotification } from "../header/headerView.js";
 
 // Divide the number by 1,000 and round to 2 to 8 decimals
@@ -20,7 +21,7 @@ const formatNumberWithCommas = (number) => {
 export const renderContents = (coinsData, vsCurrency) => {
   // Validate if coinsData is defined
   if (!coinsData || !vsCurrency) {
-    new Error("Coins data or Pair currency is not provided!");
+    errorHandler("Coins data or Pair currency is not provided!");
   }
 
   // Set vsSymbol

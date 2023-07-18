@@ -27,7 +27,7 @@
 @mixin font-poppins {
   font-family: "Poppins", sans-serif;
 }
-
+// Colors
 $color-aqua: rgb(145 237 237);
 $color-orange: rgb(240 117 10);
 $color-background-beigeWhite: rgb(255 246 228);
@@ -405,7 +405,6 @@ body {
       max-width: 3rem;
       max-height: 2rem;
       align-self: flex-end;
-      // margin: 0.5rem;
       position: absolute;
       top: 0.5rem;
       z-index: 110;
@@ -418,13 +417,10 @@ body {
       flex-direction: column;
       align-items: center;
       justify-content: space-around;
-      // padding: 0.5rem;
       position: absolute;
       top: 0.5rem;
 
       .primary-data-container {
-        // height: 50%;
-
         .primary-data-header {
           @include font-lexend();
 
@@ -458,7 +454,6 @@ body {
             width: 100%;
             .ath-price,
             .atl-price {
-              // font-size: 1.2rem;
               display: flex;
               align-items: center;
               justify-content: space-between;
