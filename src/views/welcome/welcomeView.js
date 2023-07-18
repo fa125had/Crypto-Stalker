@@ -27,11 +27,11 @@ export const renderWelcome = async () => {
     welcomeContainer.appendChild(welcomeText);
     welcomeContainer.appendChild(welcomeSlogan);
     ui.appendChild(welcomeContainer);
-    // Remove welcome page after 4.5 seconds
+    // Remove welcome page after 6 seconds
     setTimeout(() => {
       welcomeContainer.style.display = "none";
       resolve(welcomeContainer);
-    }, 400);
+    }, 6000);
   }).catch((error) => {
     errorHandler(error);
   });
