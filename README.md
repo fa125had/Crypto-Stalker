@@ -6,6 +6,10 @@ Crypto Stalker is a web application that provides real-time data on various cryp
 
 <img src="./screenshots/homepage.png" alt="Screenshot Home Page" width="200"/><img src="./screenshots/search-results.png" alt="Screenshot Search Results" width="200"/><img src="./screenshots/more-info-page.png" alt="Screenshot More info page" width="200"/>
 
+# Links
+- [Live Version](https://fa125had.github.io/Crypto-Stalker/)
+- [Source Code](https://github.com/fa125had/Crypto-Stalker)
+
 ## Features
 
 - Real-time data: The application fetches data from the CoinGecko API every minute to ensure the data displayed is up-to-date.
