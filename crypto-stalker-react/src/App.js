@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import WelcomePage from "./pages/welcomePage/WelcomePage";
+import HomePage from "./pages/homePage/HomePage";
+import { useState, useEffect } from "react";
 
-function App() {
+const App = () => {
+  const [showWelcome, setShowWelcome] = useState(false);
+
+  useEffect(() => {
+    // Check if the user has already seen the welcome page
+    const hasSeenWelcomePage = sessionStorage.getItem("hasSeenWelcome");
+
+    if (!hasSeenWelcomePage) {
+      setShowWelcome(true);
+      sessionStorage.setItem("hasSeenWelcome", "true");
+
+      // Set timer for remove WelcomePage
+      const timerID = setTimeout(() => {
+        setShowWelcome(false);
+      }, 5000);
+
+      // Clear timer
+      return () => clearTimeout(timerID);
+    }
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <div className="App">{showWelcome ? <WelcomePage /> : <HomePage />}</div>
   );
-}
+};
 
 export default App;
