@@ -17,7 +17,7 @@ const App = () => {
       // Set timer for remove WelcomePage
       const timerID = setTimeout(() => {
         setShowWelcome(false);
-      }, 5000);
+      }, 2000);
 
       // Clear timer
       return () => clearTimeout(timerID);
