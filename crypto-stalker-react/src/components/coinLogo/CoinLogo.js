@@ -1,3 +1,5 @@
+import './coinLogo.css'
+
 const CoinLogo = ({ coinLogoSrc, coinName }) => {
   return (
     <figure className="coin-logo">
