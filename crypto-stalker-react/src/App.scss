@@ -1,18 +1,9 @@
 .App {
+  padding-inline: 0.5rem;
+  
   .currency-selector-container {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: space-around;
-    position: relative;
-
     #currency-selector {
-      width: 100%;
       font-size: 1rem;
-      background-color: #000;
-      color: #fff;
-      border: none;
       outline: none;
 
       &:hover {
@@ -22,13 +13,21 @@
   }
 
   .coin-data-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
     width: 100%;
+    max-width: calc(55vw - 1rem);
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+  }
+}
 
-    .coin-row {
-      width: 100%;
-      display: flex;
-      justify-content: space-evenly;
-      align-items: center;
+@media only screen and (max-width: 840px) {
+  .App {
+    .coin-data-container {
+      max-width: 95%;
     }
   }
 }

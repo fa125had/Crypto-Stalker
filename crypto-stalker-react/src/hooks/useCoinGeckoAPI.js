@@ -16,7 +16,6 @@ export const useCoinGeckoAPI = (vsCurrency, isOnline) => {
       const endpoint = `${baseUrl}/coins/markets?vs_currency=${vsCurrency}&order=market_cap_desc&per_page=${numberOfCoins}&page=${pageNumber}&sparkline=false&locale=en`;
 
       try {
-        console.log('isOnline: ' + isOnline)
         setLoading(true);
         // Check if already data exist in sessionStorage or not
         const storedData = sessionStorage.getItem(`coinsData-${vsCurrency}`);
