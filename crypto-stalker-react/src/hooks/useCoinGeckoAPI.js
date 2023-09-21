@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export const useCoinGeckoAPI = (vsCurrency, isOnline) => {
+export const useCoinGeckoAPI = (vsCurrency) => {
   const [coinsData, setCoinsData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -20,7 +20,7 @@ export const useCoinGeckoAPI = (vsCurrency, isOnline) => {
         // Check if already data exist in sessionStorage or not
         const storedData = sessionStorage.getItem(`coinsData-${vsCurrency}`);
 
-        if (storedData || !isOnline) {
+        if (storedData) {
           setCoinsData(JSON.parse(storedData));
           setLoading(false);
           // Debug Log
@@ -64,7 +64,7 @@ export const useCoinGeckoAPI = (vsCurrency, isOnline) => {
     }, 100000);
 
     return () => clearInterval(intervalId);
-  }, [vsCurrency, isOnline]);
+  }, [vsCurrency]);
 
   return { coinsData, loading, error };
 };
