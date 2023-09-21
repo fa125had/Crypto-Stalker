@@ -1,14 +1,9 @@
-import { useCoinGeckoAPI } from "../../hooks/useCoinGeckoAPI";
-import { useState } from "react";
-import CoinRow from "../../components/coinRow/CoinRow";
 import Header from "../../components/header/Header";
+import CoinsList from "../../components/coinsList/CoinsList";
+import { useState } from "react";
 
 const HomePage = () => {
   const [selectedVsCurrency, setSelectedVsCurrency] = useState("usd");
-  const { coinsData, loading, error } = useCoinGeckoAPI(selectedVsCurrency);
-
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
 
   return (
     <main className="main-container">
@@ -17,17 +12,7 @@ const HomePage = () => {
         selectedVsCurrency={selectedVsCurrency}
       />
 
-      <section className="coin-data-container" id="coins-table">
-        {coinsData.map((coin) => {
-          return (
-            <CoinRow
-              key={coin.id}
-              coin={coin}
-              vsCurrency={selectedVsCurrency}
-            />
-          );
-        })}
-      </section>
+      <CoinsList selectedVsCurrency={selectedVsCurrency} />
     </main>
   );
 };

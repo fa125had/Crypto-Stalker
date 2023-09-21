@@ -1,6 +1,9 @@
-.coin-logo img {
+.coin-logo {
   max-width: 2rem;
+  margin: 0.5rem;
+}
+.coin-logo img {
+  width: 100%;
   -o-object-fit: contain;
      object-fit: contain;
-  margin: 0.5rem;
 }/*# sourceMappingURL=coinLogo.css.map */

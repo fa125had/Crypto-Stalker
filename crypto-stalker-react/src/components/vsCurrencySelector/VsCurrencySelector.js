@@ -12,6 +12,7 @@ const VsCurrencySelector = ({ selectedVsCurrency,handleChange }) => {
           <option value="usd">USD</option>
           <option value="btc">BTC</option>
           <option value="eur">Eur</option>
+          <option value="eth">ETH</option>
         </select>
       </span>
     </>

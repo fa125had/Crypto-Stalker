@@ -10,6 +10,7 @@ const NetworkStatus = () => {
     const handleOffline = () => {
       setIsOnline(false);
     };
+
     window.addEventListener("online", handleOnline);
     window.addEventListener("offline", handleOffline);
     return () => {
@@ -20,7 +21,7 @@ const NetworkStatus = () => {
 
   return (
     <div>
-      <h2>{isOnline ? "✅ Online" : "❌ Disconnected"}</h2>
+      <h2>You are{isOnline ? " Online ✅ " : " Disconnected ❌"}</h2>
     </div>
   );
 };

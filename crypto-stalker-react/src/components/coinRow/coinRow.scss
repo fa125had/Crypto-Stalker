@@ -1,9 +1,11 @@
-    .coin-row {
-      width: 100%;
-      display: flex;
-      justify-content: space-evenly;
-      align-items: center;
-      cursor: pointer;
-      border: 1px solid rgba(0, 0, 0, 0.1);
-
-    }
+.coin-row {
+  width: 100%;
+  display: grid;
+  cursor: pointer;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: 1fr;
+  align-items: center;
+  justify-items: center;
+  border-radius: 0.5rem;
+}

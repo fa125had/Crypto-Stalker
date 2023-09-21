@@ -61,7 +61,7 @@ export const useCoinGeckoAPI = (vsCurrency) => {
       setCoinsData(coinsData);
       setLoading(false);
       console.log(`Data loaded from API`);
-    }, 100000);
+    }, 120 * 1000);
 
     return () => clearInterval(intervalId);
   }, [vsCurrency]);
