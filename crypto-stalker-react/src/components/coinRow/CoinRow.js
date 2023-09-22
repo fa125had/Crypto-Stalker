@@ -4,10 +4,14 @@ import CoinName from "../coinName/CoinName";
 import CoinSymbol from "../coinSymbol/CoinSymbol";
 import CoinPrice from "../coinPrice/CoinPrice";
 import CoinRank from "../coinRank/CoinRank";
+import { useNavigate } from "react-router-dom";
 
 const CoinRow = ({ coin, vsCurrency }) => {
+  const navigate = useNavigate();
+
   const handleClick = ({ target }) => {
-    console.log(`Row ${coin.id} clicked.`);
+    console.log(`${coin.symbol}'s row clicked.`);
+    navigate(`/${coin.symbol}`);
   };
 
   return (

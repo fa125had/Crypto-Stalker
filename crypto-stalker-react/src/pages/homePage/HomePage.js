@@ -6,14 +6,14 @@ const HomePage = () => {
   const [selectedVsCurrency, setSelectedVsCurrency] = useState("usd");
 
   return (
-    <main className="main-container">
-      <Header
-        setSelectedVsCurrency={setSelectedVsCurrency}
-        selectedVsCurrency={selectedVsCurrency}
-      />
+      <main className="main-container">
+        <Header
+          setSelectedVsCurrency={setSelectedVsCurrency}
+          selectedVsCurrency={selectedVsCurrency}
+        />
 
-      <CoinsList selectedVsCurrency={selectedVsCurrency} />
-    </main>
+        <CoinsList selectedVsCurrency={selectedVsCurrency} />
+      </main>
   );
 };
 
