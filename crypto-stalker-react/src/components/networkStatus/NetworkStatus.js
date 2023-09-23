@@ -21,7 +21,7 @@ const NetworkStatus = () => {
 
   return (
     <div>
-      <h2>You are{isOnline ? " Online ✅ " : " Disconnected ❌"}</h2>
+      <p>You are{isOnline ? " Online ✅ " : " Disconnected ❌"}</p>
     </div>
   );
 };

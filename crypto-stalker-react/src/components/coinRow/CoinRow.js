@@ -10,8 +10,8 @@ const CoinRow = ({ coin, vsCurrency }) => {
   const navigate = useNavigate();
 
   const handleClick = ({ target }) => {
-    console.log(`${coin.symbol}'s row clicked.`);
-    navigate(`/${coin.symbol}`);
+    console.log(`${coin.id}'s row clicked.`);
+    navigate(`/${coin.id}`);
   };
 
   return (

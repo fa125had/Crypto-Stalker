@@ -34,7 +34,7 @@ const App = () => {
         <Router>
           <Routes>
             <Route path="/" exact element={<HomePage />} />
-            <Route path="/:coinSymbol" element={<CoinDetailPage />} />
+            <Route path="/:coinID" element={<CoinDetailPage />} />
           </Routes>
         </Router>
       )}
