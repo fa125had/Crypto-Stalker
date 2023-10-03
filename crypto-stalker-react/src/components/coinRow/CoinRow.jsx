@@ -16,9 +16,9 @@ const CoinRow = ({ coin, vsCurrency }) => {
 
   return (
     <div key={coin.id} className="coin-row" onClick={handleClick}>
-      <CoinLogo coinLogoSrc={coin.image} />
+      <CoinLogo src={coin.image} name={coin.name} />
       <CoinRank coinRank={coin.market_cap_rank} />
-      <CoinName coinName={coin.name} />
+      <CoinName name={coin.name} />
       <CoinSymbol coinSymbol={coin.symbol} />
       <CoinPrice coinPrice={coin.current_price} vsCurrency={vsCurrency} />
     </div>

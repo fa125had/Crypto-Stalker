@@ -5,6 +5,7 @@ import CoinDetailPage from "./pages/coinDetailPage/CoinDetailPage";
 import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { VsCurrencyProvider } from "./contexts/VsCurrencyContext";
+import { CoinsProvider } from "./contexts/CoinsContext";
 
 const App = () => {
   const [showWelcome, setShowWelcome] = useState(false);
@@ -29,18 +30,20 @@ const App = () => {
 
   return (
     <VsCurrencyProvider>
-      <div className="App">
-        {showWelcome ? (
-          <WelcomePage />
-        ) : (
-          <Router>
-            <Routes>
-              <Route path="/" exact element={<HomePage />} />
-              <Route path="/:coinID" element={<CoinDetailPage />} />
-            </Routes>
-          </Router>
-        )}
-      </div>
+      <CoinsProvider>
+        <div className="App">
+          {showWelcome ? (
+            <WelcomePage />
+          ) : (
+            <Router>
+              <Routes>
+                <Route path="/" exact element={<HomePage />} />
+                <Route path="/:coinID" element={<CoinDetailPage />} />
+              </Routes>
+            </Router>
+          )}
+        </div>
+      </CoinsProvider>
     </VsCurrencyProvider>
   );
 };

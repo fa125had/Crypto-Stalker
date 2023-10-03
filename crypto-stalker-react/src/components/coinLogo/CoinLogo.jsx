@@ -1,9 +1,9 @@
 import './coinLogo.css'
 
-const CoinLogo = ({ coinLogoSrc, coinName }) => {
+const CoinLogo = ({ src, name }) => {
   return (
     <figure className="coin-logo">
-      <img src={coinLogoSrc} alt={coinName} title={coinName} />
+      <img src={src} alt={name} title={name} />
     </figure>
   );
 };

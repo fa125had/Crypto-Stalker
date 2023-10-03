@@ -1,12 +1,8 @@
-import { useVsCurrency } from "../../contexts/VsCurrencyContext";
-import { useCoinGeckoAPI } from "../../hooks/useCoinGeckoAPI";
 import CoinRow from "../coinRow/CoinRow";
+import { useCoins } from "../../contexts/CoinsContext";
 
 const CoinsList = () => {
-  // VsCurrency read-only context
-  const { selectedVsCurrency } = useVsCurrency();
-  // Load Coin Data
-  const { coinsData, loading, error } = useCoinGeckoAPI(selectedVsCurrency);
+  const {coinsData, loading, error, selectedVsCurrency} = useCoins();
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
