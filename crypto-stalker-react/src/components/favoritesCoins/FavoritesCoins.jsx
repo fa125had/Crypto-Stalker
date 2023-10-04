@@ -1,32 +1,25 @@
-// import { useLocalStorage } from "@uidotdev/usehooks";
+import { useLocalStorage } from "@uidotdev/usehooks";
 import { useCoins } from "../../contexts/CoinsContext";
 import CoinRow from "../coinRow/CoinRow";
-import { useEffect, useState } from "react";
 
 const FavoritesCoins = () => {
   // retrieve all coins data from session storage
   const { coinsData, loading, error, selectedVsCurrency } = useCoins();
-  // filtered coins base on favorites
-  const [favCoins, setFavCoins] = useState(null);
   // load fav coins Ids from local storage
-  const favorites = localStorage.getItem("favorites");
+  const [favorites] = useLocalStorage("favorites");
 
-  useEffect(() => {
-    if (coinsData) {
-      const filteredCoins = coinsData.filter((coin) =>
-        favorites.includes(coin.id)
-      );
-      setFavCoins(filteredCoins);
-    }
-  }, [coinsData, favorites]);
+  let filteredCoins = [];
+  if (coinsData && favorites) {
+    filteredCoins = coinsData.filter((coin) => favorites.includes(coin.id));
+  }
 
-  if (loading || !favCoins) return <p>Loading...</p>;
+  if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
   return (
     <>
       <section className="coin-data-container" id="coins-table">
-        {favCoins.map((coin) => {
+        {filteredCoins.map((coin) => {
           return (
             <CoinRow
               key={coin.id}

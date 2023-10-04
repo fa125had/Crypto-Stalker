@@ -1,7 +1,8 @@
-import { Link, useParams } from "react-router-dom";
-import { useCoins } from "../../contexts/CoinsContext";
+import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { useCoins } from "../../contexts/CoinsContext";
 import CoinLogo from "../../components/coinLogo/CoinLogo";
+import BackButton from "../../components/backButton/BackButton";
 
 const CoinDetailPage = () => {
   const { coinsData, loading, error, selectedVsCurrency } = useCoins();
@@ -22,7 +23,7 @@ const CoinDetailPage = () => {
   return (
     <div className="coin-detail-container">
       <h2>Detail</h2>
-      <Link to={"/"}>Close</Link>
+      <BackButton />
       <p>
         {coinID} / {selectedVsCurrency}. Price: {coin.current_price}
       </p>
