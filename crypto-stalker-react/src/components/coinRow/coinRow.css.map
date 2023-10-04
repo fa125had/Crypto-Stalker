@@ -1,1 +1,1 @@
-{"version":3,"sources":["coinRow.scss","coinRow.css"],"names":[],"mappings":"AAAA;EACE,WAAA;EACA,aAAA;EACA,eAAA;EACA,oCAAA;EACA,qCAAA;EACA,uBAAA;EACA,mBAAA;EACA,qBAAA;EACA,qBAAA;ACCF","file":"coinRow.css"}
+{"version":3,"sources":["coinRow.scss","coinRow.css"],"names":[],"mappings":"AAAA;EACE,WAAA;EACA,aAAA;EACA,eAAA;EACA,oCAAA;EACA,0CAAA;EACA,uBAAA;EACA,mBAAA;EACA,qBAAA;EACA,qBAAA;ACCF;ADCE;EACE,aAAA;EACA,uBAAA;EACA,mBAAA;ACCJ;ADCI;EACE,WAAA;ACCN;ADGE;EACE,gBAAA;EACA,aAAA;EACA,WAAA;EACA,mBAAA;EACA,8BAAA;ACDJ;ADGI;;EAEE,aAAA;EACA,uBAAA;EACA,mBAAA;ACDN","file":"coinRow.css"}

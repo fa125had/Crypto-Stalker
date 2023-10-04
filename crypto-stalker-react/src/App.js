@@ -2,6 +2,7 @@ import "./App.css";
 import WelcomePage from "./pages/welcomePage/WelcomePage";
 import HomePage from "./pages/homePage/HomePage";
 import CoinDetailPage from "./pages/coinDetailPage/CoinDetailPage";
+import FavoritesPage from "./pages/favoritesPage/FavoritesPage";
 import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { VsCurrencyProvider } from "./contexts/VsCurrencyContext";
@@ -39,6 +40,7 @@ const App = () => {
               <Routes>
                 <Route path="/" exact element={<HomePage />} />
                 <Route path="/:coinID" element={<CoinDetailPage />} />
+                <Route path="/favList" element={<FavoritesPage />} />
               </Routes>
             </Router>
           )}

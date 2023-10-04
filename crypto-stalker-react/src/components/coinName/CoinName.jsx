@@ -1,7 +1,7 @@
-const CoinName = ({ coinName }) => {
+const CoinName = ({ name }) => {
   return (
     <>
-      <p className="coin-name">{coinName}</p>
+      <p className="coin-name">{name}</p>
     </>
   );
 };

@@ -46,7 +46,7 @@ export const useCoinGeckoAPI = (vsCurrency) => {
     };
 
     fetchData();
-    // Reload data from server
+    // Auto ReFetch data from server
     const intervalId = setInterval(async () => {
       const endpoint = `${baseUrl}/coins/markets?vs_currency=${vsCurrency}&order=market_cap_desc&per_page=${numberOfCoins}&page=${pageNumber}&sparkline=false&locale=en`;
       // Fetch Coins Data from API

@@ -3,9 +3,30 @@
   display: grid;
   cursor: pointer;
   border: 1px solid rgba(0, 0, 0, 0.1);
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: 3rem repeat(5, 1fr);
   grid-template-rows: 1fr;
   align-items: center;
   justify-items: center;
   border-radius: 0.5rem;
+}
+.coin-row .fav-img-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.coin-row .fav-img-wrapper .favorite-icon {
+  width: 2rem;
+}
+.coin-row .coin-info {
+  grid-column: 2/7;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+.coin-row .coin-info .logo-wrapper,
+.coin-row .coin-info .name-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }/*# sourceMappingURL=coinRow.css.map */
