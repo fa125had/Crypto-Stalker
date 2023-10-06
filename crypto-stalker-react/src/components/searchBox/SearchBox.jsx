@@ -1,16 +1,13 @@
-import React, { useState } from "react";
-
-const SearchBox = () => {
-  const [query, setQuery] = useState('');
-
+const SearchBox = ({ searchQuery, setSearchQuery }) => {
   const handleChange = ({ target }) => {
-    setQuery(target.value);
+    setSearchQuery(target.value);
   };
+  
   return (
     <div className="searchBox-container">
       <input
         type="text"
-        value={query}
+        value={searchQuery}
         className="searchBox"
         onChange={handleChange}
         placeholder="Search..."
