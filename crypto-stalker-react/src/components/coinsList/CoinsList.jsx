@@ -6,7 +6,7 @@ const CoinsList = ({ searchQuery }) => {
   // states for pagination - start page
   const [currentPage, setCurrentPage] = useState(1);
   // states for pagination - coins per page
-  const [coinsPerPage, setCoinsPerPage] = useState(10);
+  const [coinsPerPage] = useState(10);
 
   // fetch all coins
   const { coinsData, loading, error, selectedVsCurrency } = useCoins();
