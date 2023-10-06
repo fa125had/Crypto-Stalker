@@ -1,8 +1,10 @@
+import "./searchBox.css";
+
 const SearchBox = ({ searchQuery, setSearchQuery }) => {
   const handleChange = ({ target }) => {
     setSearchQuery(target.value);
   };
-  
+
   return (
     <div className="searchBox-container">
       <input
