@@ -1,9 +1,9 @@
-const CoinSymbol = ({ coinSymbol}) => {
+import "./coinSymbol.css";
+
+const CoinSymbol = ({ coinSymbol }) => {
   return (
     <>
-      <p className="coin-symbol">
-        {coinSymbol}
-      </p>
+      <p className="coin-symbol">{coinSymbol}</p>
     </>
   );
 };

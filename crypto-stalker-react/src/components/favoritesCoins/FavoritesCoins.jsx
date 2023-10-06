@@ -12,18 +12,21 @@ const FavoritesCoins = ({ searchQuery, setSearchQuery }) => {
   if (coinsData && favorites) {
     filteredCoins = coinsData.filter((coin) => favorites.includes(coin.id));
 
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>Error: {error.message}</p>;
+    
     if (searchQuery) {
       filteredCoins = filteredCoins.filter(
         (coin) =>
+          // match with coin's id
           coin.id.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          // match with coin's name
           coin.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          // match with coin's symbol
           coin.symbol.toLowerCase().includes(searchQuery.toLowerCase())
       );
     }
   }
-
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
 
   return (
     <>

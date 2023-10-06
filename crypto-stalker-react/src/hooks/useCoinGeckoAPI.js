@@ -6,7 +6,7 @@ export const useCoinGeckoAPI = (vsCurrency) => {
   const [error, setError] = useState(null);
 
   // Request config
-  const numberOfCoins = 100;
+  const numberOfCoins = 200;
   const pageNumber = 1;
   const baseUrl = "https://api.coingecko.com/api/v3";
 
