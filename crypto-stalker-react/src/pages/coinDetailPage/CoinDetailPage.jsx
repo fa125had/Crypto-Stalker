@@ -10,14 +10,16 @@ const CoinDetailPage = () => {
   const [coin, setCoin] = useState();
 
   useEffect(() => {
-    for (const coinObj of coinsData) {
-      if (coinObj.id === coinID) {
-        setCoin(coinObj);
+    if (Array.isArray(coinsData)) {
+      for (const coinObj of coinsData) {
+        if (coinObj.id === coinID) {
+          setCoin(coinObj);
+        }
       }
     }
   }, [coinID, coinsData]);
 
-  if (loading || !coin) return <p>Loading...</p>;
+  if (loading || !coin || !coinsData) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
   return (
