@@ -49,15 +49,23 @@ const CoinRow = ({ coin, vsCurrency }) => {
         />
       </div>
       <span className="coin-info" onClick={handleClick}>
-        <div className="logo-wrapper">
-          <CoinLogo src={coin.image} name={coin.name} />
+        <div className="rank-wrapper">
           <CoinRank coinRank={coin.market_cap_rank} />
         </div>
+
+        <div className="logo-wrapper">
+          <CoinLogo src={coin.image} name={coin.name} />
+        </div>
+
         <div className="name-wrapper">
           <CoinName name={coin.name} />
           <CoinSymbol coinSymbol={coin.symbol} />
         </div>
-        <CoinPrice coinPrice={coin.current_price} vsCurrency={vsCurrency} />
+
+        <div className="price-wrapper">
+          <CoinPrice coinPrice={coin.current_price} />
+          <span className="vsCurrency">{vsCurrency}</span>
+        </div>
       </span>
     </div>
   );

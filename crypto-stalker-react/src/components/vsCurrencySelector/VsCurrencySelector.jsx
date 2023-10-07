@@ -7,7 +7,6 @@ const VsCurrencySelector = () => {
 
   const handleChange = ({ target }) => {
     setSelectedVsCurrency(target.value);
-    console.log(selectedVsCurrency);
   };
 
   return (

@@ -1,11 +1,7 @@
-import './coinLogo.css'
+import "./coinLogo.css";
 
 const CoinLogo = ({ src, name }) => {
-  return (
-    <figure className="coin-logo">
-      <img src={src} alt={name} title={name} />
-    </figure>
-  );
+  return <img className="coin-logo" src={src} alt={name} title={name} />;
 };
 
 export default CoinLogo;
