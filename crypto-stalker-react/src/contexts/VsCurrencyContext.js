@@ -16,7 +16,7 @@ export const VsCurrencyProvider = ({ children }) => {
 
 export const useVsCurrency = () => {
   const context = useContext(VsCurrencyContext);
-  if (!context) throw new Error("Error on context");
+  if (!context) throw new Error("Out of the context");
 
   return context;
 };

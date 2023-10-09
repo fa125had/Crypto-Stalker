@@ -1,15 +1,25 @@
 import CoinRow from "../coinRow/CoinRow";
 import { useCoins } from "../../contexts/CoinsContext";
 import { useEffect, useState } from "react";
+import { ClipLoader } from "react-spinners";
+import { useError } from "../../contexts/ErrorContext";
 
 const CoinsList = ({ searchQuery }) => {
   // states for pagination - start page
   const [currentPage, setCurrentPage] = useState(1);
   // states for pagination - coins per page
   const [coinsPerPage] = useState(10);
+  // error handler context
+  const { errorMessage, setErrorMessage } = useError();
+  // coins data context
+  const { coinsData, loading, selectedVsCurrency } = useCoins();
 
-  // fetch all coins
-  const { coinsData, loading, error, selectedVsCurrency } = useCoins();
+  // check for errors
+  useEffect(() => {
+    if (errorMessage) {
+      setErrorMessage(errorMessage);
+    }
+  }, [errorMessage, setErrorMessage]);
 
   // Reset currentPage to 1 whenever searchQuery changes
   useEffect(() => {
@@ -31,6 +41,7 @@ const CoinsList = ({ searchQuery }) => {
     );
   }
 
+  // pagination
   // calculate total pages for all coins
   const totalPages = Math.ceil(filteredCoins.length / coinsPerPage);
 
@@ -38,11 +49,13 @@ const CoinsList = ({ searchQuery }) => {
   const indexOfLastCoin = currentPage * coinsPerPage;
   // first coin's index
   const indexOfFirstCoin = indexOfLastCoin - coinsPerPage;
-  // slice all coins from first to last index
+  // extract coins between first and last index
   const currentCoins = filteredCoins.slice(indexOfFirstCoin, indexOfLastCoin);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
+  // loading
+  if (loading || !coinsData) {
+    return <ClipLoader />;
+  }
 
   return (
     <>

@@ -1,16 +1,42 @@
+import { useState, useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
+// Pages
 import WelcomePage from "./pages/welcomePage/WelcomePage";
 import HomePage from "./pages/homePage/HomePage";
 import CoinDetailPage from "./pages/coinDetailPage/CoinDetailPage";
 import FavoritesPage from "./pages/favoritesPage/FavoritesPage";
-import { useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+// Contexts
 import { VsCurrencyProvider } from "./contexts/VsCurrencyContext";
 import { CoinsProvider } from "./contexts/CoinsContext";
+import { ErrorProvider } from "./contexts/ErrorContext";
 
 const App = () => {
   const [showWelcome, setShowWelcome] = useState(false);
+  const [screenSize, setScreenSize] = useState({
+    height: window.innerHeight,
+    width: window.innerWidth,
+  });
 
+  // update the screen size
+  const updateScreenSize = () => {
+    setScreenSize({
+      height: window.innerHeight,
+      width: window.innerWidth,
+    });
+  };
+
+  // Add event listener on mount, remove on unmount
+  useEffect(() => {
+    window.addEventListener("resize", updateScreenSize);
+
+    // Cleanup function
+    return () => {
+      window.removeEventListener("resize", updateScreenSize);
+    };
+  }, []);
+
+  // handle welcome screen
   useEffect(() => {
     // Check if the user has already seen the welcome page
     const hasSeenWelcomePage = sessionStorage.getItem("hasSeenWelcome");
@@ -30,23 +56,25 @@ const App = () => {
   }, []);
 
   return (
-    <VsCurrencyProvider>
-      <CoinsProvider>
-        <div className="App">
-          {showWelcome ? (
-            <WelcomePage />
-          ) : (
-            <Router>
-              <Routes>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/:coinID" element={<CoinDetailPage />} />
-                <Route path="/favList" element={<FavoritesPage />} />
-              </Routes>
-            </Router>
-          )}
-        </div>
-      </CoinsProvider>
-    </VsCurrencyProvider>
+    <ErrorProvider>
+      <VsCurrencyProvider>
+        <CoinsProvider>
+          <div className="App" style={screenSize}>
+            {showWelcome ? (
+              <WelcomePage />
+            ) : (
+              <Router>
+                <Routes>
+                  <Route path="/" element={<HomePage />} />
+                  <Route path="/:coinID" element={<CoinDetailPage />} />
+                  <Route path="/favList" element={<FavoritesPage />} />
+                </Routes>
+              </Router>
+            )}
+          </div>
+        </CoinsProvider>
+      </VsCurrencyProvider>
+    </ErrorProvider>
   );
 };
 

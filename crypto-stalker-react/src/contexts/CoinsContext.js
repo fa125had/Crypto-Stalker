@@ -8,11 +8,11 @@ export const CoinsProvider = ({ children }) => {
   const { selectedVsCurrency } = useVsCurrency();
 
   // Load Coin Data
-  const { coinsData, loading, error } = useCoinGeckoAPI(selectedVsCurrency);
+  const { coinsData, loading } = useCoinGeckoAPI(selectedVsCurrency);
 
   return (
     <CoinsContext.Provider
-      value={{ coinsData, loading, error, selectedVsCurrency }}
+      value={{ coinsData, loading, selectedVsCurrency }}
     >
       {children}
     </CoinsContext.Provider>
@@ -22,7 +22,7 @@ export const CoinsProvider = ({ children }) => {
 export const useCoins = () => {
   const context = useContext(CoinsContext);
   if (!context) {
-    throw new Error("Error context");
+    throw new Error("Out of the context");
   }
   return context;
 };

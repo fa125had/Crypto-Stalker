@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
+import { useError } from "../contexts/ErrorContext";
 
 export const useCoinGeckoAPI = (vsCurrency) => {
   const [coinsData, setCoinsData] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const { setErrorMessage } = useError();
 
   // Request config
   const numberOfCoins = 200;
@@ -39,8 +40,8 @@ export const useCoinGeckoAPI = (vsCurrency) => {
           setLoading(false);
           console.log(`Data loaded from API`);
         }
-      } catch (err) {
-        setError(err);
+      } catch (error) {
+        setErrorMessage(error);
         setLoading(false);
       }
     };
@@ -64,7 +65,7 @@ export const useCoinGeckoAPI = (vsCurrency) => {
     }, 120 * 1000);
 
     return () => clearInterval(intervalId);
-  }, [vsCurrency]);
+  }, [setErrorMessage, vsCurrency]);
 
-  return { coinsData, loading, error };
+  return { coinsData, loading };
 };
