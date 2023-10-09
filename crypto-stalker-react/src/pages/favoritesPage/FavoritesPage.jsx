@@ -1,14 +1,12 @@
-import { NavLink } from "react-router-dom";
-import Header from "../../components/header/Header";
-import FavoritesCoins from "../../components/favoritesCoins/FavoritesCoins";
 import { useState } from "react";
+import FavoritesCoins from "../../components/favoritesCoins/FavoritesCoins";
+import NavBar from "../../components/navBar/NavBar";
 
 const FavoritesPage = () => {
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery] = useState("");
   return (
     <main className="main-container">
-      <Header searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-      <NavLink to={"/"}>HomePage</NavLink>
+      <NavBar />
       <FavoritesCoins searchQuery={searchQuery} />
     </main>
   );

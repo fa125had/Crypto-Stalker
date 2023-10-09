@@ -5,7 +5,6 @@ import { useError } from "../../contexts/ErrorContext";
 import { useEffect } from "react";
 import { ClipLoader } from "react-spinners";
 
-
 const FavoritesCoins = ({ searchQuery, setSearchQuery }) => {
   // retrieve all coins data from session storage
   const { coinsData, loading, selectedVsCurrency } = useCoins();

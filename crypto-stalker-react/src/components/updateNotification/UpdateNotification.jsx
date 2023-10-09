@@ -1,8 +1,15 @@
+import { useCountdown } from "../../contexts/CountDownContext";
 
 const UpdateNotification = () => {
-  return (
-    <div>UpdateNotification</div>
-  )
-}
+  const { countdown } = useCountdown();
 
-export default UpdateNotification
+  return (
+    <div className="countdown-container">
+      <p className="data-update-countdown">
+        Next Update in {countdown} seconds
+      </p>
+    </div>
+  );
+};
+
+export default UpdateNotification;

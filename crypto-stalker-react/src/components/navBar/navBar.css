@@ -1,0 +1,11 @@
+.navbar-container {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+.navbar-container .navbar-item {
+  text-decoration: none;
+  cursor: pointer;
+}/*# sourceMappingURL=navBar.css.map */

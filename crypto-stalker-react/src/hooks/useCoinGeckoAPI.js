@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useError } from "../contexts/ErrorContext";
 
-export const useCoinGeckoAPI = (vsCurrency) => {
+export const useCoinGeckoAPI = (vsCurrency, refreshRate = 120) => {
   const [coinsData, setCoinsData] = useState(null);
   const [loading, setLoading] = useState(true);
   const { setErrorMessage } = useError();
@@ -47,25 +47,31 @@ export const useCoinGeckoAPI = (vsCurrency) => {
     };
 
     fetchData();
+
     // Auto ReFetch data from server
     const intervalId = setInterval(async () => {
       const endpoint = `${baseUrl}/coins/markets?vs_currency=${vsCurrency}&order=market_cap_desc&per_page=${numberOfCoins}&page=${pageNumber}&sparkline=false&locale=en`;
+
       // Fetch Coins Data from API
       const response = await fetch(endpoint);
       const coinsData = await response.json();
+
       // Save fresh data to session storage.
       sessionStorage.setItem(
         `coinsData-${vsCurrency}`,
         JSON.stringify(coinsData)
       );
+
       // update Data state Automatically
       setCoinsData(coinsData);
       setLoading(false);
       console.log(`Data loaded from API`);
-    }, 120 * 1000);
+    }, refreshRate * 1000);
 
-    return () => clearInterval(intervalId);
-  }, [setErrorMessage, vsCurrency]);
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, [refreshRate, setErrorMessage, vsCurrency]);
 
   return { coinsData, loading };
 };

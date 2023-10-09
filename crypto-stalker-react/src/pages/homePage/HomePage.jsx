@@ -1,16 +1,10 @@
-import Header from "../../components/header/Header";
 import CoinsList from "../../components/coinsList/CoinsList";
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import NavBar from "../../components/navBar/NavBar";
 
-const HomePage = () => {
-  const [searchQuery, setSearchQuery] = useState("");
-
+const HomePage = ({ searchQuery }) => {
   return (
     <main className="main-container">
-      <Header searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-      <Link to={"/favList"}>Favorites</Link>
-
+      <NavBar />
       <CoinsList searchQuery={searchQuery} />
     </main>
   );

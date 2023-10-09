@@ -10,7 +10,7 @@ const CoinDetailPage = () => {
   const { coinsData, loading, selectedVsCurrency } = useCoins();
   const { coinID } = useParams();
   const [coin, setCoin] = useState();
-  const { errorMessage,setErrorMessage } = useError();
+  const { errorMessage, setErrorMessage } = useError();
 
   // check for errors
   useEffect(() => {

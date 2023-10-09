@@ -11,9 +11,7 @@ export const CoinsProvider = ({ children }) => {
   const { coinsData, loading } = useCoinGeckoAPI(selectedVsCurrency);
 
   return (
-    <CoinsContext.Provider
-      value={{ coinsData, loading, selectedVsCurrency }}
-    >
+    <CoinsContext.Provider value={{ coinsData, loading, selectedVsCurrency }}>
       {children}
     </CoinsContext.Provider>
   );
