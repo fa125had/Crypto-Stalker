@@ -25,8 +25,6 @@ export const useCoinGeckoAPI = (vsCurrency, countdown, refreshRate = 120) => {
         if (storedData) {
           setCoinsData(JSON.parse(storedData));
           setLoading(false);
-          // Debug Log
-          console.log(`Data loaded from session storage`);
         }
 
         // check if refresh rate is reached or coin data is not available in session storage
@@ -57,27 +55,6 @@ export const useCoinGeckoAPI = (vsCurrency, countdown, refreshRate = 120) => {
     };
 
     fetchData();
-
-    // Auto ReFetch data from server
-    // const intervalId = setInterval(async () => {
-    //   const endpoint = `${baseUrl}/coins/markets?vs_currency=${vsCurrency}&order=market_cap_desc&per_page=${numberOfCoins}&page=${pageNumber}&sparkline=false&locale=en`;
-
-    //   // Fetch Coins Data from API
-    //   const response = await fetch(endpoint);
-    //   const coinsData = await response.json();
-
-    //   // Save fresh data to session storage.
-    //   sessionStorage.setItem(
-    //     `coinsData-${vsCurrency}`,
-    //     JSON.stringify(coinsData)
-    //   );
-
-    //   console.log(`Data loaded from API`);
-    // }, refreshRate * 1000);
-
-    // return () => {
-    //   clearInterval(intervalId);
-    // };
   }, [countdown, setErrorMessage, vsCurrency]);
 
   return { coinsData, loading };

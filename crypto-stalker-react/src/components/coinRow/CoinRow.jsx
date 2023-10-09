@@ -66,6 +66,11 @@ const CoinRow = ({ coin, vsCurrency }) => {
           <CoinPrice coinPrice={coin.current_price} />
           <span className="vsCurrency">{vsCurrency}</span>
         </div>
+
+        <div className="profit-loss-24h">
+          <div className="percentage">{coin.price_change_percentage_24h}%</div>
+          <div className="amount">{coin.price_change_24h}</div>
+        </div>
       </span>
     </div>
   );

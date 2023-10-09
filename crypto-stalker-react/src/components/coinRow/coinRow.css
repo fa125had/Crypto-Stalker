@@ -23,7 +23,7 @@
   width: 100%;
   align-items: center;
   justify-content: space-between;
-  grid-template-columns: 1rem 2.5rem repeat(5, 1fr);
+  grid-template-columns: 1rem 2.5rem 1.5fr repeat(5, 1fr);
   grid-template-rows: 1fr;
 }
 .coin-row .coin-info .rank-wrapper {
@@ -41,12 +41,15 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  grid-column: 3/7;
+  grid-column: 3/5;
 }
 .coin-row .coin-info .price-wrapper {
   display: flex;
   align-items: center;
   justify-self: start;
   gap: 0.5rem;
-  grid-column-start: 7;
+  grid-column: 5/7;
+}
+.coin-row .coin-info .profit-loss-24h {
+  grid-column-start: 8;
 }/*# sourceMappingURL=coinRow.css.map */
