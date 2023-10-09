@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useError } from "../contexts/ErrorContext";
 
-export const useCoinGeckoAPI = (vsCurrency, refreshRate = 120) => {
+export const useCoinGeckoAPI = (vsCurrency, countdown, refreshRate = 120) => {
   const [coinsData, setCoinsData] = useState(null);
   const [loading, setLoading] = useState(true);
   const { setErrorMessage } = useError();
@@ -21,15 +21,25 @@ export const useCoinGeckoAPI = (vsCurrency, refreshRate = 120) => {
         // Check if already data exist in sessionStorage or not
         const storedData = sessionStorage.getItem(`coinsData-${vsCurrency}`);
 
+        // load data from storage
         if (storedData) {
           setCoinsData(JSON.parse(storedData));
           setLoading(false);
           // Debug Log
           console.log(`Data loaded from session storage`);
-        } else {
+        }
+
+        // check if refresh rate is reached or coin data is not available in session storage
+        if (countdown === 0 || !storedData) {
+          const currentTime = Date.now();
+
           // Fetch Coins Data from API
           const response = await fetch(endpoint);
           const coinsData = await response.json();
+
+          // Save the last fetch time for each pair coin.
+          sessionStorage.setItem(`lastFetchTime-${vsCurrency}`, currentTime);
+
           // Save fresh data to session storage.
           sessionStorage.setItem(
             `coinsData-${vsCurrency}`,
@@ -49,29 +59,26 @@ export const useCoinGeckoAPI = (vsCurrency, refreshRate = 120) => {
     fetchData();
 
     // Auto ReFetch data from server
-    const intervalId = setInterval(async () => {
-      const endpoint = `${baseUrl}/coins/markets?vs_currency=${vsCurrency}&order=market_cap_desc&per_page=${numberOfCoins}&page=${pageNumber}&sparkline=false&locale=en`;
+    // const intervalId = setInterval(async () => {
+    //   const endpoint = `${baseUrl}/coins/markets?vs_currency=${vsCurrency}&order=market_cap_desc&per_page=${numberOfCoins}&page=${pageNumber}&sparkline=false&locale=en`;
 
-      // Fetch Coins Data from API
-      const response = await fetch(endpoint);
-      const coinsData = await response.json();
+    //   // Fetch Coins Data from API
+    //   const response = await fetch(endpoint);
+    //   const coinsData = await response.json();
 
-      // Save fresh data to session storage.
-      sessionStorage.setItem(
-        `coinsData-${vsCurrency}`,
-        JSON.stringify(coinsData)
-      );
+    //   // Save fresh data to session storage.
+    //   sessionStorage.setItem(
+    //     `coinsData-${vsCurrency}`,
+    //     JSON.stringify(coinsData)
+    //   );
 
-      // update Data state Automatically
-      setCoinsData(coinsData);
-      setLoading(false);
-      console.log(`Data loaded from API`);
-    }, refreshRate * 1000);
+    //   console.log(`Data loaded from API`);
+    // }, refreshRate * 1000);
 
-    return () => {
-      clearInterval(intervalId);
-    };
-  }, [refreshRate, setErrorMessage, vsCurrency]);
+    // return () => {
+    //   clearInterval(intervalId);
+    // };
+  }, [countdown, setErrorMessage, vsCurrency]);
 
   return { coinsData, loading };
 };
