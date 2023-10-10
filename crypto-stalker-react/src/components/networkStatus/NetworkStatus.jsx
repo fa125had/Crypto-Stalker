@@ -16,7 +16,7 @@ const NetworkStatus = ({ isOnline, setIsOnline }) => {
       window.removeEventListener("online", handleOnline);
       window.removeEventListener("offline", handleOffline);
     };
-  }, [isOnline]);
+  }, [isOnline, setIsOnline]);
 
   return (
     <div className="network-status-container">
