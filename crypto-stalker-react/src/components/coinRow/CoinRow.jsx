@@ -34,6 +34,16 @@ const CoinRow = ({ coin, vsCurrency }) => {
     navigate(`/${coin.id}`);
   };
 
+  // manage vsCurrency logo
+  let vsCurrencyLogo = "";
+  if (vsCurrency === "usd") {
+    vsCurrencyLogo = "$";
+  } else if (vsCurrency === "eur") {
+    vsCurrencyLogo = "€";
+  } else if (vsCurrency === "btc") {
+    vsCurrencyLogo = "₿";
+  }
+
   return (
     <div key={coin.id} className="coin-row">
       <div className="fav-img-wrapper">
@@ -63,8 +73,12 @@ const CoinRow = ({ coin, vsCurrency }) => {
         </div>
 
         <div className="price-wrapper">
+          <span className="vsCurrency">{vsCurrencyLogo}</span>
           <CoinPrice coinPrice={coin.current_price} />
-          <span className="vsCurrency">{vsCurrency}</span>
+        </div>
+
+        <div className="marketCap-wrapper">
+          <p>{(coin.market_cap / 1000000).toFixed(2)}m</p>
         </div>
 
         <div className="profit-loss-24h">
