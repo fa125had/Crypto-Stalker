@@ -71,13 +71,11 @@ const CoinsList = ({ searchQuery }) => {
         </div>
         {currentCoins.map((coin) => {
           return (
-            <>
-              <CoinRow
-                key={coin.id}
-                coin={coin}
-                vsCurrency={selectedVsCurrency}
-              />
-            </>
+            <CoinRow
+              key={coin.id}
+              coin={coin}
+              vsCurrency={selectedVsCurrency}
+            />
           );
         })}
       </section>
