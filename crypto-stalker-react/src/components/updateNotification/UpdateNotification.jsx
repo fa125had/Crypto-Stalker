@@ -6,8 +6,11 @@ const UpdateNotification = ({ isOnline }) => {
 
   return (
     <div className="countdown-container">
-      {isOnline && <p className="countdown">Next Update {countdown}s</p>}
-      {!isOnline && <p>Your Offline!</p>}
+      {countdown === 0 && <p className="update-done">Updated!</p>}
+      {isOnline && countdown > 0 && (
+        <p className="countdown">Next Update {countdown}s</p>
+      )}
+      {!isOnline && <p className="net-down">Your Offline!</p>}
     </div>
   );
 };

@@ -14,4 +14,7 @@
   outline: none;
   padding: 0.33rem 0.35rem;
   text-wrap: nowrap;
+}
+.navbar-container .navbar-item:hover {
+  background-color: rgb(0, 0, 0);
 }/*# sourceMappingURL=navBar.css.map */

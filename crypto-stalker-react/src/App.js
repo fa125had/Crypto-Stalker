@@ -9,7 +9,9 @@ import FavoritesPage from "./pages/favoritesPage/FavoritesPage";
 import { VsCurrencyProvider } from "./contexts/VsCurrencyContext";
 import { CoinsProvider } from "./contexts/CoinsContext";
 import { ErrorProvider } from "./contexts/ErrorContext";
+// Components
 import Header from "./components/header/Header";
+import Footer from "./components/footer/Footer";
 
 const App = () => {
   const [screenSize, setScreenSize] = useState({
@@ -52,6 +54,7 @@ const App = () => {
                 <Route path="/favList" element={<FavoritesPage />} />
               </Routes>
             </Router>
+            <Footer />
           </div>
         </CoinsProvider>
       </VsCurrencyProvider>

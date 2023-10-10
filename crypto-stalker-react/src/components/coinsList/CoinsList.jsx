@@ -1,4 +1,4 @@
-import './coin-list.css';
+import "./coin-list.css";
 import CoinRow from "../coinRow/CoinRow";
 import { useCoins } from "../../contexts/CoinsContext";
 import { useEffect, useState } from "react";
@@ -71,22 +71,26 @@ const CoinsList = ({ searchQuery }) => {
           );
         })}
       </section>
-      <div>
+      <div className="pagination-container">
         <button
+          className="pagination-btn"
           onClick={() => setCurrentPage(currentPage - 1)}
           disabled={currentPage === 1}
         >
           Previous
         </button>
         <button
+          className="pagination-btn"
           onClick={() => setCurrentPage(currentPage + 1)}
           disabled={currentPage === totalPages}
         >
           Next
         </button>
-        <p>
-          Page {currentPage} of {totalPages}
-        </p>
+        <div>
+          <p className="page-numbers">
+            {currentPage} of {totalPages}
+          </p>
+        </div>
       </div>
     </>
   );
