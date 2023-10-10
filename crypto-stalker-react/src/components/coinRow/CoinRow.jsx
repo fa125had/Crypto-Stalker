@@ -44,6 +44,14 @@ const CoinRow = ({ coin, vsCurrency }) => {
     vsCurrencyLogo = "₿";
   }
 
+  const formatNumbers = (number) => {
+    if (number && Math.abs(number) < 1) {
+      return number.toFixed(9);
+    } else if (number){
+      return number.toFixed(2);
+    }
+  };
+
   return (
     <div key={coin.id} className="coin-row">
       <div className="fav-img-wrapper">
@@ -83,7 +91,10 @@ const CoinRow = ({ coin, vsCurrency }) => {
 
         <div className="profit-loss-24h">
           <div className="percentage">{coin.price_change_percentage_24h}%</div>
-          <div className="amount">{coin.price_change_24h}</div>
+          <div className="amount">
+            {formatNumbers(coin.price_change_24h)}
+            {vsCurrencyLogo}
+          </div>
         </div>
       </span>
     </div>

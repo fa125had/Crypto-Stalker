@@ -61,13 +61,23 @@ const CoinsList = ({ searchQuery }) => {
   return (
     <>
       <section className="coin-data-container" id="coins-table">
+        <div className="static-header">
+          <span className="header-item">Fav</span>
+          <span className="header-item">Rank</span>
+          <span className="header-item">Name</span>
+          <span className="header-item">Price</span>
+          <span className="header-item">Market Cap</span>
+          <span className="header-item change-24h">24h Change</span>
+        </div>
         {currentCoins.map((coin) => {
           return (
-            <CoinRow
-              key={coin.id}
-              coin={coin}
-              vsCurrency={selectedVsCurrency}
-            />
+            <>
+              <CoinRow
+                key={coin.id}
+                coin={coin}
+                vsCurrency={selectedVsCurrency}
+              />
+            </>
           );
         })}
       </section>
