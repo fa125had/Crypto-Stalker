@@ -13,6 +13,7 @@ const SearchBox = ({ searchQuery, setSearchQuery }) => {
         className="searchBox"
         onChange={handleChange}
         placeholder="Search..."
+        maxLength={8}
       />
     </div>
   );

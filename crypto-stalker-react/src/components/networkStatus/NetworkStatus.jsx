@@ -1,8 +1,7 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
+import "./network-status.css";
 
-const NetworkStatus = () => {
-  const [isOnline, setIsOnline] = useState(navigator.onLine);
-
+const NetworkStatus = ({ isOnline, setIsOnline }) => {
   useEffect(() => {
     const handleOnline = () => {
       setIsOnline(true);
@@ -20,8 +19,19 @@ const NetworkStatus = () => {
   }, [isOnline]);
 
   return (
-    <div>
-      <p>You are{isOnline ? " Online ✅ " : " Disconnected ❌"}</p>
+    <div className="network-status-container">
+      <img
+        className="network-status"
+        src={
+          isOnline
+            ? "/assets/images/connected.svg"
+            : "/assets/images/disconnected.svg"
+        }
+        alt="network status"
+        title={`Network status ${
+          isOnline ? "You are Online" : "Your are offline!"
+        }`}
+      />
     </div>
   );
 };

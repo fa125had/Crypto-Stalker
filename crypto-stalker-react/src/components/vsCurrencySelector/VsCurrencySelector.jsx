@@ -1,5 +1,6 @@
 import React from "react";
 import { useVsCurrency } from "../../contexts/VsCurrencyContext";
+import './currency-selector.css';
 
 const VsCurrencySelector = () => {
   // VsCurrency context

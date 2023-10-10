@@ -41,8 +41,8 @@ const App = () => {
       <VsCurrencyProvider>
         <CoinsProvider>
           <div className="App" style={screenSize}>
-            <Header searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
             <Router>
+            <Header searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
               <Routes>
                 <Route
                   path="/"

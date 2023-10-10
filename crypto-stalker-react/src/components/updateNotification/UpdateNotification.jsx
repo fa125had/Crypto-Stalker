@@ -1,13 +1,13 @@
+import "./update-notification.css";
 import { useCountdown } from "../../contexts/CountDownContext";
 
-const UpdateNotification = () => {
+const UpdateNotification = ({ isOnline }) => {
   const { countdown } = useCountdown();
 
   return (
     <div className="countdown-container">
-      <p className="data-update-countdown">
-        Next Update in {countdown} seconds
-      </p>
+      {isOnline && <p className="countdown">Next Update {countdown}s</p>}
+      {!isOnline && <p>Your Offline!</p>}
     </div>
   );
 };

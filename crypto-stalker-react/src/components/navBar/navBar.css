@@ -1,11 +1,17 @@
 .navbar-container {
   display: flex;
-  width: 100%;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
+  order: 1;
 }
 .navbar-container .navbar-item {
   text-decoration: none;
   cursor: pointer;
+  font-size: 0.85rem;
+  background-color: gray;
+  color: #fff;
+  border: none;
+  outline: none;
+  padding: 0.33rem 0.35rem;
+  text-wrap: nowrap;
 }/*# sourceMappingURL=navBar.css.map */

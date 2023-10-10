@@ -1,3 +1,4 @@
+import './coin-list.css';
 import CoinRow from "../coinRow/CoinRow";
 import { useCoins } from "../../contexts/CoinsContext";
 import { useEffect, useState } from "react";

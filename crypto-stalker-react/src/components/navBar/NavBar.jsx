@@ -1,16 +1,22 @@
 import "./navBar.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 const NavBar = () => {
+  const location = useLocation();
+  const currentPath = location.pathname;
+
   return (
     <nav className="navbar-container">
-      <NavLink className="navbar-item" to={"/"}>
-        HomePage
-      </NavLink>
-
-      <NavLink className="navbar-item" to={"/favList"}>
-        Favorites
-      </NavLink>
+      {currentPath !== "/" && (
+        <NavLink className="navbar-item" to={"/"}>
+          Back to HomePage
+        </NavLink>
+      )}
+      {currentPath !== "/favList" && (
+        <NavLink className="navbar-item" to={"/favList"}>
+          Check Your Favorites
+        </NavLink>
+      )}
     </nav>
   );
 };

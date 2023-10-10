@@ -2,10 +2,10 @@
   width: 100%;
   display: flex;
   cursor: pointer;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  border: 1px solid #dcd7d7;
   align-items: center;
   justify-content: center;
-  border-radius: 0.5rem;
+  border-radius: 0.15rem;
   padding: 0.25rem;
 }
 .coin-row .fav-img-wrapper {
@@ -13,6 +13,9 @@
   justify-content: center;
   align-items: center;
   margin-inline-end: 0.5rem;
+  border-right: 1px solid #dcd7d7;
+  height: 100%;
+  padding: 0.25rem;
 }
 .coin-row .fav-img-wrapper .favorite-icon {
   width: 1rem;
@@ -25,6 +28,7 @@
   justify-content: space-between;
   grid-template-columns: 1rem 2.5rem 1.5fr repeat(5, 1fr);
   grid-template-rows: 1fr;
+  font-family: Josefin, sans-serif;
 }
 .coin-row .coin-info .rank-wrapper {
   text-align: center;

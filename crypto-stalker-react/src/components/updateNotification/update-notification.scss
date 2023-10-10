@@ -1,0 +1,9 @@
+.countdown-container {
+  max-width: 6rem;
+  text-align: center;
+
+  .countdown {
+    font-size: 0.8rem;
+    text-wrap: nowrap;
+  }
+}

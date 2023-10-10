@@ -1,10 +1,11 @@
-.navbar-container {
+.currency-selector-container {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-end;
   justify-content: center;
-  order: 1;
+  order: 2;
 
-  .navbar-item {
+  #currency-selector {
     text-decoration: none;
     cursor: pointer;
     font-size: 0.85rem;
@@ -12,7 +13,10 @@
     color: #fff;
     border: none;
     outline: none;
-    padding: 0.33rem 0.35rem;
-    text-wrap: nowrap;
+    padding: 0.25rem 0.35rem;
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 }
