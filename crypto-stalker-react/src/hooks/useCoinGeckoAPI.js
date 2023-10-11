@@ -33,6 +33,16 @@ export const useCoinGeckoAPI = (vsCurrency, countdown, refreshRate = 120) => {
 
           // Fetch Coins Data from API
           const response = await fetch(endpoint);
+
+          // Check server response
+          if (response.status === 429) {
+            throw new Error(
+              "You've hit the rate limit. Please wait a few minutes."
+            );
+          } else if (!response.ok) {
+            throw new Error("Something went wrong. Please try again later.");
+          }
+
           const coinsData = await response.json();
 
           // Save the last fetch time for each pair coin.
