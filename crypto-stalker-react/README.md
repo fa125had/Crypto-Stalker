@@ -1,70 +1,148 @@
-# Getting Started with Create React App
+# Cryptocurrency Tracking App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Table of Contents
 
-## Available Scripts
+- [Introduction](#introduction)
+- [Features](#features)
+- [Technologies](#technologies)
+- [Components](#components)
+  - [Core Components](#core-components)
+  - [Utility Components](#utility-components)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Dependencies](#dependencies)
+- [Scripts](#scripts)
+- [Contributing](#contributing)
+- [License](#license)
 
-In the project directory, you can run:
+## Introduction
 
-### `npm start`
+This is a React-based web application that allows users to track the latest information about first 200 cryptocurrencies sorted by market cap. The app provides real-time data, including price, market cap, and 24-hour changes.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Features
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Real-time cryptocurrency tracking
+- Search functionality
+- Favorite coins
+- Pagination
+- Network status indicator
+- Currency selector
+- Error handling
 
-### `npm test`
+## Technologies
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- React
+- React Router
+- Local Storage
+- SCSS
+- React-spinners for loading indicators
 
-### `npm run build`
+## Components
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Core Components
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+#### `CoinsList`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Displays a list of cryptocurrencies with pagination.
 
-### `npm run eject`
+#### `FavoritesCoins`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- Shows the user's favorite cryptocurrencies.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+#### `CoinRow`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- Represents a single row in the cryptocurrency list.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+#### `NetworkStatus`
 
-## Learn More
+- Indicates the network status (online/offline).
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+#### `SearchBox`
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Allows users to search for cryptocurrencies.
 
-### Code Splitting
+#### `UpdateNotification`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- Displays the countdown for the next update.
 
-### Analyzing the Bundle Size
+#### `VsCurrencySelector`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- Allows users to select the currency for price display.
 
-### Making a Progressive Web App
+### Utility Components
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+#### `BackButton`
 
-### Advanced Configuration
+- A simple back button for navigation.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+#### `CoinLogo`
 
-### Deployment
+- Displays the logo of a cryptocurrency.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+#### `CoinName`
 
-### `npm run build` fails to minify
+- Displays the name of a cryptocurrency.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+#### `CoinPrice`
+
+- Displays the current price of a cryptocurrency.
+
+#### `CoinRank`
+
+- Displays the market cap rank of a cryptocurrency.
+
+#### `CoinSymbol`
+
+- Displays the symbol of a cryptocurrency.
+
+#### `ErrorMessage`
+
+- Shows error messages.
+
+## Installation
+
+1. Clone the repository
+2. Run `npm install`
+3. Run `npm start`
+
+## Usage
+
+Visit `http://localhost:3000` to view the app.
+
+## Dependencies
+
+Here are the project dependencies from `package.json`:
+
+```json
+{
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "@uidotdev/usehooks": "^2.3.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.16.0",
+    "react-scripts": "5.0.1",
+    "react-spinners": "^0.13.8",
+    "web-vitals": "^2.1.4"
+  }
+}
+```
+
+## Scripts
+
+Here are the npm scripts you can run:
+
+- `npm start`: Starts the development server.
+- `npm build`: Builds the app for production.
+- `npm test`: Runs tests.
+- `npm eject`: Ejects the build setup.
+
+## Contributing
+
+Feel free to submit pull requests or create issues to improve the app.
+
+## License
+
+MIT License

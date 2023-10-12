@@ -6,6 +6,7 @@ import CoinLogo from "../../components/coinLogo/CoinLogo";
 import BackButton from "../../components/backButton/BackButton";
 import { useError } from "../../contexts/ErrorContext";
 import { ClipLoader } from "react-spinners";
+import { useVsCurrency } from "../../contexts/VsCurrencyContext";
 
 const CoinDetailPage = () => {
   const { coinsData, loading, selectedVsCurrency } = useCoins();
@@ -36,6 +37,20 @@ const CoinDetailPage = () => {
     return <ClipLoader />;
   }
 
+  // Determine the currency symbol
+  const getVsCurrencyLogo = () => {
+    switch (selectedVsCurrency) {
+      case "usd":
+        return "$";
+      case "eur":
+        return "€";
+      case "btc":
+        return "₿";
+      default:
+        return "usd";
+    }
+  };
+
   return (
     <div className="coin-detail-container">
       <header className="coin-detail-header">
@@ -48,19 +63,24 @@ const CoinDetailPage = () => {
           <p>Name: {coin.name}</p>
           <p>Symbol: {coin.symbol}</p>
           <p>
-            Current Price: {coin.current_price} {selectedVsCurrency}
+            Current Price: {coin.current_price}{" "}
+            <em className="vsCurrency">{getVsCurrencyLogo()}</em>
           </p>
         </div>
       </section>
       <section className="coin-ath">
         <h3 className="section-title">All-Time High</h3>
-        <p>ATH: {coin.ath}</p>
+        <p>
+          ATH: {coin.ath} <em className="vsCurrency">{getVsCurrencyLogo()}</em>
+        </p>
         <p>ATH changes(%): {coin.ath_change_percentage}</p>
         <p>ATH Date: {coin.ath_date}</p>
       </section>
       <section className="coin-atl">
         <h3 className="section-title">All-Time Low</h3>
-        <p>ATL: {coin.atl}</p>
+        <p>
+          ATL: {coin.atl} <em className="vsCurrency">{getVsCurrencyLogo()}</em>
+        </p>
         <p>ATL changes(%): {coin.atl_change_percentage}</p>
         <p>ATL Date: {coin.atl_date}</p>
       </section>
@@ -91,9 +111,18 @@ const CoinDetailPage = () => {
       )}
       <section className="coin-changes-24h">
         <h3 className="section-title">24h Changes</h3>
-        <p>High 24h: {coin.high_24h}</p>
-        <p>Low 24h: {coin.low_24h}</p>
-        <p>Price changes 24h: {coin.price_change_24h}</p>
+        <p>
+          High 24h: {coin.high_24h}{" "}
+          <em className="vsCurrency">{getVsCurrencyLogo()}</em>
+        </p>
+        <p>
+          Low 24h: {coin.low_24h}{" "}
+          <em className="vsCurrency">{getVsCurrencyLogo()}</em>
+        </p>
+        <p>
+          Price changes 24h: {coin.price_change_24h}{" "}
+          <em className="vsCurrency">{getVsCurrencyLogo()}</em>
+        </p>
         <p>Price changes 24h(%): {coin.price_change_percentage_24h}</p>
       </section>
       <section className="coin-last-update">
