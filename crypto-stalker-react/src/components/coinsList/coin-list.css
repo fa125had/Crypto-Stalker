@@ -1,36 +1,72 @@
 .coin-data-container {
   width: 100%;
-  max-width: 1200px;
+  max-width: 900px;
   font-family: "Poppins", sans-serif;
 }
-.coin-data-container table {
+.coin-data-container .coins-table {
+  -webkit-text-size-adjust: 100%;
+  line-height: 1.4285em;
+  font-family: Lato, Helvetica, Arial, sans-serif;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 15px -3px;
+  border: none;
   width: 100%;
-  border-collapse: collapse;
+  background: #fff;
+  margin: 1em 0;
+  border-radius: 0.28571429rem;
+  text-align: left;
+  color: rgba(0, 0, 0, 0.87);
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 1em;
+  margin-top: 0;
+  white-space: nowrap;
+}
+.coin-data-container .coins-table .table-head {
+  white-space: nowrap;
+  box-sizing: inherit;
+  box-shadow: none;
+  background-color: #fafafa;
+}
+.coin-data-container .coins-table .table-head .table-header-row {
   text-align: center;
 }
-.coin-data-container table thead {
-  background-color: #f2f2f2;
+.coin-data-container .coins-table .table-head .table-header-row .header-item {
+  font-weight: 300;
+  padding-inline: 0.25rem;
+  text-align: right;
 }
-.coin-data-container table thead th {
-  padding: 10px;
-  border: 1px solid #ccc;
+.coin-data-container .coins-table .table-body {
+  -webkit-text-size-adjust: 100%;
+  line-height: 1.4285em;
+  font-family: Lato, Helvetica, Arial, sans-serif;
+  text-align: left;
+  color: rgba(0, 0, 0, 0.87);
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 1em;
+  white-space: nowrap;
+  box-sizing: inherit;
+  background: rgb(255, 255, 255);
 }
-.coin-data-container table tbody tr:hover {
+.coin-data-container .coins-table .table-body tr {
+  text-align: right;
+}
+.coin-data-container .coins-table .table-body tr:hover {
   background-color: #f5f5f5;
   cursor: pointer;
 }
-.coin-data-container table tbody tr td {
+.coin-data-container .coins-table .table-body tr td {
   padding: 10px;
-  border: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
 }
-.coin-data-container table tbody .fav-img-wrapper {
-  width: 0.6rem;
+.coin-data-container .coins-table .table-body .fav-img-wrapper {
+  width: 2.6rem;
 }
-.coin-data-container table tbody .fav-img-wrapper .favorite-icon {
+.coin-data-container .coins-table .table-body .fav-img-wrapper .favorite-icon {
   width: 100%;
 }
-.coin-data-container table tbody .logo-wrapper {
-  width: 0.8rem;
+.coin-data-container .coins-table .table-body .logo-wrapper {
+  width: 2.8rem;
 }
 
 .pagination-container {
