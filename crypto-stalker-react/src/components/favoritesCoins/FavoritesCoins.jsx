@@ -43,19 +43,30 @@ const FavoritesCoins = ({ searchQuery, setSearchQuery }) => {
   }
 
   return (
-    <>
-      <section className="coin-data-container" id="coins-table">
-        {filteredCoins.map((coin) => {
-          return (
-            <CoinRow
-              key={coin.id}
-              coin={coin}
-              vsCurrency={selectedVsCurrency}
-            />
-          );
-        })}
-      </section>
-    </>
+    <section className="coin-data-container" id="coins-table">
+      <table className="coins-table">
+        <thead>
+          <th className="header-item">Fav</th>
+          <th className="header-item">Rank</th>
+          <th className="header-item">Logo</th>
+          <th className="header-item">Name</th>
+          <th className="header-item">Price</th>
+          <th className="header-item">Market Cap</th>
+          <th className="header-item change-24h">24h Change</th>
+        </thead>
+        <tbody>
+          {filteredCoins.map((coin) => {
+            return (
+              <CoinRow
+                key={coin.id}
+                coin={coin}
+                vsCurrency={selectedVsCurrency}
+              />
+            );
+          })}
+        </tbody>
+      </table>
+    </section>
   );
 };
 

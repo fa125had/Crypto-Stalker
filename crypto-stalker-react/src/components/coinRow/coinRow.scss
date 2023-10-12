@@ -1,87 +1,30 @@
 .coin-row {
-  width: 100%;
-  display: flex;
-  cursor: pointer;
-  border: 1px solid #dcd7d7;
-  align-items: center;
-  justify-content: center;
-  border-radius: 0.15rem;
-  padding: 0.25rem;
-  font-size: 0.9rem;
-  overflow: auto;
-
-  .fav-img-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-inline-end: 0.5rem;
-    border-right: 1px solid #dcd7d7;
-    height: 100%;
-    padding: 0.25rem;
-
-    .favorite-icon {
-      width: 1rem;
-      margin-inline: 0.25rem;
-    }
-  }
-
-  .coin-info {
-    display: grid;
-    width: 100%;
-    align-items: center;
-    justify-content: space-between;
-    grid-template-columns: 2rem 2.5rem 4.5rem 5.5rem 6rem repeat(3, 1fr);
-    grid-template-rows: 1fr;
-
-    .rank-wrapper {
-      text-align: center;
-      grid-column: 1 / 2;
-    }
-
-    .logo-wrapper {
-      width: 1.5rem;
-      display: flex;
-      justify-self: center;
-      align-items: center;
-      margin-inline: 0.25rem;
-      grid-column: 2 / 3;
-    }
-
-    .name-wrapper {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: flex-start;
-      grid-column: 3 / 4;
-      width: 100%;
-
-      .coin-name {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        width: 100%;
+  td {
+    .fav-img-wrapper {
+      img {
+        width: 20px;
+        height: 20px;
       }
     }
 
-    .price-wrapper {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-self: start;
-      justify-content: center;
-      grid-column: 4 / 5;
-    }
-
-    .marketCap-wrapper {
-      width: 100%;
-      justify-self: center;
-      grid-column: 5 / 6;
-      text-align: center;
-    }
-
+    .rank-wrapper,
+    .logo-wrapper,
+    .name-wrapper,
+    .price-wrapper,
+    .marketCap-wrapper,
     .profit-loss-24h {
-      grid-column-start: 8;
-      text-align: right;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .name-wrapper {
+      flex-direction: column;
+    }
+
+    .percentage,
+    .amount {
+      margin: 0 5px;
     }
   }
 }

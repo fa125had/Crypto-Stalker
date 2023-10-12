@@ -1,77 +1,21 @@
-.coin-row {
-  width: 100%;
-  display: flex;
-  cursor: pointer;
-  border: 1px solid #dcd7d7;
-  align-items: center;
-  justify-content: center;
-  border-radius: 0.15rem;
-  padding: 0.25rem;
-  font-size: 0.9rem;
-  overflow: auto;
+.coin-row td .fav-img-wrapper img {
+  width: 20px;
+  height: 20px;
 }
-.coin-row .fav-img-wrapper {
+.coin-row td .rank-wrapper,
+.coin-row td .logo-wrapper,
+.coin-row td .name-wrapper,
+.coin-row td .price-wrapper,
+.coin-row td .marketCap-wrapper,
+.coin-row td .profit-loss-24h {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-inline-end: 0.5rem;
-  border-right: 1px solid #dcd7d7;
-  height: 100%;
-  padding: 0.25rem;
 }
-.coin-row .fav-img-wrapper .favorite-icon {
-  width: 1rem;
-  margin-inline: 0.25rem;
-}
-.coin-row .coin-info {
-  display: grid;
-  width: 100%;
-  align-items: center;
-  justify-content: space-between;
-  grid-template-columns: 2rem 2.5rem 4.5rem 5.5rem 6rem repeat(3, 1fr);
-  grid-template-rows: 1fr;
-}
-.coin-row .coin-info .rank-wrapper {
-  text-align: center;
-  grid-column: 1/2;
-}
-.coin-row .coin-info .logo-wrapper {
-  width: 1.5rem;
-  display: flex;
-  justify-self: center;
-  align-items: center;
-  margin-inline: 0.25rem;
-  grid-column: 2/3;
-}
-.coin-row .coin-info .name-wrapper {
-  display: flex;
+.coin-row td .name-wrapper {
   flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  grid-column: 3/4;
-  width: 100%;
 }
-.coin-row .coin-info .name-wrapper .coin-name {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  width: 100%;
-}
-.coin-row .coin-info .price-wrapper {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-self: start;
-  justify-content: center;
-  grid-column: 4/5;
-}
-.coin-row .coin-info .marketCap-wrapper {
-  width: 100%;
-  justify-self: center;
-  grid-column: 5/6;
-  text-align: center;
-}
-.coin-row .coin-info .profit-loss-24h {
-  grid-column-start: 8;
-  text-align: right;
+.coin-row td .percentage,
+.coin-row td .amount {
+  margin: 0 5px;
 }/*# sourceMappingURL=coinRow.css.map */

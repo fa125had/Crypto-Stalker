@@ -36,71 +36,72 @@ const CoinDetailPage = () => {
     return <ClipLoader />;
   }
 
-return (
-  <div className="coin-detail-container">
-    <header className="coin-detail-header">
-      <h2 className="coin-detail-title">Detail</h2>
-      <BackButton className="back-button" />
-    </header>
-    <section className="coin-info">
-      <CoinLogo src={coin.image} className="coin-logo" />
-      <div className="coin-basic-info">
-        <p>Name: {coin.name}</p>
-        <p>Symbol: {coin.symbol}</p>
-        <p>
-          Current Price: {coin.current_price} {selectedVsCurrency}
-        </p>
-      </div>
-    </section>
-    <section className="coin-ath">
-      <h3 className="section-title">All-Time High</h3>
-      <p>ATH: {coin.ath}</p>
-      <p>ATH changes(%): {coin.ath_change_percentage}</p>
-      <p>ATH Date: {coin.ath_date}</p>
-    </section>
-    <section className="coin-atl">
-      <h3 className="section-title">All-Time Low</h3>
-      <p>ATL: {coin.atl}</p>
-      <p>ATL changes(%): {coin.atl_change_percentage}</p>
-      <p>ATL Date: {coin.atl_date}</p>
-    </section>
-    <section className="coin-market-cap">
-      <h3 className="section-title">Market Cap</h3>
-      <p>Market Cap: {coin.market_cap}</p>
-      <p>Market Cap Rank: {coin.market_cap_rank}</p>
-      <p>Market Cap changes 24h: {coin.market_cap_change_24h}</p>
-      <p>Market Cap changes 24h(%): {coin.market_cap_change_percentage_24h}</p>
-    </section>
-    <section className="coin-supply">
-      <h3 className="section-title">Supply</h3>
-      <p>Circulating supply: {coin.circulating_supply}</p>
-      <p>Fully diluted valuation: {coin.fully_diluted_valuation}</p>
-      <p>Max Supply: {coin.max_supply}</p>
-      <p>Total supply: {coin.total_supply}</p>
-      <p>Total volume: {coin.total_volume}</p>
-    </section>
-    {coin.roi && (
-      <section className="coin-roi">
-        <h3 className="section-title">Return on Investment</h3>
-        <p>Currency: {coin.roi.currency}</p>
-        <p>Percentage: {coin.roi.percentage}</p>
-        <p>Times: {coin.roi.times}</p>
+  return (
+    <div className="coin-detail-container">
+      <header className="coin-detail-header">
+        <h2 className="coin-detail-title">Detail</h2>
+        <BackButton className="back-button" />
+      </header>
+      <section className="coin-info">
+        <CoinLogo src={coin.image} className="coin-logo" />
+        <div className="coin-basic-info">
+          <p>Name: {coin.name}</p>
+          <p>Symbol: {coin.symbol}</p>
+          <p>
+            Current Price: {coin.current_price} {selectedVsCurrency}
+          </p>
+        </div>
       </section>
-    )}
-    <section className="coin-changes-24h">
-      <h3 className="section-title">24h Changes</h3>
-      <p>High 24h: {coin.high_24h}</p>
-      <p>Low 24h: {coin.low_24h}</p>
-      <p>Price changes 24h: {coin.price_change_24h}</p>
-      <p>Price changes 24h(%): {coin.price_change_percentage_24h}</p>
-    </section>
-    <section className="coin-last-update">
-      <h3 className="section-title">Last Update</h3>
-      <p>Last Update: {coin.last_updated}</p>
-    </section>
-  </div>
-);
-
+      <section className="coin-ath">
+        <h3 className="section-title">All-Time High</h3>
+        <p>ATH: {coin.ath}</p>
+        <p>ATH changes(%): {coin.ath_change_percentage}</p>
+        <p>ATH Date: {coin.ath_date}</p>
+      </section>
+      <section className="coin-atl">
+        <h3 className="section-title">All-Time Low</h3>
+        <p>ATL: {coin.atl}</p>
+        <p>ATL changes(%): {coin.atl_change_percentage}</p>
+        <p>ATL Date: {coin.atl_date}</p>
+      </section>
+      <section className="coin-market-cap">
+        <h3 className="section-title">Market Cap</h3>
+        <p>Market Cap: {coin.market_cap}</p>
+        <p>Market Cap Rank: {coin.market_cap_rank}</p>
+        <p>Market Cap changes 24h: {coin.market_cap_change_24h}</p>
+        <p>
+          Market Cap changes 24h(%): {coin.market_cap_change_percentage_24h}
+        </p>
+      </section>
+      <section className="coin-supply">
+        <h3 className="section-title">Supply</h3>
+        <p>Circulating supply: {coin.circulating_supply}</p>
+        <p>Fully diluted valuation: {coin.fully_diluted_valuation}</p>
+        <p>Max Supply: {coin.max_supply}</p>
+        <p>Total supply: {coin.total_supply}</p>
+        <p>Total volume: {coin.total_volume}</p>
+      </section>
+      {coin.roi && (
+        <section className="coin-roi">
+          <h3 className="section-title">Return on Investment</h3>
+          <p>Currency: {coin.roi.currency}</p>
+          <p>Percentage: {coin.roi.percentage}</p>
+          <p>Times: {coin.roi.times}</p>
+        </section>
+      )}
+      <section className="coin-changes-24h">
+        <h3 className="section-title">24h Changes</h3>
+        <p>High 24h: {coin.high_24h}</p>
+        <p>Low 24h: {coin.low_24h}</p>
+        <p>Price changes 24h: {coin.price_change_24h}</p>
+        <p>Price changes 24h(%): {coin.price_change_percentage_24h}</p>
+      </section>
+      <section className="coin-last-update">
+        <h3 className="section-title">Last Update</h3>
+        <p>Last Update: {coin.last_updated}</p>
+      </section>
+    </div>
+  );
 };
 
 export default CoinDetailPage;

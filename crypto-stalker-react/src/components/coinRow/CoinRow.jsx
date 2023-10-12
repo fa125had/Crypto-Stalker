@@ -19,85 +19,80 @@ const CoinRow = ({ coin, vsCurrency }) => {
     setIsFavorite(favorites.includes(coin.id));
   }, [favorites, coin.id]);
 
-  const toggleFavorite = () => {
-    let updatedFavorites;
-    if (isFavorite) {
-      updatedFavorites = favorites.filter((fav) => fav !== coin.id);
-    } else {
-      updatedFavorites = [...favorites, coin.id];
-    }
+  // Toggle favorite status
+  const toggleFavorite = (event) => {
+    event.stopPropagation();
+    const updatedFavorites = isFavorite
+      ? favorites.filter((fav) => fav !== coin.id)
+      : [...favorites, coin.id];
     setFavorites(updatedFavorites);
     setIsFavorite(!isFavorite);
   };
 
-  const handleClick = ({ target }) => {
+  // Navigate to coin detail page
+  const handleClick = () => {
     navigate(`/${coin.id}`);
   };
 
-  // manage vsCurrency logo
-  let vsCurrencyLogo = "";
-  if (vsCurrency === "usd") {
-    vsCurrencyLogo = "$";
-  } else if (vsCurrency === "eur") {
-    vsCurrencyLogo = "€";
-  } else if (vsCurrency === "btc") {
-    vsCurrencyLogo = "₿";
-  }
-
-  const formatNumbers = (number) => {
-    if (number && Math.abs(number) < 1) {
-      return number.toFixed(9);
-    } else if (number){
-      return number.toFixed(2);
+  // Determine the currency symbol
+  const getVsCurrencyLogo = () => {
+    switch (vsCurrency) {
+      case "usd":
+        return "$";
+      case "eur":
+        return "€";
+      case "btc":
+        return "₿";
+      default:
+        return "";
     }
   };
 
+  // Format numbers
+  const formatNumbers = (number) => {
+    return number && Math.abs(number) < 1
+      ? number.toFixed(4)
+      : number.toFixed(2);
+  };
+
+  // Determine favorite icon source
+  const favoriteIconSrc = isFavorite
+    ? "/assets/images/favorite-filled.svg"
+    : "/assets/images/favorite-regular.svg";
+
   return (
-    <div key={coin.id} className="coin-row">
-      <div className="fav-img-wrapper">
-        <img
-          className="favorite-icon"
-          src={
-            isFavorite
-              ? "/assets/images/favorite-filled.svg"
-              : "/assets/images/favorite-regular.svg"
-          }
-          alt="favorite"
-          onClick={toggleFavorite}
-        />
-      </div>
-      <span className="coin-info" onClick={handleClick}>
-        <div className="rank-wrapper">
-          <CoinRank coinRank={coin.market_cap_rank} />
+    <tr className="coin-row" onClick={handleClick}>
+      <td
+        className="fav-img-wrapper"
+        onClick={(event) => toggleFavorite(event)}
+      >
+        <img className="favorite-icon" src={favoriteIconSrc} alt="favorite" />
+      </td>
+      <td className="rank-wrapper">
+        <CoinRank coinRank={coin.market_cap_rank} />
+      </td>
+      <td className="logo-wrapper">
+        <CoinLogo src={coin.image} name={coin.name} />
+      </td>
+      <td className="name-wrapper">
+        <CoinName name={coin.name} />
+        <CoinSymbol coinSymbol={coin.symbol} />
+      </td>
+      <td className="price-wrapper">
+        <span className="vsCurrency">{getVsCurrencyLogo()}</span>
+        <CoinPrice coinPrice={coin.current_price} />
+      </td>
+      <td className="marketCap-wrapper">
+        <p>{(coin.market_cap / 1000000).toFixed(2)}m</p>
+      </td>
+      <td className="profit-loss-24h">
+        <div className="percentage">{coin.price_change_percentage_24h}%</div>
+        <div className="amount">
+          {formatNumbers(coin.price_change_24h)}
+          {getVsCurrencyLogo()}
         </div>
-
-        <div className="logo-wrapper">
-          <CoinLogo src={coin.image} name={coin.name} />
-        </div>
-
-        <div className="name-wrapper">
-          <CoinName name={coin.name} />
-          <CoinSymbol coinSymbol={coin.symbol} />
-        </div>
-
-        <div className="price-wrapper">
-          <span className="vsCurrency">{vsCurrencyLogo}</span>
-          <CoinPrice coinPrice={coin.current_price} />
-        </div>
-
-        <div className="marketCap-wrapper">
-          <p>{(coin.market_cap / 1000000).toFixed(2)}m</p>
-        </div>
-
-        <div className="profit-loss-24h">
-          <div className="percentage">{coin.price_change_percentage_24h}%</div>
-          <div className="amount">
-            {formatNumbers(coin.price_change_24h)}
-            {vsCurrencyLogo}
-          </div>
-        </div>
-      </span>
-    </div>
+      </td>
+    </tr>
   );
 };
 

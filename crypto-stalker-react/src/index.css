@@ -1,7 +1,7 @@
 :root {
-  font-size: 17px;
+  font-size: 14px;
   animation: fadeIn;
-  animation-duration: 700ms;
+  animation-duration: 300ms;
 }
 * {
   margin: 0;
