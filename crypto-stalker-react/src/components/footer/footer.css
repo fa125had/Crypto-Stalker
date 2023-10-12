@@ -8,8 +8,6 @@
   flex-direction: column;
   margin-block-start: 1rem;
   border-top: 1px solid #dcd7d7;
-  position: sticky;
-  bottom: 0;
 }
 .footer-container .copy {
   display: flex;

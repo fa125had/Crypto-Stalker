@@ -69,6 +69,9 @@
   .coin-data-container .coins-table {
     font-size: 0.8rem;
   }
+  .coin-data-container .coins-table th:nth-child(4) {
+    text-align: center !important;
+  }
   .coin-data-container .coins-table td:nth-child(4) {
     max-width: 4.5rem;
     white-space: nowrap;
