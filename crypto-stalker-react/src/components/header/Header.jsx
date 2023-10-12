@@ -13,23 +13,27 @@ const Header = ({ searchQuery, setSearchQuery }) => {
   return (
     <header className="header-container">
       <div className="header">
-        <span className="header-cta">
+        <div className="left-section">
           <VsCurrencySelector />
+        </div>
+
+        <div className="nav-section">
+          <NavBar />
+        </div>
+
+        <div className="right-section">
           <SearchBox
             searchQuery={searchQuery}
             setSearchQuery={setSearchQuery}
           />
-          <span className="nav-bar">
-            <NavBar />
-          </span>
-        </span>
+        </div>
 
-        <span className="header-jfi">
+        <div className="center-section">
           <NetworkStatus isOnline={isOnline} setIsOnline={setIsOnline} />
           <CountdownProvider>
             <UpdateNotification isOnline={isOnline} />
           </CountdownProvider>
-        </span>
+        </div>
       </div>
     </header>
   );

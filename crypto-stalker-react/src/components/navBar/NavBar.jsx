@@ -9,12 +9,12 @@ const NavBar = () => {
     <nav className="navbar-container">
       {currentPath !== "/" && (
         <NavLink className="navbar-item" to={"/"}>
-          Back to HomePage
+          HomePage
         </NavLink>
       )}
       {currentPath !== "/favList" && (
         <NavLink className="navbar-item" to={"/favList"}>
-          Check Your Favorites
+          Favorites
         </NavLink>
       )}
     </nav>

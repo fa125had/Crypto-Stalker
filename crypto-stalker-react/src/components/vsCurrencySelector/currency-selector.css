@@ -17,5 +17,5 @@
 }
 .currency-selector-container #currency-selector:hover {
   cursor: pointer;
-  background-color: rgb(0, 0, 0);
+  background-color: #000;
 }/*# sourceMappingURL=currency-selector.css.map */
