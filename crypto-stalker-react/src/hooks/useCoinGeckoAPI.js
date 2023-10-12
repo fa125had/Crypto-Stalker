@@ -59,7 +59,7 @@ export const useCoinGeckoAPI = (vsCurrency, countdown, refreshRate = 120) => {
           console.log(`Data loaded from API`);
         }
       } catch (error) {
-        setErrorMessage(error);
+        setErrorMessage(error.message);
         setLoading(false);
       }
     };

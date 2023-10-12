@@ -12,6 +12,9 @@
   -webkit-tap-highlight-color: #c3c3c3;
   transition: all 0.3s ease-in-out;
 }
+#root {
+  position: relative;
+}
 body {
   background-color: #fff;
   color: rgba(0, 0, 0, 0.85);

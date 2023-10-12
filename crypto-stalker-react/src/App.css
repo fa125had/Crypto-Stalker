@@ -37,6 +37,6 @@
   background-color: #ccc;
   cursor: not-allowed;
 }
-.App .main-container .pagination-container .pagination-btn:hover {
+.App .main-container .pagination-container .pagination-btn:not(:disabled):hover {
   background-color: rgb(0, 0, 0);
 }/*# sourceMappingURL=App.css.map */
