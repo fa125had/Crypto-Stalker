@@ -47,6 +47,9 @@ return (
       <div className="coin-basic-info">
         <p>Name: {coin.name}</p>
         <p>Symbol: {coin.symbol}</p>
+        <p>
+          Current Price: {coin.current_price} {selectedVsCurrency}
+        </p>
       </div>
     </section>
     <section className="coin-ath">
@@ -71,7 +74,6 @@ return (
     <section className="coin-supply">
       <h3 className="section-title">Supply</h3>
       <p>Circulating supply: {coin.circulating_supply}</p>
-      <p>Current Price: {coin.current_price}</p>
       <p>Fully diluted valuation: {coin.fully_diluted_valuation}</p>
       <p>Max Supply: {coin.max_supply}</p>
       <p>Total supply: {coin.total_supply}</p>
