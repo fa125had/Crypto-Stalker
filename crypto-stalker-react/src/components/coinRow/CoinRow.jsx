@@ -69,25 +69,40 @@ const CoinRow = ({ coin, vsCurrency }) => {
       >
         <img className="favorite-icon" src={favoriteIconSrc} alt="favorite" />
       </td>
+
       <td className="rank-wrapper">
         <CoinRank coinRank={coin.market_cap_rank} />
       </td>
+
       <td className="logo-wrapper">
         <CoinLogo src={coin.image} name={coin.name} />
       </td>
+
       <td className="name-wrapper">
         <CoinName name={coin.name} />
         <CoinSymbol coinSymbol={coin.symbol} />
       </td>
+
       <td className="price-wrapper">
         <p>
           {coin.current_price}
           <em className="vsCurrency">{getVsCurrencyLogo()}</em>
         </p>
       </td>
+
       <td className="marketCap-wrapper">
         <p>{(coin.market_cap / 1000000).toFixed(2)}m</p>
       </td>
+
+      <td className="highest-24h">
+        {coin.high_24h}
+        <em className="vsCurrency">{getVsCurrencyLogo()}</em>
+      </td>
+      <td className="lowest-24h">
+        {coin.low_24h}
+        <em className="vsCurrency">{getVsCurrencyLogo()}</em>
+      </td>
+
       <td className="profit-loss-24h">
         <div className="percentage">{coin.price_change_percentage_24h}%</div>
         <div className="amount">
