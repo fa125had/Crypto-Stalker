@@ -31,7 +31,7 @@
       display: flex;
       align-items: center;
       flex-direction: row-reverse;
-      gap: 0.5rem;
+      gap: 0.15rem;
     }
   }
 
@@ -44,6 +44,9 @@
       .nav-section {
         justify-content: flex-start;
         margin-inline: 0.25rem;
+        .navbar-container {
+          gap: 0.25rem;
+        }
       }
 
       .right-section {
@@ -54,7 +57,7 @@
       .center-section {
         flex-direction: column !important;
         .countdown-container {
-          font-size: 0.8rem !important;
+          font-size: 0.7rem !important;
           padding-inline: 0.25rem !important;
         }
       }
