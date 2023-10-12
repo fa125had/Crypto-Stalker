@@ -6,6 +6,8 @@
   align-items: center;
   justify-content: flex-start;
   font-family: "Poppins", sans-serif;
+  overflow: hidden;
+  overflow-y: auto;
 }
 .App .main-container {
   width: 100%;

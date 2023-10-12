@@ -45,16 +45,18 @@ const FavoritesCoins = ({ searchQuery, setSearchQuery }) => {
   return (
     <section className="coin-data-container" id="coins-table">
       <table className="coins-table">
-        <thead>
-          <th className="header-item">Fav</th>
-          <th className="header-item">Rank</th>
-          <th className="header-item">Logo</th>
-          <th className="header-item">Name</th>
-          <th className="header-item">Price</th>
-          <th className="header-item">Market Cap</th>
-          <th className="header-item change-24h">24h Change</th>
+        <thead className="table-head">
+          <tr className="table-header-row">
+            <th className="header-item">Fav</th>
+            <th className="header-item">Rank</th>
+            <th className="header-item">Logo</th>
+            <th className="header-item">Name</th>
+            <th className="header-item">Price</th>
+            <th className="header-item">Market Cap</th>
+            <th className="header-item change-24h">24h Change</th>
+          </tr>
         </thead>
-        <tbody>
+        <tbody className="table-body">
           {filteredCoins.map((coin) => {
             return (
               <CoinRow

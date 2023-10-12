@@ -6,6 +6,8 @@
   align-items: center;
   justify-content: flex-start;
   font-family: "Poppins", sans-serif;
+  overflow: hidden;
+  overflow-y: auto;
 
   .main-container {
     width: 100%;
@@ -44,8 +46,6 @@
       }
     }
   }
-
-
 }
 
 // @media only screen and (max-width: 840px) {
