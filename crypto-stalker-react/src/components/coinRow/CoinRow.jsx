@@ -2,7 +2,6 @@ import "./coinRow.css";
 import CoinLogo from "../coinLogo/CoinLogo";
 import CoinName from "../coinName/CoinName";
 import CoinSymbol from "../coinSymbol/CoinSymbol";
-import CoinPrice from "../coinPrice/CoinPrice";
 import CoinRank from "../coinRank/CoinRank";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -22,9 +21,11 @@ const CoinRow = ({ coin, vsCurrency }) => {
   // Toggle favorite status
   const toggleFavorite = (event) => {
     event.stopPropagation();
+
     const updatedFavorites = isFavorite
       ? favorites.filter((fav) => fav !== coin.id)
       : [...favorites, coin.id];
+
     setFavorites(updatedFavorites);
     setIsFavorite(!isFavorite);
   };
@@ -44,7 +45,7 @@ const CoinRow = ({ coin, vsCurrency }) => {
       case "btc":
         return "₿";
       default:
-        return "";
+        return "usd";
     }
   };
 
@@ -79,8 +80,10 @@ const CoinRow = ({ coin, vsCurrency }) => {
         <CoinSymbol coinSymbol={coin.symbol} />
       </td>
       <td className="price-wrapper">
-        <span className="vsCurrency">{getVsCurrencyLogo()}</span>
-        <CoinPrice coinPrice={coin.current_price} />
+        <p>
+          {coin.current_price}
+          <em className="vsCurrency">{getVsCurrencyLogo()}</em>
+        </p>
       </td>
       <td className="marketCap-wrapper">
         <p>{(coin.market_cap / 1000000).toFixed(2)}m</p>

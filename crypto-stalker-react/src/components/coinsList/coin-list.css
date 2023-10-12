@@ -48,41 +48,45 @@
   box-sizing: inherit;
   background: rgb(255, 255, 255);
 }
-.coin-data-container .coins-table .table-body tr {
-  text-align: right;
+@media (max-width: 530px) {
+  .coin-data-container .coins-table th:nth-child(6),
+  .coin-data-container .coins-table td:nth-child(6) {
+    display: none;
+  }
 }
-.coin-data-container .coins-table .table-body tr:hover {
-  background-color: #f5f5f5;
-  cursor: pointer;
-}
-.coin-data-container .coins-table .table-body tr td {
-  padding: 10px;
-  border-bottom: 1px solid #ccc;
-}
-.coin-data-container .coins-table .table-body .fav-img-wrapper {
-  width: 2.6rem;
-}
-.coin-data-container .coins-table .table-body .fav-img-wrapper .favorite-icon {
-  width: 100%;
-}
-.coin-data-container .coins-table .table-body .logo-wrapper {
-  width: 2.8rem;
+@media (max-width: 430px) {
+  .coin-data-container .coins-table {
+    font-size: 0.8rem;
+  }
+  .coin-data-container .coins-table td:nth-child(2) {
+    padding: 0.25rem !important;
+    text-align: center !important;
+  }
+  .coin-data-container .coins-table td:nth-child(2) {
+    padding: 0.75rem !important;
+    text-align: center !important;
+  }
+  .coin-data-container .coins-table td:nth-child(4) {
+    max-width: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
 
 .pagination-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 1.5rem;
 }
 .pagination-container .pagination-btn {
-  padding: 10px 20px;
-  margin: 0 10px;
+  padding: 0.8rem 1.2rem;
+  margin: 0 0.9rem;
   cursor: pointer;
   background-color: #007bff;
   color: white;
   border: none;
-  border-radius: 4px;
 }
 .pagination-container .pagination-btn:disabled {
   background-color: #ccc;

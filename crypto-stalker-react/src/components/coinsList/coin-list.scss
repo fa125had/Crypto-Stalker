@@ -51,28 +51,35 @@
       white-space: nowrap;
       box-sizing: inherit;
       background: rgb(255, 255, 255);
-      tr {
-        text-align: right;
 
-        &:hover {
-          background-color: #f5f5f5;
-          cursor: pointer;
-        }
+    }
 
-        td {
-          padding: 10px;
-          border-bottom: 1px solid #ccc;
-        }
+    @media (max-width: 530px) {
+      // Hide Market Cap column on smaller screens
+      th:nth-child(6),
+      td:nth-child(6) {
+        display: none;
       }
-      .fav-img-wrapper {
-        width: 2.6rem;
-        .favorite-icon {
-          width: 100%;
-        }
-      }
+    }
 
-      .logo-wrapper {
-        width: 2.8rem;
+    @media (max-width: 430px) {
+      font-size: 0.8rem;
+      // Rank column
+      td:nth-child(2) {
+        padding: 0.25rem !important;
+        text-align: center !important;
+      }
+      // Logo column
+      td:nth-child(2) {
+        padding: 0.75rem !important;
+        text-align: center !important;
+      }
+      // Name column
+      td:nth-child(4) {
+        max-width: 100px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
     }
   }
@@ -82,16 +89,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 1.5rem;
 
   .pagination-btn {
-    padding: 10px 20px;
-    margin: 0 10px;
+    padding: 0.8rem 1.2rem;
+    margin: 0 0.9rem;
     cursor: pointer;
     background-color: #007bff;
     color: white;
     border: none;
-    border-radius: 4px;
 
     &:disabled {
       background-color: #ccc;
